@@ -8,10 +8,10 @@ import java.util.*;
 
 public class Analysebericht
 {
-    String Laborant;
-    String Erstellungsdatum;
-    String Labor;
-    String Analyseobjekt;
+    String Laborantenkürzel;
+    String Analysedatum;
+    String Laborname;
+    String AnalyseObjekt;
     String Analysemethode;
     String Analyseergebnis;
 
@@ -20,29 +20,29 @@ public class Analysebericht
      * Dabei werden die Daten Laborant, Labor, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
      * Das aktuelle Datum wird durch die Klasse Calendar erzeugt.
      * 
-     * @param Laborant
-     * @param Labor
-     * @param Analyseobjekt
+     * @param Laborantenkürzel
+     * @param Laborname
+     * @param AnalyseObjekt
      * @param Analysemethode
      * @param Analyseergebnis
      */
     public Analysebericht(String Laborant, String Labor, String Analyseobjekt, String Analysemethode, String Analyseergebnis)
     {
-        this.Laborant = Laborant;
+        Laborantenkürzel = Laborant;
         Calendar date = Calendar.getInstance();
-        Erstellungsdatum = date.get(Calendar.DAY_OF_MONTH ) + "." + (date.get(Calendar.MONTH) + 1 ) + "." + date.get(Calendar.YEAR);
-        this.Labor = Labor;
-        this.Analyseobjekt = Analyseobjekt;
+        Analysedatum = date.get(Calendar.DAY_OF_MONTH ) + "." + (date.get(Calendar.MONTH) + 1 ) + "." + date.get(Calendar.YEAR);
+        this.Laborname = Labor;
+        this.AnalyseObjekt = Analyseobjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
     }
 
-    public void changeAnalysebericht(String Laborant, String Erstellungsdatum, String Labor, String Analyseobjekt, String Analysemethode, String Analyseergebnis)
+    public void Analyseberichtbearbeiten(String Laborant, String Erstellungsdatum, String Labor, String Analyseobjekt, String Analysemethode, String Analyseergebnis)
     {
-        this.Laborant = Laborant;
-        this.Erstellungsdatum = Erstellungsdatum;
-        this.Labor = Labor;
-        this.Analyseobjekt = Analyseobjekt;
+        this.Laborantenkürzel = Laborant;
+        this.Analysedatum = Erstellungsdatum;
+        this.Laborname = Labor;
+        this.AnalyseObjekt = Analyseobjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
     }
