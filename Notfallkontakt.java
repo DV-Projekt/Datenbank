@@ -8,57 +8,31 @@
 public class Notfallkontakt
 {
     //Attributes of the class Notfallkontak
-     private String Name;
+    private String Name;
     private String Adresse;
     private String Beziehung;
     private int Telefonnummer;
 
-    /**
+     /**
      * Standard constructor for objects of class Notfallkontakt
      */
-    public Notfallkontakt()
+    
+    
+    
+    
+    public Notfallkontakt(String n, String ad, String bez, int tel)
     {
         // Setting attributes to zero
-        this.Name = "";
-        this.Adresse = "";
-        this.Beziehung = "";
-        this.Telefonnummer= 0;
+        this.Name = n;
+        this.Adresse = ad;
+        this.Beziehung = bez;
+        this.Telefonnummer= tel;
+        
     }
-
-    /**
-     * Set method for name of emergency contact
-     * @param: n
-     */
-    public void setname(String n)
-    {
-        // put your code here
-        Name = n;
-    }
-    /**
-     * Set method for adress of emergency contact
-     * @param: ad
-     */
-    public void setAdresse(String ad)
-    {
-        Adresse = ad;
-    }
-    /**
-     * Set method for relation to emergency contact
-     * @param: bez
-     */
-    public void setBeziehung(String bez)
-    {
-        Beziehung = bez;
-    }
-    /**
-     * Set methods for telephone number of the emergency contacts 
-     * @param: tel
-     */
-    public void setTelefonnummer(int tel)
-    {
-        Telefonnummer = tel;
-    }
-    /**
+    
+    
+   
+     /**
      * Method to edit already existing, or new contact details
      *
      * @param: n
@@ -66,6 +40,9 @@ public class Notfallkontakt
      * @param:bez
      * @param:tel
      */
+    
+    
+    
     public void kontaktdatenbearbeiten(String n, String ad, String bez, int tel)
     {
         Name = n;
