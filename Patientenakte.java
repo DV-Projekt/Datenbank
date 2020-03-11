@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart)
- * @version (0.0.1)
+ * @version (0.0.2)
  */
 public class Patientenakte
 {
@@ -18,9 +18,19 @@ public class Patientenakte
     private String Vorerkrankungen;
     private String Allergien;
     
-    public Patientenakte()
+    public Patientenakte(String N, int Alt, String Ad, String Gesch, int KrankNr, 
+    String Blut, String Arzt, int Tel, String Vor, String All)
     {
-        
+        Name=N;
+        Alter=Alt;
+        Adresse=Ad;
+        Geschlecht=Gesch;
+        KrankenkassenNr=KrankNr;
+        Blutgruppe=Blut;
+        ZuständigerArzt=Arzt;
+        Telefonnummer=Tel;
+        Vorerkrankungen=Vor;
+        Allergien=All;
     }
     public void Aktebearbeiten()
     {
