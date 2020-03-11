@@ -31,8 +31,8 @@ public class Notfallkontakt
     }
     
     
-   
-     /**
+
+    /**
      * Method to edit already existing, or new contact details
      *
      * @param: n
@@ -50,5 +50,5 @@ public class Notfallkontakt
         Beziehung = bez;
         Telefonnummer = tel;
     }
-    
+
 }
