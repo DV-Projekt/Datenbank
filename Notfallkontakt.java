@@ -1,33 +1,77 @@
 
 /**
- * Write a description of class Notfallkontakt here.
+ * Class Notfallkontakt for emergencies with individual patients 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Asma Azan
+ * @version 1, 10th March, 2020
  */
 public class Notfallkontakt
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    //Attributes of the class Notfallkontak
+     private String Name;
+    private String Adresse;
+    private String Beziehung;
+    private int Telefonnummer;
 
     /**
-     * Constructor for objects of class Notfallkontakt
+     * Standard constructor for objects of class Notfallkontakt
      */
     public Notfallkontakt()
     {
-        // initialise instance variables
-        x = 0;
+        // Setting attributes to zero
+        this.Name = "";
+        this.Adresse = "";
+        this.Beziehung = "";
+        this.Telefonnummer= 0;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Set method for name of emergency contact
+     * @param: n
      */
-    public int sampleMethod(int y)
+    public void setname(String n)
     {
         // put your code here
-        return x + y;
+        Name = n;
     }
+    /**
+     * Set method for adress of emergency contact
+     * @param: ad
+     */
+    public void setAdresse(String ad)
+    {
+        Adresse = ad;
+    }
+    /**
+     * Set method for relation to emergency contact
+     * @param: bez
+     */
+    public void setBeziehung(String bez)
+    {
+        Beziehung = bez;
+    }
+    /**
+     * Set methods for telephone number of the emergency contacts 
+     * @param: tel
+     */
+    public void setTelefonnummer(int tel)
+    {
+        Telefonnummer = tel;
+    }
+    /**
+     * Method to edit already existing, or new contact details
+     *
+     * @param: n
+     * @param:ad
+     * @param:bez
+     * @param:tel
+     */
+    public void kontaktdatenbearbeiten(String n, String ad, String bez, int tel)
+    {
+        Name = n;
+        Adresse = ad;
+        Beziehung = bez;
+        Telefonnummer = tel;
+    }
+    
 }
