@@ -2,32 +2,56 @@
 /**
  * Write a description of class Patientenakte here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Lennart Burkart)
+ * @version (0.0.1)
  */
 public class Patientenakte
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Patientenakte
-     */
+    private String Name;
+    private int Alter;
+    private String Adresse;
+    private String Geschlecht;
+    private int KrankenkassenNr;
+    private String Blutgruppe;
+    private String ZuständigerArzt;
+    private int Telefonnummer;
+    private String Vorerkrankungen;
+    private String Allergien;
+    
     public Patientenakte()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public void Aktebearbeiten()
     {
-        // put your code here
-        return x + y;
+        
+    }
+    public void Analyseberichtanlegen()
+    {
+        
+    }
+    public void Analyseberichtsuchen()
+    {
+        
+    }
+    public void Exportieren()
+    {
+        
+    }
+    public void Analyseberichtlöschen()
+    {
+        
+    }
+    public void Notfallkontaktaufrufen()
+    {
+        
+    }
+    public void Notfallkontakterstellen()
+    {
+        
+    }
+    public void Notfallkontaktlöschen()
+    {
+        
     }
 }
