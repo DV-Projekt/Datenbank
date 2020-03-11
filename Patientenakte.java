@@ -32,9 +32,19 @@ public class Patientenakte
         Vorerkrankungen=Vor;
         Allergien=All;
     }
-    public void Aktebearbeiten()
+    public void Aktebearbeiten(String N, int Alt, String Ad, String Gesch, int KrankNr, 
+    String Blut, String Arzt, int Tel, String Vor, String All)
     {
-        
+        Name=N;
+        Alter=Alt;
+        Adresse=Ad;
+        Geschlecht=Gesch;
+        KrankenkassenNr=KrankNr;
+        Blutgruppe=Blut;
+        ZuständigerArzt=Arzt;
+        Telefonnummer=Tel;
+        Vorerkrankungen=Vor;
+        Allergien=All;  
     }
     public void Analyseberichtanlegen()
     {
