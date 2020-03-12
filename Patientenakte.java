@@ -2,7 +2,7 @@
 /**
  * Write a description of class Patientenakte here.
  *
- * @author (Lennart Burkart)
+ * @author (Lennart Burkart, Ricarda Henkel)
  * @version (0.0.2)
  */
 public class Patientenakte
@@ -18,6 +18,7 @@ public class Patientenakte
     private String Vorerkrankungen;
     private String Allergien;
     
+    //erstellt eine neue Patientenakte und weist ihr die eingegebenen Werte zu.
     public Patientenakte(String N, int Alt, String Ad, String Gesch, int KrankNr, 
     String Blut, String Arzt, int Tel, String Vor, String All)
     {
@@ -32,11 +33,12 @@ public class Patientenakte
         Vorerkrankungen=Vor;
         Allergien=All;
     }
-    public void Aktebearbeiten(String N, int Alt, String Ad, String Gesch, int KrankNr, 
+    
+    //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
+    //eingegebenen Werte
+    public void Aktebearbeiten(String Ad, String Gesch, int KrankNr, 
     String Blut, String Arzt, int Tel, String Vor, String All)
     {
-        Name=N;
-        Alter=Alt;
         Adresse=Ad;
         Geschlecht=Gesch;
         KrankenkassenNr=KrankNr;
@@ -46,6 +48,8 @@ public class Patientenakte
         Vorerkrankungen=Vor;
         Allergien=All;  
     }
+    
+    //erstellt einen neuen Analysebericht mit den eingegebenen Werten.
     public void Analyseberichtanlegen()
     {
         
