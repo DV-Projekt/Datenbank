@@ -2,10 +2,11 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.5
+ * @version 0.0.7
  */
 
 import java.util.*;
+import java.io.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -57,7 +58,8 @@ public class Analysebericht
 
     public void Berichtexportieren(String Filename)
     {
-        String filename = "D:/HFU/2.Semester/DV-Projekt/"+Filename+".xlsx";
+        new File("C:\\ChemischeAnalysedatenbank").mkdir();
+        String filename = "C:\\ChemischeAnalysedatenbank"+ System.getProperty("file.separator") + Filename+".xlsx";
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
@@ -88,10 +90,8 @@ public class Analysebericht
         }
 
         System.out.println("Bericht wurde exportiert");
-        //return name;
+
     }
 }
 
-            
-            
             
