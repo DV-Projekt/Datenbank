@@ -2,11 +2,10 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 import java.util.*;
-import org.apache.poi.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,7 +13,6 @@ import org.apache.commons.collections4.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 
 public class Analysebericht
 {
@@ -60,29 +58,25 @@ public class Analysebericht
     public void Berichtexportieren(String Filename)
     {
         String filename = "D:/HFU/2.Semester/DV-Projekt/"+Filename+".xlsx";
-         
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Analysebericht");
 
-        Object[][] werte = new Object [][]{{"Laborantenkuerzel", "Analysedatum","Laborname", "AnalyseObjekt", "Analysemethode", "Analyseergebnis"},
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
+
+        String[][] werte = new String [][]{{"Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
                 {Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
         int rowNum =0;
         System.out.println("Dokument wird erstellt");
 
-        for (Object[] datatype : werte) {
+        for (int i=0; i<2; i++) {
             Row row = sheet.createRow(rowNum++);
             int colNum = 0;
-            for (Object field : werte) {
+            for (int j=0; j<6; j++) {
                 Cell cell = row.createCell(colNum++);
-                if (field instanceof String) {
-                    cell.setCellValue((String) field);
-                } else if (field instanceof Integer) {
-                    cell.setCellValue((Integer) field);
-                }
+                cell.setCellValue(werte[i][j]);
             }
         }
-        
+
         try {
             FileOutputStream outputStream = new FileOutputStream(filename);
             workbook.write(outputStream);
@@ -97,17 +91,7 @@ public class Analysebericht
         //return name;
     }
 }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             
             
             
