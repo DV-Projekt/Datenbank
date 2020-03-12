@@ -1,33 +1,68 @@
 
 /**
- * Write a description of class Verwalter here.
+ * Verwalter der Akten. Er enthällt alle Akten. 
+ * Somit kann er auf diese Akten zugreifen und die Akten aufrufen.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Angelika Jouperina)
+ * @version (1.0)
  */
+import java.util.*;
+
 public class Verwalter
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private ArrayList <Patientenakte> Akten;
 
     /**
-     * Constructor for objects of class Verwalter
+     * Konstruktor der die ArrayList der Patientenakten erstellt
      */
-    public Verwalter()
+    public Verwalter ()
     {
-        // initialise instance variables
-        x = 0;
+        Akten = new ArrayList <Patientenakte> ();
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Akteanlegen: Methode die eine neue Patientenakte anlegt und diese der ArrayList
+     * hinzfügt
+     * 
+     * @param Name,Aler, Addresse Geschlecht,KrankenkassenNr,Blutgruppe,
+     * Arzt,Telefonummer,Vorerkrankungen,Allergien
+     * 
+     * @ return keiner
      */
-    public int sampleMethod(int y)
+    public void Akteanlegen (String Name, int Alter, String Addresse, 
+    String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
+    String Arzt, int Telefonummer, String Vorerkrankungen, String Allergien)
     {
-        // put your code here
-        return x + y;
+        Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
+                KrankenkassenNr,Blutgruppe,Arzt, Telefonummer, Vorerkrankungen,Allergien);
+
+        
+        Akten.add(Akte);
+        
+    }
+    
+    /**
+     * Aktelöschen: Methode die eine Akte sucht und dannach diese aus der
+     * ArrayList entfernt
+     * 
+     * @param
+     * @return
+     */
+
+    public void Aktelöschen ()
+    {
+        
+    }
+    
+    /**
+     * Aktesuchen: Methode die eine Akte nach der Krankenkassennummer sucht
+     * 
+     * @param KrankenkassenNummer
+     * @return 
+     */
+
+    public void Aktesuchen ()
+    {
+
     }
 }
