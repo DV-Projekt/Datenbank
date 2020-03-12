@@ -8,7 +8,7 @@
 public class Notfallkontakt
 {
     //Attributes of the class Notfallkontak
-     private String Name;
+    private String Name;
     private String Adresse;
     private String Beziehung;
     private int Telefonnummer;
@@ -34,6 +34,7 @@ public class Notfallkontakt
         // put your code here
         Name = n;
     }
+
     /**
      * Set method for adress of emergency contact
      * @param: ad
@@ -42,6 +43,7 @@ public class Notfallkontakt
     {
         Adresse = ad;
     }
+
     /**
      * Set method for relation to emergency contact
      * @param: bez
@@ -50,6 +52,7 @@ public class Notfallkontakt
     {
         Beziehung = bez;
     }
+
     /**
      * Set methods for telephone number of the emergency contacts 
      * @param: tel
@@ -58,6 +61,7 @@ public class Notfallkontakt
     {
         Telefonnummer = tel;
     }
+
     /**
      * Method to edit already existing, or new contact details
      *
@@ -73,5 +77,5 @@ public class Notfallkontakt
         Beziehung = bez;
         Telefonnummer = tel;
     }
-    
+
 }

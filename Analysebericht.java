@@ -2,7 +2,7 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.7
+ * @version 0.0.8
  */
 
 import java.util.*;
@@ -58,7 +58,13 @@ public class Analysebericht
 
     public void Berichtexportieren(String Filename)
     {
-        new File("C:\\ChemischeAnalysedatenbank").mkdir();
+        File f = new File("C:\\ChemischeAnalysedatenbank");
+        if (f.mkdir()) {
+            System.out.println("");
+        } else {
+            System.out.println("Ordner konnte nicht erstellt werden ");
+        }
+
         String filename = "C:\\ChemischeAnalysedatenbank"+ System.getProperty("file.separator") + Filename+".xlsx";
 
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -94,4 +100,3 @@ public class Analysebericht
     }
 }
 
-            
