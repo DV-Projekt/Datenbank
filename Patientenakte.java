@@ -121,9 +121,24 @@ public class Patientenakte
     {
         
     }
+    
+    //entfernt den Analysebericht der die eingegebene Nummer besitzt.
     public void Analyseberichtlöschen(int Nummer)
     {
-        
+        Iterator<Analysebericht> it1 = Analyseberichte.iterator();
+        boolean gelöscht=false;
+        int i=0;
+        while(!gelöscht&& it1.hasNext())
+        {
+            if(Analyseberichte.get(i).getBerichtNR() == Nummer)
+            {
+            Analyseberichte.remove(Analyseberichte.get(i));
+            System.out.print("Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.");
+            gelöscht=true;
+            }
+            i++;
+        }
+        System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
     }
     
     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
