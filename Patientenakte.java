@@ -64,9 +64,16 @@ public class Patientenakte
         AnalyseObjekt, Analysemethode, Analyseergebnis);
         Analyseberichte.add(Bericht);
     }
-    public void Analyseberichtsuchen()
+    public void Analyseberichtsuchen(String gesucht)
     {
-        
+       Iterator<Analysebericht> it1 = Analyseberichte.iterator();
+       boolean gefunden=false;
+       int i=0;
+       while(it1.hasNext()&&!gefunden)
+       {
+           gefunden=gesucht.equals(Analyseberichte.get(i));
+           i++;
+       }
     }
     public void Exportieren()
     {
@@ -83,9 +90,10 @@ public class Patientenakte
     
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
     //ihn der Liste mit Notfallkontakten hinzu.
-    public void Notfallkontakterstellen()
+    public void Notfallkontakterstellen(String n, String ad, String bez, 
+    int tel)
     {
-        Notfallkontakt Kontakt = new Notfallkontakt();
+        Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
         Notfallkontakte.add(Kontakt);
     }
     public void Notfallkontaktlöschen()

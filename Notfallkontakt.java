@@ -12,26 +12,16 @@ public class Notfallkontakt
     private String Adresse;
     private String Beziehung;
     private int Telefonnummer;
-
      /**
      * Standard constructor for objects of class Notfallkontakt
      */
-    
-    
-    
-    
     public Notfallkontakt(String n, String ad, String bez, int tel)
     {
-        // Setting attributes to zero
         this.Name = n;
         this.Adresse = ad;
         this.Beziehung = bez;
         this.Telefonnummer= tel;
-        
     }
-    
-    
-
     /**
      * Method to edit already existing, or new contact details
      *
@@ -40,9 +30,6 @@ public class Notfallkontakt
      * @param:bez
      * @param:tel
      */
-    
-    
-    
     public void kontaktdatenbearbeiten(String n, String ad, String bez, int tel)
     {
         Name = n;

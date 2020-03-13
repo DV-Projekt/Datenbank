@@ -34,11 +34,10 @@ public class Verwalter
     String Arzt, int Telefonummer, String Vorerkrankungen, String Allergien)
     {
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
-                KrankenkassenNr,Blutgruppe,Arzt, Telefonummer, Vorerkrankungen,Allergien);
+        KrankenkassenNr,Blutgruppe,Arzt, Telefonummer, Vorerkrankungen,Allergien);
 
         
         Akten.add(Akte);
-        
     }
     
     /**
