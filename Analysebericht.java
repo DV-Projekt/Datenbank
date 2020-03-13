@@ -139,33 +139,5 @@ public class Analysebericht
         return BerichtNR;
     }
 
-    // public void löscheBericht(int nummer )
-    // {
-        // File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
-        // File[] fileArray = f.listFiles();
-        // boolean r = false;
-        // for(int i = 0; i<fileArray.length; i++)
-        // {
-            // String name = fileArray[i].getName();
-            // System.out.println(name);
-            // String n = Integer.toString(nummer);
-            // System.out.println(n);
-            // if(name.contains(n))
-            // {
-                // File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
-                // d.delete();
-                // r= true;
-            // }
-        // }
-
-        // if(r==false)
-        // {
-            // System.out.println("Datei konnte nicht gelöscht werden");
-        // }
-        // else
-        // {
-            // System.out.println("Datei wurde gelöscht");
-        // }
-    //}
 }
 

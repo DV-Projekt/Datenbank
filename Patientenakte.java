@@ -39,7 +39,7 @@ public class Patientenakte
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
-
+    
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
     public int getKrankenkassenNr ()
     {
