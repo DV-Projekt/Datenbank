@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.2)
+ * @version (0.0.4)
  */
 import java.util.*;
 public class Patientenakte
@@ -64,6 +64,9 @@ public class Patientenakte
         AnalyseObjekt, Analysemethode, Analyseergebnis);
         Analyseberichte.add(Bericht);
     }
+    
+    //Vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte liste mit dem eingegebenen String
+    //und gibt bei übereinstimmung den Analysebericht aus der den gesuchten String enthält.
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
        Iterator<Analysebericht> it1 = Analyseberichte.iterator();
@@ -104,16 +107,21 @@ public class Patientenakte
            }
            i++;
        }
+       if(!gefunden)
+            System.out.print("Keinen Analysebericht gefunden der "+gesucht+" enthält");
        return null;
     }
     public void Exportieren()
     {
         
     }
-    public void Analyseberichtlöschen()
+    public void Analyseberichtlöschen(int Nummer)
     {
         
     }
+    
+    //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
+    //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
        Iterator<Notfallkontakt> it2 = Notfallkontakte.iterator();
@@ -121,9 +129,15 @@ public class Patientenakte
        int i=0;
        while(it2.hasNext()&&!gefunden)
        {
-          if(
-          return Notfallkontakte.get(i); 
+          if(Notfallkontakte.get(i).getName().equals(gesucht))
+          {
+              gefunden=true;
+              return Notfallkontakte.get(i); 
+          }
+          i++;
        }
+       if(!gefunden)
+            System.out.print("Kein Notfallkontakt mit dem Namen: "+gesucht+" gefunden.");
        return null;
     }
     
@@ -135,8 +149,13 @@ public class Patientenakte
         Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
         Notfallkontakte.add(Kontakt);
     }
-    public void Notfallkontaktlöschen()
+    
+    //führt die Methode Notfallkontaktaufrufen mit dem eingegebenen String aus und entfernt den Notfallkontakt der
+    //von Notfallkontaktsuchen zurück gegeben wird von der Liste der Notfallkontakte. Macht eine Ausgabe auf dem 
+    //Bildschirm dass der Nofallkontakt mit dem eingegebenen Namen gelöscht wurde.
+    public void Notfallkontaktlöschen(String Name)
     {
-        
+        Notfallkontakte.remove(Notfallkontaktaufrufen(Name));
+        System.out.print("Der Notfallkontakt mit dem Namen: "+Name+" wurde erfolgreich gelöscht.");
     }
 }
