@@ -15,6 +15,7 @@ public class Notfallkontakt
      /**
      * Standard constructor for objects of class Notfallkontakt
      */
+    
     public Notfallkontakt(String n, String ad, String bez, int tel)
     {
         this.Name = n;
@@ -37,5 +38,8 @@ public class Notfallkontakt
         Beziehung = bez;
         Telefonnummer = tel;
     }
-
+    public String getName()
+    {
+        return Name;
+    }
 }
