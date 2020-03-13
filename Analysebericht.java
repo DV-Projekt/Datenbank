@@ -2,7 +2,7 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.11
+ * @version 0.0.12
  * 
  */
 
@@ -60,7 +60,7 @@ public class Analysebericht
         this.Analyseergebnis = Analyseergebnis;
     }
 
-    public void Berichtexportieren()
+    public void Berichtexportieren(String Filename)
     {
         Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
         if (!Files.exists(f)) {
@@ -70,7 +70,7 @@ public class Analysebericht
                 e.printStackTrace();    
             }
         }
-            String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator") + BerichtNR + Analysedatum + ".xlsx";
+            String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator") + BerichtNR + Filename + ".xlsx";
 
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
