@@ -2,7 +2,8 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.8
+ * @version 0.0.9
+ * 
  */
 
 import java.util.*;
@@ -98,27 +99,32 @@ public class Analysebericht
         System.out.println("Bericht wurde exportiert");
 
     }
-    //für die suche in Patientenakte von Lennart hinzugefügt
+    
     public String getLaborantenkuerzel()
     {
         return Laborantenkuerzel;
     }
+
     public String getLaborname()
     {
         return Laborname;
     }
+
     public String getAnalyseObjekt()
     {
         return AnalyseObjekt;
     }
+
     public String getAnalysemethode()
     {
         return Analysemethode;
     }
+
     public String getAnalyseergebnis()
     {
         return Analyseergebnis;
     }
+
     public String getAnalysedatum()
     {
         return Analysedatum;
