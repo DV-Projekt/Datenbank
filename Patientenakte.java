@@ -6,6 +6,7 @@
  * @version (0.0.6)
  */
 import java.util.*;
+import java.io.File;
 public class Patientenakte
 {
     private String Name;
@@ -20,7 +21,7 @@ public class Patientenakte
     private String Allergien;
     private ArrayList<Analysebericht> Analyseberichte;
     private ArrayList<Notfallkontakt> Notfallkontakte;
-    
+
     //erstellt eine neue Patientenakte und weist ihr die eingegebenen Werte zu.
     public Patientenakte(String N, int Alt, String Ad, String Gesch, int KrankNr, 
     String Blut, String Arzt, int Tel, String Vor, String All)
@@ -38,13 +39,13 @@ public class Patientenakte
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
-    
+
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
     public int getKrankenkassenNr ()
     {
         return KrankenkassenNr;
     }
-    
+
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
     public void Aktebearbeiten(String Ad, String Gesch, int KrankNr, 
@@ -59,7 +60,7 @@ public class Patientenakte
         Vorerkrankungen=Vor;
         Allergien=All;  
     }
-    
+
     //erstellt einen neuen Analysebericht mit den eingegebenen Werten und fügt
     //ihn der Liste von Analyseberichten hinzu.
     public void Analyseberichtanlegen(String Laborantenkuerzel, String 
@@ -67,61 +68,62 @@ public class Patientenakte
     String Analyseergebnis)
     {
         Analysebericht Bericht=new Analysebericht(Laborantenkuerzel, Laborname,
-        AnalyseObjekt, Analysemethode, Analyseergebnis);
+                AnalyseObjekt, Analysemethode, Analyseergebnis);
         Analyseberichte.add(Bericht);
     }
-    
+
     //Vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte liste mit dem eingegebenen String
     //und gibt bei übereinstimmung den Analysebericht aus der den gesuchten String enthält.
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
-       Iterator<Analysebericht> it1 = Analyseberichte.iterator();
-       boolean gefunden=false;
-       int i=0;
-       while(it1.hasNext()&&!gefunden)
-       {
-           if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
-           {    
-               gefunden=true;
-               return Analyseberichte.get(i);
-           }
-           else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
-           {    
-               gefunden=true;
-               return Analyseberichte.get(i);
-               
-           }
-           else if(Analyseberichte.get(i).getAnalyseObjekt().equals(gesucht))
-           {    
-               gefunden=true;
-               return Analyseberichte.get(i);
-           }
-           else if(Analyseberichte.get(i).getAnalysemethode().equals(gesucht))
-           {    
-               gefunden=true;
-               return Analyseberichte.get(i);
-           }
-           else if(Analyseberichte.get(i).getAnalyseergebnis().equals(gesucht))
-           {    
-               gefunden=true;
-               return Analyseberichte.get(i);
-           }
-           else if(Analyseberichte.get(i).getAnalysedatum().equals(gesucht))
-           {    
-               gefunden=true;
-               return Analyseberichte.get(i);
-           }
-           i++;
-       }
-       if(!gefunden)
+        Iterator<Analysebericht> it1 = Analyseberichte.iterator();
+        boolean gefunden=false;
+        int i=0;
+        while(it1.hasNext()&&!gefunden)
+        {
+            if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+
+            }
+            else if(Analyseberichte.get(i).getAnalyseObjekt().equals(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalysemethode().equals(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalyseergebnis().equals(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalysedatum().equals(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            i++;
+        }
+        if(!gefunden)
             System.out.print("Keinen Analysebericht gefunden der "+gesucht+" enthält");
-       return null;
+        return null;
     }
+
     public void Exportieren()
     {
-        
+
     }
-    
+
     //entfernt den Analysebericht der die eingegebene Nummer besitzt.
     public void Analyseberichtlöschen(int Nummer)
     {
@@ -132,36 +134,64 @@ public class Patientenakte
         {
             if(Analyseberichte.get(i).getBerichtNR() == Nummer)
             {
-            Analyseberichte.remove(Analyseberichte.get(i));
-            System.out.print("Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.");
-            gelöscht=true;
+                Analyseberichte.remove(Analyseberichte.get(i));
+                System.out.print("Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.");
+                gelöscht=true;
             }
             i++;
         }
         System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
+
+        /**löschen der Datei von Nico**/
+
+        File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
+        File[] fileArray = f.listFiles();
+        boolean r = false;
+        for(int k = 0; k<fileArray.length; k++)
+        {
+            String name = fileArray[k].getName();
+            System.out.println(name);
+            String n = Integer.toString(Nummer);
+            System.out.println(n);
+            if(name.contains(n))
+            {
+                File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
+                d.delete();
+                r= true;
+            }
+        }
+
+        if(r==false)
+        {
+            System.out.println("Datei konnte nicht gelöscht werden");
+        }
+        else
+        {
+            System.out.println("Datei wurde gelöscht");
+        }
     }
-    
+
     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
     //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
-       Iterator<Notfallkontakt> it2 = Notfallkontakte.iterator();
-       boolean gefunden=false;
-       int i=0;
-       while(it2.hasNext()&&!gefunden)
-       {
-          if(Notfallkontakte.get(i).getName().equals(gesucht))
-          {
-              gefunden=true;
-              return Notfallkontakte.get(i); 
-          }
-          i++;
-       }
-       if(!gefunden)
+        Iterator<Notfallkontakt> it2 = Notfallkontakte.iterator();
+        boolean gefunden=false;
+        int i=0;
+        while(it2.hasNext()&&!gefunden)
+        {
+            if(Notfallkontakte.get(i).getName().equals(gesucht))
+            {
+                gefunden=true;
+                return Notfallkontakte.get(i); 
+            }
+            i++;
+        }
+        if(!gefunden)
             System.out.print("Kein Notfallkontakt mit dem Namen: "+gesucht+" gefunden.");
-       return null;
+        return null;
     }
-    
+
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
     //ihn der Liste mit Notfallkontakten hinzu.
     public void Notfallkontakterstellen(String n, String ad, String bez, 
@@ -170,7 +200,7 @@ public class Patientenakte
         Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
         Notfallkontakte.add(Kontakt);
     }
-    
+
     //führt die Methode Notfallkontaktaufrufen mit dem eingegebenen String aus und entfernt den Notfallkontakt der
     //von Notfallkontaktsuchen zurück gegeben wird von der Liste der Notfallkontakte. Macht eine Ausgabe auf dem 
     //Bildschirm dass der Nofallkontakt mit dem eingegebenen Namen gelöscht wurde.

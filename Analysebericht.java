@@ -7,7 +7,7 @@
  */
 
 import java.util.*;
-
+import java.io.File;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -70,39 +70,39 @@ public class Analysebericht
                 e.printStackTrace();    
             }
         }
-            String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator") + BerichtNR + Filename + ".xlsx";
+        String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator") + BerichtNR + Filename + ".xlsx";
 
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
 
-            String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
-                    {Integer.toString(BerichtNR), Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
+        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                {Integer.toString(BerichtNR), Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
-            int rowNum =0;
-            System.out.println("Dokument wird erstellt");
+        int rowNum =0;
+        System.out.println("Dokument wird erstellt");
 
-            for (int i=0; i<2; i++) {
-                Row row = sheet.createRow(rowNum++);
-                int colNum = 0;
-                for (int j=0; j<7; j++) {
-                    Cell cell = row.createCell(colNum++);
-                    cell.setCellValue(werte[i][j]);
-                }
+        for (int i=0; i<2; i++) {
+            Row row = sheet.createRow(rowNum++);
+            int colNum = 0;
+            for (int j=0; j<7; j++) {
+                Cell cell = row.createCell(colNum++);
+                cell.setCellValue(werte[i][j]);
             }
-
-            try {
-                FileOutputStream outputStream = new FileOutputStream(filename);
-                workbook.write(outputStream);
-                workbook.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println("Bericht wurde exportiert");
-
         }
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(filename);
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Bericht wurde exportiert");
+
+    }
 
     public String getLaborantenkuerzel()
     {
@@ -138,5 +138,34 @@ public class Analysebericht
     {
         return BerichtNR;
     }
+
+    // public void löscheBericht(int nummer )
+    // {
+        // File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
+        // File[] fileArray = f.listFiles();
+        // boolean r = false;
+        // for(int i = 0; i<fileArray.length; i++)
+        // {
+            // String name = fileArray[i].getName();
+            // System.out.println(name);
+            // String n = Integer.toString(nummer);
+            // System.out.println(n);
+            // if(name.contains(n))
+            // {
+                // File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
+                // d.delete();
+                // r= true;
+            // }
+        // }
+
+        // if(r==false)
+        // {
+            // System.out.println("Datei konnte nicht gelöscht werden");
+        // }
+        // else
+        // {
+            // System.out.println("Datei wurde gelöscht");
+        // }
+    //}
 }
 
