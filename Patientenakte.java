@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.5)
+ * @version (0.0.6)
  */
 import java.util.*;
 public class Patientenakte
@@ -40,7 +40,7 @@ public class Patientenakte
     }
     
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
-     public int getKrankenkassenNr ()
+    public int getKrankenkassenNr ()
     {
         return KrankenkassenNr;
     }
