@@ -64,16 +64,47 @@ public class Patientenakte
         AnalyseObjekt, Analysemethode, Analyseergebnis);
         Analyseberichte.add(Bericht);
     }
-    public void Analyseberichtsuchen(String gesucht)
+    public Analysebericht Analyseberichtsuchen(String gesucht)
     {
        Iterator<Analysebericht> it1 = Analyseberichte.iterator();
        boolean gefunden=false;
        int i=0;
        while(it1.hasNext()&&!gefunden)
        {
-           gefunden=gesucht.equals(Analyseberichte.get(i));
+           if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
+           {    
+               gefunden=true;
+               return Analyseberichte.get(i);
+           }
+           else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
+           {    
+               gefunden=true;
+               return Analyseberichte.get(i);
+               
+           }
+           else if(Analyseberichte.get(i).getAnalyseObjekt().equals(gesucht))
+           {    
+               gefunden=true;
+               return Analyseberichte.get(i);
+           }
+           else if(Analyseberichte.get(i).getAnalysemethode().equals(gesucht))
+           {    
+               gefunden=true;
+               return Analyseberichte.get(i);
+           }
+           else if(Analyseberichte.get(i).getAnalyseergebnis().equals(gesucht))
+           {    
+               gefunden=true;
+               return Analyseberichte.get(i);
+           }
+           else if(Analyseberichte.get(i).getAnalysedatum().equals(gesucht))
+           {    
+               gefunden=true;
+               return Analyseberichte.get(i);
+           }
            i++;
        }
+       return null;
     }
     public void Exportieren()
     {
@@ -83,9 +114,17 @@ public class Patientenakte
     {
         
     }
-    public void Notfallkontaktaufrufen()
+    public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
-        
+       Iterator<Notfallkontakt> it2 = Notfallkontakte.iterator();
+       boolean gefunden=false;
+       int i=0;
+       while(it2.hasNext()&&!gefunden)
+       {
+          if(
+          return Notfallkontakte.get(i); 
+       }
+       return null;
     }
     
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
