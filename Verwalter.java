@@ -1,12 +1,12 @@
 
 /**
  * Verwalter der Akten. Er enthällt alle Akten. 
- * Somit kann er auf diese Akten zugreifen und die Akten aufrufen.
+ * Somit kann er auf diese Akten zugreifen und sie aufrufen.
  *
  * @author (Angelika Jouperina)
- * @version (1.0)
+ * @version (0.0.5)
  */
-import java.util.*;
+import java.util.ArrayList;
 
 public class Verwalter
 {
@@ -34,34 +34,58 @@ public class Verwalter
     String Arzt, int Telefonummer, String Vorerkrankungen, String Allergien)
     {
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
-        KrankenkassenNr,Blutgruppe,Arzt, Telefonummer, Vorerkrankungen,Allergien);
+                KrankenkassenNr,Blutgruppe,Arzt, Telefonummer, Vorerkrankungen,Allergien);
 
-        
-        Akten.add(Akte);
+        boolean gefunden = true;
+        for (Patientenakte a : Akten)
+        {
+            if (a.getKrankenkassenNr () == KrankenkassenNr)
+            {
+                gefunden = false;
+            }
+        }
+        if (gefunden == true)
+        {
+            Akten.add(Akte);
+        }
     }
-    
+
     /**
      * Aktelöschen: Methode die eine Akte sucht und dannach diese aus der
      * ArrayList entfernt
      * 
-     * @param
-     * @return
+     * @param KrankenkassenNr
+     * @return keiner
      */
 
-    public void Aktelöschen ()
+    public void Aktelöschen (int KrankenkassenNr)
     {
-        
+        for (Patientenakte b : Akten)
+        {
+            if (b.getKrankenkassenNr () == KrankenkassenNr)
+            {
+                 Akten.remove(b);
+            }
+        }
     }
-    
+
     /**
      * Aktesuchen: Methode die eine Akte nach der Krankenkassennummer sucht
      * 
      * @param KrankenkassenNummer
-     * @return 
+     * @return Patientenakte
      */
 
-    public void Aktesuchen ()
+    public Patientenakte Aktesuchen (int KrankenkassenNr)
     {
-
+        for (Patientenakte b : Akten)
+        {
+            if (b.getKrankenkassenNr () == KrankenkassenNr)
+            {
+                return b;
+            }
+        }
+        
+        return null;
     }
 }

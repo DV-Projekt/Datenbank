@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.4)
+ * @version (0.0.5)
  */
 import java.util.*;
 public class Patientenakte
@@ -37,6 +37,12 @@ public class Patientenakte
         Allergien=All;
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
+    }
+    
+    //Get Methode für KrankenkassenNr (benutzt in Verwalter)
+     public int getKrankenkassenNr ()
+    {
+        return KrankenkassenNr;
     }
     
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
