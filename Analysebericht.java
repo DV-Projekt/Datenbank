@@ -2,7 +2,7 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.9
+ * @version 0.0.10
  * 
  */
 
@@ -24,7 +24,7 @@ public class Analysebericht
     String AnalyseObjekt;
     String Analysemethode;
     String Analyseergebnis;
-
+    int BerichtNR;
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
      * Dabei werden die Daten Laborant, Labor, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
@@ -45,6 +45,7 @@ public class Analysebericht
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
+        BerichtNR = (int) (Math.random()*((1000-1)+1))+1;
     }
 
     public void Analyseberichtbearbeiten(String Laborantenkuerzel, String Erstellungsdatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
@@ -128,6 +129,11 @@ public class Analysebericht
     public String getAnalysedatum()
     {
         return Analysedatum;
+    }
+    
+    public int getBerichtNR()
+    {
+        return BerichtNR;
     }
 }
 
