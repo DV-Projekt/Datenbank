@@ -3,6 +3,7 @@
  * 
  * @author Nicolas Pfaff 
  * @version 0.0.8
+ * 
  */
 
 import java.util.*;
@@ -45,7 +46,7 @@ public class Analysebericht
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
     }
-
+    
     public void Analyseberichtbearbeiten(String Laborantenkuerzel, String Erstellungsdatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
         this.Laborantenkuerzel = Laborantenkuerzel;
