@@ -19,6 +19,9 @@ public class MainWindowController
     @FXML private Label labelstart;
     @FXML private Text krankenkassennummer;
     @FXML private TextField eingabefeldsuche;
+    @FXML private MenuBar menubar;
+    @FXML private Menu datei;
+    @FXML private MenuItem anlegen;
     public Main main;
     
     public void setMain(Main main)
@@ -26,13 +29,18 @@ public class MainWindowController
         this.main = main;
     }
     
-    // @FXML
-    // public void suche()
-    // {
-        // String eingabe = eingabefeldsuche.getText();
-        // int nummer = Integer.parseInt(eingabe);
+     @FXML
+     public void suche()
+    {
+        String eingabe = eingabefeldsuche.getText();
+        int nummer = Integer.parseInt(eingabe);
         // Patientenakte gesucht = new Patientenakte();
         // gesucht.Aktesuchen(nummer);
-    // }
+    }
     
+    // @FXML
+     // public void akteanlegen()
+    // {
+        // main.akteWindow();
+    // }
 }
