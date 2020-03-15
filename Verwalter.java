@@ -1,10 +1,10 @@
 
 /**
  * Verwalter der Akten. Er enthällt alle Akten. 
- * Somit kann er auf diese Akten zugreifen und sie aufrufen.
+ * Somit kann er auf diese Akten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.5)
+ * @version (0.0.6)
  */
 import java.util.ArrayList;
 
@@ -22,32 +22,33 @@ public class Verwalter
 
     /**
      * Akteanlegen: Methode die eine neue Patientenakte anlegt und diese der ArrayList
-     * hinzfügt
+     * hinzufügt
      * 
-     * @param Name,Aler, Addresse Geschlecht,KrankenkassenNr,Blutgruppe,
-     * Arzt,Telefonummer,Vorerkrankungen,Allergien
+     * @param Name,Aler,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
+     * Arzt,Telefonnummer,Vorerkrankungen,Allergien
      * 
      * @ return keiner
      */
     public void Akteanlegen (String Name, int Alter, String Addresse, 
     String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
-    String Arzt, int Telefonummer, String Vorerkrankungen, String Allergien)
+    String Arzt, int Telefonnummer, String Vorerkrankungen, String Allergien)
     {
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
-                KrankenkassenNr,Blutgruppe,Arzt, Telefonummer, Vorerkrankungen,Allergien);
+                KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
 
-        boolean gefunden = true;
+        boolean gefunden = false;
         for (Patientenakte a : Akten)
         {
             if (a.getKrankenkassenNr () == KrankenkassenNr)
             {
-                gefunden = false;
+                gefunden = true;
                 System.out.println("Die Patientenakte mit der Nummer " +KrankenkassenNr+" existiert bereits.");
             }
         }
-        if (gefunden == true)
+        if (gefunden == false)
         {
             Akten.add(Akte);
+            System.out.println("Neue Patientenakte wurde hinzugefügt.");
         }
     }
 
@@ -61,15 +62,19 @@ public class Verwalter
 
     public void Aktelöschen (int KrankenkassenNr)
     {
+        boolean gefunden = false;
         for (Patientenakte b : Akten)
         {
             if (b.getKrankenkassenNr () == KrankenkassenNr)
             {
+                gefunden = true;
                 Akten.remove(b);
-                System.out.println("Akte wurde gelöscht.");
+                System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde gelöscht.");
             }
-            else
-                System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
+        }
+        if (gefunden == false)
+        {
+            System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
         }
     }
 
@@ -82,13 +87,17 @@ public class Verwalter
 
     public Patientenakte Aktesuchen (int KrankenkassenNr)
     {
+        boolean gefunden = false;
         for (Patientenakte b : Akten)
         {
             if (b.getKrankenkassenNr () == KrankenkassenNr)
             {
+                gefunden = true;
                 return b;
             }
-            else
+        }
+        if (gefunden == false)
+        {
             System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
         }
 
