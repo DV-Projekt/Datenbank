@@ -2,12 +2,12 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.10
+ * @version 0.0.12
  * 
  */
 
 import java.util.*;
-import java.io.*;
+import java.io.File;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,6 +15,7 @@ import org.apache.commons.collections4.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.*;
 
 public class Analysebericht
 {
@@ -25,6 +26,7 @@ public class Analysebericht
     String Analysemethode;
     String Analyseergebnis;
     int BerichtNR;
+
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
      * Dabei werden die Daten Laborant, Labor, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
@@ -40,7 +42,7 @@ public class Analysebericht
     {
         this.Laborantenkuerzel = Laborantenkuerzel;
         Calendar date = Calendar.getInstance();
-        Analysedatum = date.get(Calendar.DAY_OF_MONTH ) + "." + (date.get(Calendar.MONTH) + 1 ) + "." + date.get(Calendar.YEAR);
+        Analysedatum = date.get(Calendar.MONTH) + "-" + (date.get(Calendar.DAY_OF_MONTH) + 1 ) + "-" + date.get(Calendar.YEAR);
         this.Laborname = Laborname;
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
@@ -60,20 +62,21 @@ public class Analysebericht
 
     public void Berichtexportieren(String Filename)
     {
-        File f = new File("C:\\ChemischeAnalysedatenbank");
-        if (f.mkdir()) {
-            System.out.println("");
-        } else {
-            System.out.println("Ordner konnte nicht erstellt werden ");
+        Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
+        if (!Files.exists(f)) {
+            try {
+                Files.createDirectories(f);
+            } catch (IOException e) {
+                e.printStackTrace();    
+            }
         }
-
-        String filename = "C:\\ChemischeAnalysedatenbank"+ System.getProperty("file.separator") + Filename+".xlsx";
+        String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator") + BerichtNR + Filename + ".xlsx";
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
 
-        String[][] werte = new String [][]{{"Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
-                {Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
+        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                {Integer.toString(BerichtNR), Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
         int rowNum =0;
         System.out.println("Dokument wird erstellt");
@@ -81,7 +84,7 @@ public class Analysebericht
         for (int i=0; i<2; i++) {
             Row row = sheet.createRow(rowNum++);
             int colNum = 0;
-            for (int j=0; j<6; j++) {
+            for (int j=0; j<7; j++) {
                 Cell cell = row.createCell(colNum++);
                 cell.setCellValue(werte[i][j]);
             }
@@ -100,7 +103,7 @@ public class Analysebericht
         System.out.println("Bericht wurde exportiert");
 
     }
-    
+
     public String getLaborantenkuerzel()
     {
         return Laborantenkuerzel;
@@ -130,10 +133,11 @@ public class Analysebericht
     {
         return Analysedatum;
     }
-    
+
     public int getBerichtNR()
     {
         return BerichtNR;
     }
+
 }
 
