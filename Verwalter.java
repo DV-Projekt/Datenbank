@@ -42,6 +42,7 @@ public class Verwalter
             if (a.getKrankenkassenNr () == KrankenkassenNr)
             {
                 gefunden = false;
+                System.out.println("Die Patientenakte mit der Nummer " +KrankenkassenNr+" existiert bereits.");
             }
         }
         if (gefunden == true)
@@ -64,8 +65,11 @@ public class Verwalter
         {
             if (b.getKrankenkassenNr () == KrankenkassenNr)
             {
-                 Akten.remove(b);
+                Akten.remove(b);
+                System.out.println("Akte wurde gelöscht.");
             }
+            else
+                System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
         }
     }
 
@@ -84,8 +88,10 @@ public class Verwalter
             {
                 return b;
             }
+            else
+            System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
         }
-        
+
         return null;
     }
 }
