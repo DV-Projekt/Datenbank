@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.6)
+ * @version (0.0.7)
  */
 import java.util.*;
 import java.io.File;
@@ -142,8 +142,7 @@ public class Patientenakte
         }
         System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
 
-        /**löschen der Datei von Nico**/
-
+        //löschen der Datei von Nico
         File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
         File[] fileArray = f.listFiles();
         boolean r = false;
@@ -160,7 +159,6 @@ public class Patientenakte
                 r= true;
             }
         }
-
         if(r==false)
         {
             System.out.println("Datei konnte nicht gelöscht werden");
