@@ -39,7 +39,7 @@ public class Patientenakte
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
-
+    
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
     public int getKrankenkassenNr ()
     {
@@ -149,9 +149,7 @@ public class Patientenakte
         for(int k = 0; k<fileArray.length; k++)
         {
             String name = fileArray[k].getName();
-            System.out.println(name);
             String n = Integer.toString(Nummer);
-            System.out.println(n);
             if(name.contains(n))
             {
                 File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
