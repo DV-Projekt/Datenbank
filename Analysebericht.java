@@ -1,8 +1,9 @@
 /**
- * Beschreiben Sie hier die Klasse Analysebericht.
+ * Die Klasse Analysebericht ist verantwortlich für die Erstellung der Analyseberichte.
+ * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.13
+ * @version 0.0.14
  * 
  */
 
