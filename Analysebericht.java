@@ -2,7 +2,7 @@
  * Beschreiben Sie hier die Klasse Analysebericht.
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.12
+ * @version 0.0.13
  * 
  */
 
@@ -50,6 +50,16 @@ public class Analysebericht
         BerichtNR = (int) (Math.random()*((1000-1)+1))+1;
     }
 
+    /**
+     * Die Methode Analyseberichtbearbeiten setzt beim Aufruf die Attribute auf die eingegebenen String Parameter.
+     * 
+     * @param Laborantenkuerzel
+     * @param Erstellungsdatum
+     * @param Laborname
+     * @param AnalyseObjekt
+     * @param Analysemethode
+     * @param Analyseergebnis
+     */
     public void Analyseberichtbearbeiten(String Laborantenkuerzel, String Erstellungsdatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
         this.Laborantenkuerzel = Laborantenkuerzel;
@@ -60,6 +70,14 @@ public class Analysebericht
         this.Analyseergebnis = Analyseergebnis;
     }
 
+    /**
+     * Die Methode Berichtexportieren erzeugt beim Aufruf eine xlsx-Datei (Excel-Datei), in denen alle Attribute und ihre zugehörigen Werte abgespeichert werden.
+     * Dazu wird ein frei wähbarer Filename (übergeben durch den Parameter Filename) und die Berichtnummer als Dateiname gewählt. Die Berichtnummer gewährleistet, 
+     * dass jeder exportierte Bericht eindeutig identifiziert werden kann. Falls noch nicht vorhanden, erstellt die Methode einen Ordner ChemischeAnalysedatenbank 
+     * und einen Unterordner Analyseberichte, in dem alle Berichte abgespeichert werden.
+     * 
+     * @param Filename
+     */
     public void Berichtexportieren(String Filename)
     {
         Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
@@ -104,40 +122,74 @@ public class Analysebericht
 
     }
 
+    /**
+     * Get-Methode für Laborantenkuerzel
+     * 
+     * @return Laborantenkuerzel
+     */
     public String getLaborantenkuerzel()
     {
         return Laborantenkuerzel;
     }
 
+    /**
+     * Get-Methode für Laborname
+     * 
+     * @return Laborname
+     */
     public String getLaborname()
     {
         return Laborname;
     }
 
+    /**
+     * Get-Methode für AnalyseObjekt
+     * 
+     * @return AnalyseObjekt
+     */
     public String getAnalyseObjekt()
     {
         return AnalyseObjekt;
     }
 
+    /**
+     * Get-Methode für Analysemethode
+     * 
+     * @return Analysemethode
+     */
     public String getAnalysemethode()
     {
         return Analysemethode;
     }
 
+    /**
+     * Get-Methode für Analyseergebnis
+     * 
+     * @return Analyseergebnis
+     */
     public String getAnalyseergebnis()
     {
         return Analyseergebnis;
     }
 
+    /**
+     * Get-Methode für Analysedatum
+     * 
+     * @return Analysedatum
+     */
     public String getAnalysedatum()
     {
         return Analysedatum;
     }
 
+    /**
+     * Get-Methode für BerichtNR
+     * 
+     * @return BerichtNR
+     */
     public int getBerichtNR()
     {
         return BerichtNR;
     }
-
 }
 
