@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.6)
+ * @version (0.0.7)
  */
 import java.util.*;
 import java.io.File;
@@ -21,6 +21,23 @@ public class Patientenakte
     private String Allergien;
     private ArrayList<Analysebericht> Analyseberichte;
     private ArrayList<Notfallkontakt> Notfallkontakte;
+    
+    //Standardkonstruktor
+    public Patientenakte()
+    {
+        Name = "n";
+        Alter= 0;
+        Adresse = "ad";
+        Geschlecht = "gesch";
+        KrankenkassenNr = 0;
+        Blutgruppe = "blutgr";
+        ZuständigerArzt = "arzt";
+        Telefonnummer = 0;
+        Vorerkrankungen = "vor";
+        Allergien = "all";
+        Analyseberichte = new ArrayList<Analysebericht>();
+        Notfallkontakte = new ArrayList<Notfallkontakt>();
+    }
 
     //erstellt eine neue Patientenakte und weist ihr die eingegebenen Werte zu.
     public Patientenakte(String N, int Alt, String Ad, String Gesch, int KrankNr, 
@@ -140,10 +157,15 @@ public class Patientenakte
             }
             i++;
         }
+        
+        if(gelöscht == true)
+        {
         System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
 
+        }
         /**löschen der Datei von Nico**/
-
+        if(gelöscht == true)
+        {
         File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
         File[] fileArray = f.listFiles();
         boolean r = false;
@@ -168,7 +190,7 @@ public class Patientenakte
             System.out.println("Datei wurde gelöscht");
         }
     }
-
+}
     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
     //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
