@@ -13,11 +13,36 @@ public class Verwalter
     private ArrayList <Patientenakte> Akten;
 
     /**
-     * Konstruktor der die ArrayList der Patientenakten erstellt
+     * Konstruktor der eine Leere ArrayList der Patientenakten erstellt
      */
     public Verwalter ()
     {
         Akten = new ArrayList <Patientenakte> ();
+    }
+
+    /**
+     * Konstruktor der die ArrayList der Patientenakten erstellt 
+     * und zusätzlich eine Patientenakte erstellt und hinzufügt
+     */
+    public Verwalter (String Name, int Alter, String Addresse, 
+    String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
+    String Arzt, int Telefonnummer, String Vorerkrankungen, String Allergien)
+    {
+        Akten = new ArrayList <Patientenakte> ();        
+        Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
+                KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
+        Akten.add(Akte);
+    }
+    
+   /**
+    * Get Methode für die ArrayList
+    * 
+    * @param keiner
+    * @return ArrayList "Akten"
+    */ 
+   public ArrayList getArrayList ()
+    {
+        return Akten;
     }
 
     /**
@@ -27,7 +52,7 @@ public class Verwalter
      * @param Name,Alter,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
      * Arzt,Telefonnummer,Vorerkrankungen,Allergien
      * 
-     * @ return keiner
+     * @return keiner
      */
     public void Akteanlegen (String Name, int Alter, String Addresse, 
     String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
