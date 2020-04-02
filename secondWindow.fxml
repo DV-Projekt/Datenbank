@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -26,34 +29,123 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="700.0" minWidth="600.0" prefHeight="900.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
-            <VBox layoutX="6.0" spacing="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="60.0">
+            <VBox layoutX="6.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Name:" />
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Alter:" />
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Adresse:" />
-                  <Label prefHeight="17.0" prefWidth="137.0" text="Geschlecht:" />
-                  <Label prefHeight="17.0" prefWidth="138.0" text="Krankenkassennummer:" />
-                  <Label prefHeight="17.0" prefWidth="137.0" text="Blutgruppe:" />
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Zuständiger Arzt:" />
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Telefonnummer:" />
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Vorerkrankungen:" />
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Allergien:" />
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Name:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Alter:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Adresse:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="137.0" text="Geschlecht:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="138.0" text="Krankenkassennummer:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="137.0" text="Blutgruppe:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Zuständiger Arzt:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Telefonnummer:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Vorerkrankungen:" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="102.0" text="Allergien:" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <VBox layoutX="320.0" layoutY="60.0" spacing="31.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="60.0">
                <children>
-                  <TextField text="Name" />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
-                  <TextField />
+                  <HBox>
+                     <children>
+                        <TextField fx:id="name" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="alter" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="adresse" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="geschlecht" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="krankenkassennummer1" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="blutgruppe" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="arzt" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="telefonnummer" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="vorerkrankungen" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="allergien" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
+            <HBox layoutX="465.0" layoutY="639.5999755859375" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="639.6">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="90.0" text="Speichern" textAlignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
       </children>
     </AnchorPane>
   </children>

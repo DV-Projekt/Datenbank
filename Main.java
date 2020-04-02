@@ -2,8 +2,8 @@
 /**
  * Beschreiben Sie hier die Klasse GUI.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Nicolas Pfaff, Lennart Burkart 
+ * @version 0.0.5
  */
 import javafx.application.*;
 import javafx.stage.*;

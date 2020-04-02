@@ -17,7 +17,7 @@
   <children>
     <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
       <menus>
-            <Menu fx:id="datei" mnemonicParsing="false" onAction="#action" text="Datei">
+            <Menu fx:id="datei" mnemonicParsing="false" onAction="#akteanlegen" text="Datei">
               <items>
                 <MenuItem fx:id="anlegen" mnemonicParsing="false" onAction="#akteanlegen" onMenuValidation="#akteanlegen" text="Akte anlegen">
                      <accelerator>
