@@ -3,7 +3,7 @@
  * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.14
+ * @version 0.0.15
  * 
  */
 
@@ -27,7 +27,16 @@ public class Analysebericht
     String Analysemethode;
     String Analyseergebnis;
     int BerichtNR;
-
+    
+    public Analysebericht(String Laborantenkuerzel, String Analysedatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
+    {
+        this.Laborantenkuerzel = Laborantenkuerzel;
+        this.Analysedatum = Analysedatum;
+        this.Laborname = Laborname;
+        this.AnalyseObjekt = AnalyseObjekt;
+        this.Analysemethode = Analysemethode;
+        this.Analyseergebnis = Analyseergebnis;
+    }
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
      * Dabei werden die Daten Laborant, Labor, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
@@ -48,7 +57,7 @@ public class Analysebericht
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
-        BerichtNR = (int) (Math.random()*((1000-1)+1))+1;
+        BerichtNR = (int) (Math.random()*(1000-1)+1);
     }
 
     /**
@@ -191,6 +200,77 @@ public class Analysebericht
     public int getBerichtNR()
     {
         return BerichtNR;
+    }
+
+    /**
+     * Set-Methode für Laborantenkuerzel
+     * 
+     * @param Laborantenkuerzel
+     */
+    public void setLaborantenkuerzel(String Laborantenkuerzel)
+    {
+        this.Laborantenkuerzel = Laborantenkuerzel; 
+    }
+    
+    /**
+     * Set-Methode für Analysedatum
+     * 
+     * @param Analysedatum
+     */
+    public void setAnalysedatum(String Analysedatum)
+    {
+        this.Analysedatum = Analysedatum; 
+    }
+    
+    /**
+     * Set-Methode für Laborname
+     * 
+     * @param Laborname
+     */
+    public void setLaborname(String Laborname)
+    {
+        this.Laborname = Laborname;
+        
+    }
+    
+    /**
+     * Set-Methode für AnalyseObjekt
+     * 
+     * @param AnalyseObjekt
+     */
+    public void setAnalyseObjekt(String AnalyseObjekt)
+    {
+        this.AnalyseObjekt = AnalyseObjekt; 
+    }
+    
+    /**
+     * Set-Methode für Analysemethode
+     * 
+     * @param Analysemethode
+     */
+    public void setAnalysemethode(String Analysemethode)
+    {
+        this.Analysemethode = Analysemethode; 
+    }
+    
+    /**
+     * Set-Methode für Analyseergebnis
+     * 
+     * @param Analyseergebnis
+     */
+    public void setAnalyseergebnis(String Analyseergebnis)
+    {
+        this.Analyseergebnis = Analyseergebnis; 
+    }
+    
+    /**
+     * Set-Methode für BerichtNR
+     * 
+     * @param BerichtNR
+     */
+    public void setBerichtNR(String BerichtNR)
+    {
+        this.BerichtNR = Integer.parseInt(BerichtNR);
     }
 }
 

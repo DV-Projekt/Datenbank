@@ -13,34 +13,70 @@ import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.fxml.*;
 import java.io.*;
+import java.awt.Frame;
 public class MainWindowController
 {
     //Views
-    @FXML private Label labelstart;
-    @FXML private Text krankenkassennummer;
-    @FXML private TextField eingabefeldsuche;
-    @FXML private MenuBar menubar;
-    @FXML private Menu datei;
-    @FXML private MenuItem anlegen;
+    @FXML 
+    private Label labelstart;
+    @FXML 
+    private Text krankenkassennummer;
+    @FXML 
+    private TextField eingabefeldsuche;
+    @FXML 
+    private MenuBar menuBar;
+    @FXML 
+    private Menu datei;
+    @FXML 
+    private Menu help;
+    @FXML 
+    private MenuItem anlegen;
+    @FXML 
+    private MenuItem about;
     public Main main;
-    
+    Stage second; 
     public void setMain(Main main)
     {
         this.main = main;
     }
     
-     @FXML
-     public void suche()
+    public void action()
+    {
+        anlegen.setVisible(true);
+    }
+    @FXML
+    public void suche()
     {
         String eingabe = eingabefeldsuche.getText();
         int nummer = Integer.parseInt(eingabe);
-        // Patientenakte gesucht = new Patientenakte();
-        // gesucht.Aktesuchen(nummer);
+        try{
+            second = main.getPrimaryStage();
+            FXMLLoader loader2 = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
+            VBox pane2 = loader2.load();
+            Scene scene = new Scene(pane2);
+            second.setScene(scene);
+            second.show();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
-    
-    // @FXML
-     // public void akteanlegen()
-    // {
-        // main.akteWindow();
-    // }
+
+    @FXML
+    public void akteanlegen()
+    {
+        try{
+            second = main.getPrimaryStage();
+            FXMLLoader loader2 = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
+            VBox pane2 = loader2.load();
+            Scene scene = new Scene(pane2);
+            second.setScene(scene);
+            second.show();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

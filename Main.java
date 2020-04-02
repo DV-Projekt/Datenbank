@@ -9,11 +9,23 @@ import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.scene.text.*;
 import javafx.fxml.*;
 import java.io.*;
+import java.awt.Frame;
 public class Main extends Application {
 
     private Stage primaryStage;
+    // @FXML private Label labelstart;
+    // @FXML private Text krankenkassennummer;
+    // @FXML private TextField eingabefeldsuche;
+    // @FXML private MenuBar menuBar;
+    // @FXML private Menu datei;
+    // @FXML private Menu help;
+    // @FXML private MenuItem anlegen;
+    // @FXML private MenuItem about;
+    
     @Override
     public void start(Stage primaryStage) 
     {
@@ -38,10 +50,16 @@ public class Main extends Application {
             
             primaryStage.setScene(scene);
             primaryStage.show();
+            
         } 
         catch(IOException e){
             e.printStackTrace();
         }
+    }
+    
+    public Stage getPrimaryStage()
+    {
+        return primaryStage;
     }
     
     // public void akteWindow()
