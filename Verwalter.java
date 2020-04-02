@@ -40,7 +40,7 @@ public class Verwalter
     * @param keiner
     * @return ArrayList "Akten"
     */ 
-   public ArrayList getArrayList ()
+   public ArrayList <Patientenakte> getArrayList ()
     {
         return Akten;
     }
