@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse GUI.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.5
+ * @version 0.0.6
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -16,7 +16,7 @@ import java.io.*;
 import java.awt.Frame;
 public class Main extends Application {
 
-    private Stage primaryStage;
+    public static Stage primaryStage;
     // @FXML private Label labelstart;
     // @FXML private Text krankenkassennummer;
     // @FXML private TextField eingabefeldsuche;
@@ -25,7 +25,7 @@ public class Main extends Application {
     // @FXML private Menu help;
     // @FXML private MenuItem anlegen;
     // @FXML private MenuItem about;
-    
+    Verwalter v;
     @Override
     public void start(Stage primaryStage) 
     {
@@ -37,6 +37,7 @@ public class Main extends Application {
     public void mainWindow()
     {
         try{
+            v = new Verwalter();
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
             VBox pane = loader.load();
 
@@ -61,6 +62,7 @@ public class Main extends Application {
     {
         return primaryStage;
     }
+    
     
     // public void akteWindow()
     // {
@@ -89,5 +91,6 @@ public class Main extends Application {
     public static void main(String[] args)
     {
         launch(args);
+        
     }
 }

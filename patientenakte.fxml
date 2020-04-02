@@ -36,42 +36,42 @@
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Name:" />
-                        <TextField fx:id="name" />
+                        <TextField fx:id="ausgabename" />
                         <HBox />
                         <Label prefHeight="18.0" prefWidth="130.0" text="Vorerkrankungen:" />
-                        <TextArea fx:id="vorerkrankungen" prefHeight="113.0" prefWidth="200.0" />
+                        <TextArea fx:id="ausgabevorerkrankungen" prefHeight="113.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Alter:" />
-                        <TextField fx:id="alter" />
+                        <TextField fx:id="ausgabealter" />
                         <Label prefHeight="20.0" prefWidth="160.0" text="Allergien:" />
-                        <TextArea fx:id="allergien" prefHeight="113.0" prefWidth="200.0" />
+                        <TextArea fx:id="ausgabeallergien" prefHeight="113.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Adresse:" />
-                        <TextField fx:id="adresse" />
+                        <TextField fx:id="ausgabeadresse" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Geschlecht:" />
-                        <TextField fx:id="geschlecht" />
+                        <TextField fx:id="ausgabegeschlecht" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Krankenkassennummer:" />
-                        <TextField fx:id="krankenkassennummer1" />
+                        <TextField fx:id="auskrankenkassennummer1" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Blutgruppe:" />
-                        <TextField fx:id="blutgruppe" />
+                        <TextField fx:id="ausgabeblutgruppe" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
