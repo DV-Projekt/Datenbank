@@ -81,18 +81,20 @@ public class Verwalter
      * @return keiner
      */
 
-    public void Aktelöschen (int KrankenkassenNr)
+    public String Aktelöschen (int KrankenkassenNr)
     {
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
         if (ak != null)
         {
             Akten.remove(ak);
+            return "Akte wurde erfolgreich gelöscht!";
         }
 
         if (ak == null)
         {
             //Exeption
         }
+        return "";
     }
 
     /**
