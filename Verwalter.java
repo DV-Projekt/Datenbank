@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Verwalter
 {
-    private ArrayList <Patientenakte> Akten;
+    public ArrayList <Patientenakte> Akten;
 
     /**
      * Konstruktor der eine Leere ArrayList der Patientenakten erstellt
