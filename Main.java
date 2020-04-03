@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse GUI.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.6
+ * @version 0.0.7
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -25,7 +25,7 @@ public class Main extends Application {
     // @FXML private Menu help;
     // @FXML private MenuItem anlegen;
     // @FXML private MenuItem about;
-    Verwalter v;
+    public Verwalter verwalter;
     @Override
     public void start(Stage primaryStage) 
     {
@@ -35,9 +35,10 @@ public class Main extends Application {
     }
 
     public void mainWindow()
-    {
+    {   
+        verwalter = new Verwalter();
         try{
-            v = new Verwalter();
+ 
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
             VBox pane = loader.load();
 
@@ -63,31 +64,7 @@ public class Main extends Application {
         return primaryStage;
     }
     
-    
-    // public void akteWindow()
-    // {
-        // try{
-            // FXMLLoader loader2 = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
-            // VBox secondpane = loader2.load();
 
-            // MainWindowController mainWindowController = loader2.getController();
-            // mainWindowController.setMain(this);
-            // Scene scene = new Scene(secondpane);
-            
-            // Stage newWindow = new Stage();
-            // newWindow.setScene(scene);
-            // newWindow.setTitle("Akte anlegen");
-            // newWindow.initModality(Modality.WINDOW_MODAL);
-            // newWindow.show();
-            
-            // // primaryStage.setScene(scene);
-            // // primaryStage.setTitle("Akte anlegen");
-            // // primaryStage.show();
-        // } 
-        // catch(IOException e){
-            // e.printStackTrace();
-        // }
-    // }
     public static void main(String[] args)
     {
         launch(args);

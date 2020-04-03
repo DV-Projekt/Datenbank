@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.7)
+ * @version (0.0.8)
  */
 import java.util.*;
 import java.io.File;
@@ -62,7 +62,11 @@ public class Patientenakte
     {
         return KrankenkassenNr;
     }
-
+    
+    public String getName ()
+    {
+        return Name;
+    }
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
     public void Aktebearbeiten(String Ad, String Gesch, int KrankNr, 

@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.11
+ * @version 0.0.12
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -15,6 +15,7 @@ import javafx.fxml.*;
 import java.io.*;
 import javafx.scene.control.Alert;
 import java.awt.Frame;
+import java.util.*;
 public class MainWindowController extends Verwalter
 {
     //Views
@@ -106,28 +107,30 @@ public class MainWindowController extends Verwalter
     private TextArea ausgabeallergien;
 
     public Main main;
+    
+    public Verwalter v;
 
     public void setMain(Main main)
     {
         this.main = main;
     }
-
+    
     @FXML
     public void suche()
     {   
         int nummer=0;
         if(eingabefeldsuche.getText() == null || eingabefeldsuche.getText().trim().isEmpty())
         {
-            warningAlert();
+            warningDaten();
         }
-        else if(Akten.size()==0)
+         if(Akten.size()==0)
         {
             String eingabe = eingabefeldsuche.getText();
             nummer = Integer.parseInt(eingabe);
             try{
-                FXMLLoader loader2 = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
-                VBox pane2 = loader2.load();
-                Scene scene = new Scene(pane2);
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
+                VBox pane = loader.load();
+                Scene scene = new Scene(pane);
                 Main.primaryStage.setScene(scene);
                 Main.primaryStage.show();
             }
@@ -138,8 +141,20 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            Patientenakte ps = Aktesuchen(nummer);
-            
+            Patientenakte ps = v.Aktesuchen(nummer);
+            try{
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
+                VBox pane = loader.load();
+                Scene scene = new Scene(pane);
+                Main.primaryStage.setScene(scene);
+                Main.primaryStage.show();
+                
+                ausgabename.setText(ps.getName());
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -160,22 +175,24 @@ public class MainWindowController extends Verwalter
         telefonnummer.getText().trim().isEmpty() || vorerkrankungen.getText() == null || vorerkrankungen.getText().trim().isEmpty() ||
         allergien.getText() == null || allergien.getText().trim().isEmpty())
         {
-            warningAlert(); 
+            warningDaten(); 
         }
         else
         {
             int alter1 = Integer.parseInt(alter.getText());
             int krankenkassennr = Integer.parseInt(krankenkassennummer1.getText());
             int telefonnr = Integer.parseInt(telefonnummer.getText());
-            Patientenakte Patient = new Patientenakte(name.getText(), alter1, adresse.getText(), geschlecht.getText(), krankenkassennr, 
+            v = new Verwalter(name.getText(), alter1, adresse.getText(), geschlecht.getText(), krankenkassennr, 
                     blutgruppe.getText(), arzt.getText(), telefonnr, vorerkrankungen.getText(), allergien.getText());
-            Akten.add(Patient);
-
+            // ArrayList <Patientenakte> Akten = new ArrayList <Patientenakte> ();
+            // Akten = Main.verwalter.getArrayList();
+            // Akten.add(Patient);
+            
             try{
-                FXMLLoader loader2 = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
-                VBox pane2 = loader2.load();
-                Scene scene2 = new Scene(pane2);
-                Main.primaryStage.setScene(scene2);
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
+                VBox pane = loader.load();
+                Scene scene = new Scene(pane);
+                Main.primaryStage.setScene(scene);
                 Main.primaryStage.show();
             }
             catch(IOException e)
@@ -185,7 +202,7 @@ public class MainWindowController extends Verwalter
         }
     }
 
-    public void warningAlert() 
+    public void warningDaten() 
     {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Achtung");

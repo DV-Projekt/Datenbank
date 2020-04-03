@@ -28,7 +28,7 @@ public class Verwalter
     String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
     String Arzt, int Telefonnummer, String Vorerkrankungen, String Allergien)
     {
-        //Akten = new ArrayList <Patientenakte> ();        
+        Akten = new ArrayList <Patientenakte> ();        
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
                 KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
         Akten.add(Akte);

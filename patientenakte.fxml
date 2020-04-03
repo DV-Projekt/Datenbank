@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -36,69 +34,61 @@
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Name:" />
-                        <TextField fx:id="ausgabename" />
+                        <TextField fx:id="ausgabename" editable="false" />
                         <HBox />
                         <Label prefHeight="18.0" prefWidth="130.0" text="Vorerkrankungen:" />
-                        <TextArea fx:id="ausgabevorerkrankungen" prefHeight="113.0" prefWidth="200.0" />
+                        <TextArea fx:id="ausgabevorerkrankungen" editable="false" prefHeight="113.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Alter:" />
-                        <TextField fx:id="ausgabealter" />
+                        <TextField fx:id="ausgabealter" editable="false" />
                         <Label prefHeight="20.0" prefWidth="160.0" text="Allergien:" />
-                        <TextArea fx:id="ausgabeallergien" prefHeight="113.0" prefWidth="200.0" />
+                        <TextArea fx:id="ausgabeallergien" editable="false" prefHeight="113.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Adresse:" />
-                        <TextField fx:id="ausgabeadresse" />
+                        <TextField fx:id="ausgabeadresse" editable="false" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Geschlecht:" />
-                        <TextField fx:id="ausgabegeschlecht" />
+                        <TextField fx:id="ausgabegeschlecht" editable="false" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Krankenkassennummer:" />
-                        <TextField fx:id="auskrankenkassennummer1" />
+                        <TextField fx:id="auskrankenkassennummer1" editable="false" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Blutgruppe:" />
-                        <TextField fx:id="ausgabeblutgruppe" />
+                        <TextField fx:id="ausgabeblutgruppe" editable="false" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Zuständiger Arzt:" />
-                        <TextField fx:id="arzt" />
+                        <TextField fx:id="arzt" editable="false" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Telefonnummer:" />
-                        <TextField fx:id="telefonnummer" />
+                        <TextField fx:id="telefonnummer" editable="false" />
                      </children>
                   </HBox>
                   <HBox spacing="30.0" />
                   <HBox alignment="TOP_CENTER" prefHeight="26.0" prefWidth="713.0" spacing="30.0" />
                </children>
             </VBox>
-            <VBox AnchorPane.bottomAnchor="948.8000000000001" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="400.0">
-               <children>
-                  <Button alignment="TOP_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="90.0" text="Speichern" textAlignment="CENTER">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </VBox>
+            <VBox AnchorPane.bottomAnchor="948.8000000000001" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="400.0" />
       </children>
     </AnchorPane>
   </children>
