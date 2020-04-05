@@ -16,7 +16,7 @@ import java.io.*;
 import javafx.scene.control.Alert;
 import java.awt.Frame;
 import java.util.*;
-public class MainWindowController extends Verwalter
+public class MainWindowController extends Main
 {
     //Views
     @FXML 
@@ -108,7 +108,7 @@ public class MainWindowController extends Verwalter
 
     public Main main;
     
-    public Verwalter v;
+    //public Verwalter v;
 
     public void setMain(Main main)
     {
@@ -123,7 +123,10 @@ public class MainWindowController extends Verwalter
         {
             warningDaten();
         }
-         if(Akten.size()==0)
+        
+        // ArrayList <Patientenakte> Akten = new ArrayList <Patientenakte> ();
+        // Akten = verwalter.getArrayList();
+        if(verwalter.getArrayList().size()==0)
         {
             String eingabe = eingabefeldsuche.getText();
             nummer = Integer.parseInt(eingabe);
@@ -141,7 +144,7 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            Patientenakte ps = v.Aktesuchen(nummer);
+            Patientenakte ps = verwalter.Aktesuchen(nummer);
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
                 VBox pane = loader.load();
@@ -182,7 +185,7 @@ public class MainWindowController extends Verwalter
             int alter1 = Integer.parseInt(alter.getText());
             int krankenkassennr = Integer.parseInt(krankenkassennummer1.getText());
             int telefonnr = Integer.parseInt(telefonnummer.getText());
-            v = new Verwalter(name.getText(), alter1, adresse.getText(), geschlecht.getText(), krankenkassennr, 
+            verwalter = new Verwalter(name.getText(), alter1, adresse.getText(), geschlecht.getText(), krankenkassennr, 
                     blutgruppe.getText(), arzt.getText(), telefonnr, vorerkrankungen.getText(), allergien.getText());
             // ArrayList <Patientenakte> Akten = new ArrayList <Patientenakte> ();
             // Akten = Main.verwalter.getArrayList();
