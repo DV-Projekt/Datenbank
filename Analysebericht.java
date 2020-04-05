@@ -27,7 +27,19 @@ public class Analysebericht
     String Analysemethode;
     String Analyseergebnis;
     int BerichtNR;
-    
+
+    /**
+     * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
+     * Dabei werden die Daten Laborant, Analysedatum, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
+     * 
+     * @param Laborantenkuerzel
+     * @param Analysedatum
+     * @param Laborname
+     * @param AnalyseObjekt
+     * @param Analysemethode
+     * @param Analyseergebnis
+     */
+
     public Analysebericht(String Laborantenkuerzel, String Analysedatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
         this.Laborantenkuerzel = Laborantenkuerzel;
@@ -37,9 +49,10 @@ public class Analysebericht
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
     }
+
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
-     * Dabei werden die Daten Laborant, Labor, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
+     * Dabei werden die Daten Laborant, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
      * Das aktuelle Datum wird durch die Klasse Calendar erzeugt.
      * 
      * @param Laborantenkuerzel
@@ -61,7 +74,7 @@ public class Analysebericht
     }
 
     /**
-     * Die Methode Analyseberichtbearbeiten setzt beim Aufruf die Attribute auf die eingegebenen String Parameter.
+     * Die Methode Analyseberichtbearbeiten setzt die Attribute beim Aufruf auf die eingegebenen String Parameter.
      * 
      * @param Laborantenkuerzel
      * @param Erstellungsdatum
@@ -211,7 +224,7 @@ public class Analysebericht
     {
         this.Laborantenkuerzel = Laborantenkuerzel; 
     }
-    
+
     /**
      * Set-Methode für Analysedatum
      * 
@@ -221,7 +234,7 @@ public class Analysebericht
     {
         this.Analysedatum = Analysedatum; 
     }
-    
+
     /**
      * Set-Methode für Laborname
      * 
@@ -230,9 +243,9 @@ public class Analysebericht
     public void setLaborname(String Laborname)
     {
         this.Laborname = Laborname;
-        
+
     }
-    
+
     /**
      * Set-Methode für AnalyseObjekt
      * 
@@ -242,7 +255,7 @@ public class Analysebericht
     {
         this.AnalyseObjekt = AnalyseObjekt; 
     }
-    
+
     /**
      * Set-Methode für Analysemethode
      * 
@@ -252,7 +265,7 @@ public class Analysebericht
     {
         this.Analysemethode = Analysemethode; 
     }
-    
+
     /**
      * Set-Methode für Analyseergebnis
      * 
@@ -262,7 +275,7 @@ public class Analysebericht
     {
         this.Analyseergebnis = Analyseergebnis; 
     }
-    
+
     /**
      * Set-Methode für BerichtNR
      * 
