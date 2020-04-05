@@ -3,11 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
-<<<<<<< HEAD
- * @version (0.0.7)
-=======
- * @version (0.0.8)
->>>>>>> c6bb0a80132147696941742d457475120f7ba0e3
+ * @version (0.0.9)
  */
 import java.util.*;
 import java.io.File;
@@ -47,23 +43,107 @@ public class Patientenakte
     public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
     {
-        Name=N;
-        Alter=Alt;
+        if(Alt.matches("[0-9]+"))
+            Alter=Alt;
+        else
+            System.out.println("Bitte geben Sie eine Nummer bei Alter ein.");
+        if(KrankNr.matches("[0-9]+"))
+            KrankenkassenNr=KrankNr;
+        else
+            System.out.println("Bitte geben Sie eine Nummer bei Krankenkassennummer ein.");
+        if(Tel.matches("[0-9]+"))
+            Telefonnummer=Tel;
+        else
+            System.out.println("Bitte geben Sie eine Nummer bei Telefonnummer ein.");
+        //durch if abfragen werden den Attributen keine werte zu gewiesen wenn sie die Angaben
+        //nicht erfüllen, wie kann man verhindern dass ein objekt erstellt wird wenn die 
+        //vorgaben nicht erfüllt werden?
         Adresse=Ad;
-        Geschlecht=Gesch;
-        KrankenkassenNr=KrankNr;
         Blutgruppe=Blut;
         ZuständigerArzt=Arzt;
-        Telefonnummer=Tel;
+        Geschlecht=Gesch;
+        Name=N;
         Vorerkrankungen=Vor;
         Allergien=All;
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
     
-    public void SetKrankenkassenNr (String nr)
+    //Set Methode für die Allergien des Patienten
+    public void SetAllergien(String all)
     {
-        KrankenkassenNr=nr;
+        Allergien=all;
+    }
+    
+    //Set Methode für die Vorerkrankungen des Patienten
+    public void SetVorerkrankungen(String v)
+    {
+        Vorerkrankungen=v;
+    }
+    
+    //Set Methode für die Telefonnummer des Patienten
+    public void SetTelefonnummer(String t)
+    {
+        if(t.matches("[0-9]+"))
+            Telefonnummer=t;
+        else
+            System.out.print("Bitte geben Sie eine Nummer ein.");
+    }
+    
+    //Set Methode für den zuständigen Arzt
+    public void SetZuständigerArzt(String z)
+    {
+        ZuständigerArzt=z;
+    }
+    
+    //Set Methode für die Blutgruppe des Patienten
+    //funktioniert noch nicht!
+    public void SetBlutgruppe(String b)
+    {
+        if(b.matches("A"+"a"+"B"+"b"+"0"+"-"+"+"))
+            Blutgruppe=b;
+        else
+            System.out.print("Bitte geben Sie eine Blutruppe ein.");
+    }
+    
+    //Set Methode für das Geschlecht des Patienten
+    public void SetGeschlächt(String gesch)
+    {
+        if(gesch.equals("männlich")| gesch.equals("Männlich")
+        |gesch.equals("weiblich")|gesch.equals("Weiblich"))
+            Geschlecht=gesch;
+        else
+            System.out.print("Bitte geben Sie ein Geschlecht ein.");
+    }
+    
+    //Set Methode für die Adresse des Patienten
+    public void SetAdresse(String ad)
+    {
+        Adresse=ad;
+    }
+    
+    //Set Methode für das Alter des Patienten
+    public void SetAlter(String A)
+    {
+        if(A.matches("[0-9]+"))
+            Alter=A;
+        else
+            System.out.print("Bitte geben Sie eine Nummer ein.");
+    }
+    
+    //Set Methode für den Patienten Namen
+    public void SetName(String N)
+    {
+        Name=N;
+    }
+    
+    //Set Methode für die Krankenkassen Nummer
+    public void SetKrankenkassenNr(String nr)
+    {
+       if(nr.matches("[0-9]+"))
+            KrankenkassenNr=nr;
+       else
+            System.out.print("Bitte geben Sie eine Nummer ein.");
     }
     
     
