@@ -1,8 +1,9 @@
 /**
- * Beschreiben Sie hier die Klasse Analysebericht.
+ * Die Klasse Analysebericht ist verantwortlich für die Erstellung der Analyseberichte.
+ * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.12
+ * @version 0.0.15
  * 
  */
 
@@ -29,7 +30,29 @@ public class Analysebericht
 
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
-     * Dabei werden die Daten Laborant, Labor, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
+     * Dabei werden die Daten Laborant, Analysedatum, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
+     * 
+     * @param Laborantenkuerzel
+     * @param Analysedatum
+     * @param Laborname
+     * @param AnalyseObjekt
+     * @param Analysemethode
+     * @param Analyseergebnis
+     */
+
+    public Analysebericht(String Laborantenkuerzel, String Analysedatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
+    {
+        this.Laborantenkuerzel = Laborantenkuerzel;
+        this.Analysedatum = Analysedatum;
+        this.Laborname = Laborname;
+        this.AnalyseObjekt = AnalyseObjekt;
+        this.Analysemethode = Analysemethode;
+        this.Analyseergebnis = Analyseergebnis;
+    }
+
+    /**
+     * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
+     * Dabei werden die Daten Laborant, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
      * Das aktuelle Datum wird durch die Klasse Calendar erzeugt.
      * 
      * @param Laborantenkuerzel
@@ -47,9 +70,19 @@ public class Analysebericht
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
-        BerichtNR = (int) (Math.random()*((1000-1)+1))+1;
+        BerichtNR = (int) (Math.random()*(1000-1)+1);
     }
 
+    /**
+     * Die Methode Analyseberichtbearbeiten setzt die Attribute beim Aufruf auf die eingegebenen String Parameter.
+     * 
+     * @param Laborantenkuerzel
+     * @param Erstellungsdatum
+     * @param Laborname
+     * @param AnalyseObjekt
+     * @param Analysemethode
+     * @param Analyseergebnis
+     */
     public void Analyseberichtbearbeiten(String Laborantenkuerzel, String Erstellungsdatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
         this.Laborantenkuerzel = Laborantenkuerzel;
@@ -60,6 +93,14 @@ public class Analysebericht
         this.Analyseergebnis = Analyseergebnis;
     }
 
+    /**
+     * Die Methode Berichtexportieren erzeugt beim Aufruf eine xlsx-Datei (Excel-Datei), in denen alle Attribute und ihre zugehörigen Werte abgespeichert werden.
+     * Dazu wird ein frei wähbarer Filename (übergeben durch den Parameter Filename) und die Berichtnummer als Dateiname gewählt. Die Berichtnummer gewährleistet, 
+     * dass jeder exportierte Bericht eindeutig identifiziert werden kann. Falls noch nicht vorhanden, erstellt die Methode einen Ordner ChemischeAnalysedatenbank 
+     * und einen Unterordner Analyseberichte, in dem alle Berichte abgespeichert werden.
+     * 
+     * @param Filename
+     */
     public void Berichtexportieren(String Filename)
     {
         Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
@@ -104,40 +145,145 @@ public class Analysebericht
 
     }
 
+    /**
+     * Get-Methode für Laborantenkuerzel
+     * 
+     * @return Laborantenkuerzel
+     */
     public String getLaborantenkuerzel()
     {
         return Laborantenkuerzel;
     }
 
+    /**
+     * Get-Methode für Laborname
+     * 
+     * @return Laborname
+     */
     public String getLaborname()
     {
         return Laborname;
     }
 
+    /**
+     * Get-Methode für AnalyseObjekt
+     * 
+     * @return AnalyseObjekt
+     */
     public String getAnalyseObjekt()
     {
         return AnalyseObjekt;
     }
 
+    /**
+     * Get-Methode für Analysemethode
+     * 
+     * @return Analysemethode
+     */
     public String getAnalysemethode()
     {
         return Analysemethode;
     }
 
+    /**
+     * Get-Methode für Analyseergebnis
+     * 
+     * @return Analyseergebnis
+     */
     public String getAnalyseergebnis()
     {
         return Analyseergebnis;
     }
 
+    /**
+     * Get-Methode für Analysedatum
+     * 
+     * @return Analysedatum
+     */
     public String getAnalysedatum()
     {
         return Analysedatum;
     }
 
+    /**
+     * Get-Methode für BerichtNR
+     * 
+     * @return BerichtNR
+     */
     public int getBerichtNR()
     {
         return BerichtNR;
     }
 
+    /**
+     * Set-Methode für Laborantenkuerzel
+     * 
+     * @param Laborantenkuerzel
+     */
+    public void setLaborantenkuerzel(String Laborantenkuerzel)
+    {
+        this.Laborantenkuerzel = Laborantenkuerzel; 
+    }
+
+    /**
+     * Set-Methode für Analysedatum
+     * 
+     * @param Analysedatum
+     */
+    public void setAnalysedatum(String Analysedatum)
+    {
+        this.Analysedatum = Analysedatum; 
+    }
+
+    /**
+     * Set-Methode für Laborname
+     * 
+     * @param Laborname
+     */
+    public void setLaborname(String Laborname)
+    {
+        this.Laborname = Laborname;
+
+    }
+
+    /**
+     * Set-Methode für AnalyseObjekt
+     * 
+     * @param AnalyseObjekt
+     */
+    public void setAnalyseObjekt(String AnalyseObjekt)
+    {
+        this.AnalyseObjekt = AnalyseObjekt; 
+    }
+
+    /**
+     * Set-Methode für Analysemethode
+     * 
+     * @param Analysemethode
+     */
+    public void setAnalysemethode(String Analysemethode)
+    {
+        this.Analysemethode = Analysemethode; 
+    }
+
+    /**
+     * Set-Methode für Analyseergebnis
+     * 
+     * @param Analyseergebnis
+     */
+    public void setAnalyseergebnis(String Analyseergebnis)
+    {
+        this.Analyseergebnis = Analyseergebnis; 
+    }
+
+    /**
+     * Set-Methode für BerichtNR
+     * 
+     * @param BerichtNR
+     */
+    public void setBerichtNR(String BerichtNR)
+    {
+        this.BerichtNR = Integer.parseInt(BerichtNR);
+    }
 }
 

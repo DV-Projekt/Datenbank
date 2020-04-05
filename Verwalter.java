@@ -4,16 +4,16 @@
  * Somit kann er auf diese Akten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.6)
+ * @version (0.0.7)
  */
 import java.util.ArrayList;
 
 public class Verwalter
 {
-    private ArrayList <Patientenakte> Akten;
+    public ArrayList <Patientenakte> Akten;
 
     /**
-     * Konstruktor der die ArrayList der Patientenakten erstellt
+     * Konstruktor der eine Leere ArrayList der Patientenakten erstellt
      */
     public Verwalter ()
     {
@@ -21,13 +21,38 @@ public class Verwalter
     }
 
     /**
+     * Konstruktor der die ArrayList der Patientenakten erstellt 
+     * und zusätzlich eine Patientenakte erstellt und hinzufügt
+     */
+    public Verwalter (String Name, int Alter, String Addresse, 
+    String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
+    String Arzt, int Telefonnummer, String Vorerkrankungen, String Allergien)
+    {
+        Akten = new ArrayList <Patientenakte> ();        
+        Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
+                KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
+        Akten.add(Akte);
+    }
+    
+   /**
+    * Get Methode für die ArrayList
+    * 
+    * @param keiner
+    * @return ArrayList "Akten"
+    */ 
+   public ArrayList <Patientenakte> getArrayList ()
+    {
+        return Akten;
+    }
+
+    /**
      * Akteanlegen: Methode die eine neue Patientenakte anlegt und diese der ArrayList
      * hinzufügt
      * 
-     * @param Name,Aler,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
+     * @param Name,Alter,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
      * Arzt,Telefonnummer,Vorerkrankungen,Allergien
      * 
-     * @ return keiner
+     * @return keiner
      */
     public void Akteanlegen (String Name, int Alter, String Addresse, 
     String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
@@ -36,19 +61,15 @@ public class Verwalter
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
                 KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
 
-        boolean gefunden = false;
-        for (Patientenakte a : Akten)
+        Patientenakte ak = Aktesuchen (KrankenkassenNr);
+        if (ak != null)
         {
-            if (a.getKrankenkassenNr () == KrankenkassenNr)
-            {
-                gefunden = true;
-                System.out.println("Die Patientenakte mit der Nummer " +KrankenkassenNr+" existiert bereits.");
-            }
+            //Exeption
         }
-        if (gefunden == false)
+
+        if (ak == null)
         {
             Akten.add(Akte);
-            System.out.println("Neue Patientenakte wurde hinzugefügt.");
         }
     }
 
@@ -60,22 +81,20 @@ public class Verwalter
      * @return keiner
      */
 
-    public void Aktelöschen (int KrankenkassenNr)
+    public String Aktelöschen (int KrankenkassenNr)
     {
-        boolean gefunden = false;
-        for (Patientenakte b : Akten)
+        Patientenakte ak = Aktesuchen (KrankenkassenNr);
+        if (ak != null)
         {
-            if (b.getKrankenkassenNr () == KrankenkassenNr)
-            {
-                gefunden = true;
-                Akten.remove(b);
-                System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde gelöscht.");
-            }
+            Akten.remove(ak);
+            return "Akte wurde erfolgreich gelöscht!";
         }
-        if (gefunden == false)
+
+        if (ak == null)
         {
-            System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
+            //Exeption
         }
+        return "";
     }
 
     /**
@@ -88,17 +107,17 @@ public class Verwalter
     public Patientenakte Aktesuchen (int KrankenkassenNr)
     {
         boolean gefunden = false;
-        for (Patientenakte b : Akten)
+        for (Patientenakte c : Akten)
         {
-            if (b.getKrankenkassenNr () == KrankenkassenNr)
+            if (c.getKrankenkassenNr () == KrankenkassenNr)
             {
                 gefunden = true;
-                return b;
+                return c;
             }
         }
         if (gefunden == false)
         {
-            System.out.println("Akte mit der Nummer "+KrankenkassenNr+" wurde nicht gefunden.");
+            //Exeption
         }
 
         return null;

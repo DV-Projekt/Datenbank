@@ -13,7 +13,7 @@ public class Notfallkontakt
     private String Beziehung;
     private int Telefonnummer;
      /**
-     * Standard constructor for objects of class Notfallkontakt
+     *constructor for objects of class Notfallkontakt
      */
     
     public Notfallkontakt(String n, String ad, String bez, int tel)

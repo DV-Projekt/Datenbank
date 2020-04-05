@@ -3,7 +3,11 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
+<<<<<<< HEAD
  * @version (0.0.7)
+=======
+ * @version (0.0.8)
+>>>>>>> c6bb0a80132147696941742d457475120f7ba0e3
  */
 import java.util.*;
 import java.io.File;
@@ -21,6 +25,23 @@ public class Patientenakte
     private String Allergien;
     private ArrayList<Analysebericht> Analyseberichte;
     private ArrayList<Notfallkontakt> Notfallkontakte;
+    
+    //Standardkonstruktor
+    public Patientenakte()
+    {
+        Name = "n";
+        Alter= 0;
+        Adresse = "ad";
+        Geschlecht = "gesch";
+        KrankenkassenNr = 0;
+        Blutgruppe = "blutgr";
+        ZuständigerArzt = "arzt";
+        Telefonnummer = 0;
+        Vorerkrankungen = "vor";
+        Allergien = "all";
+        Analyseberichte = new ArrayList<Analysebericht>();
+        Notfallkontakte = new ArrayList<Notfallkontakt>();
+    }
 
     //erstellt eine neue Patientenakte und weist ihr die eingegebenen Werte zu.
     public Patientenakte(String N, int Alt, String Ad, String Gesch, int KrankNr, 
@@ -51,7 +72,11 @@ public class Patientenakte
     {
         return KrankenkassenNr;
     }
-
+    
+    public String getName ()
+    {
+        return Name;
+    }
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
     public void Aktebearbeiten(String Ad, String Gesch, int KrankNr, 
@@ -87,13 +112,12 @@ public class Patientenakte
         int i=0;
         while(it1.hasNext()&&!gefunden)
         {
-            Analysebericht a=it1.Next();
-            if(a.getLaborantenkuerzel().equals(gesucht))
+            if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(a.getLaborname().equals(gesucht))
+            else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
@@ -147,9 +171,13 @@ public class Patientenakte
             }
             i++;
         }
+        
+        if(gelöscht == true)
+        {
         System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
-
-        //löschen der Datei von Nico
+        }
+        if(gelöscht == true)
+        {
         File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
         File[] fileArray = f.listFiles();
         boolean r = false;
@@ -173,7 +201,7 @@ public class Patientenakte
             System.out.println("Datei wurde gelöscht");
         }
     }
-
+}
     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
     //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
