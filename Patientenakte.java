@@ -40,6 +40,12 @@ public class Patientenakte
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
     
+    public void SetKrankenkassenNr (int nr)
+    {
+        KrankenkassenNr=nr;
+    }
+    
+    
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
     public int getKrankenkassenNr ()
     {
@@ -81,12 +87,13 @@ public class Patientenakte
         int i=0;
         while(it1.hasNext()&&!gefunden)
         {
-            if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
+            Analysebericht a=it1.Next();
+            if(a.getLaborantenkuerzel().equals(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
+            else if(a.getLaborname().equals(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
@@ -114,7 +121,7 @@ public class Patientenakte
             }
             i++;
         }
-        if(!gefunden)
+        if(!gefunden)//System out print durch exeptions ersetzen für oberfläche
             System.out.print("Keinen Analysebericht gefunden der "+gesucht+" enthält");
         return null;
     }
