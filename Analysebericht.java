@@ -3,7 +3,7 @@
  * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.15
+ * @version 0.0.16
  * 
  */
 
@@ -26,7 +26,7 @@ public class Analysebericht
     String AnalyseObjekt;
     String Analysemethode;
     String Analyseergebnis;
-    int BerichtNR;
+    String BerichtNR;
 
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
@@ -70,7 +70,8 @@ public class Analysebericht
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
-        BerichtNR = (int) (Math.random()*(1000-1)+1);
+        int nr = (int) (Math.random()*(1000-1)+1);
+        BerichtNR = Integer.toString(nr);
     }
 
     /**
@@ -117,7 +118,7 @@ public class Analysebericht
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
 
         String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
-                {Integer.toString(BerichtNR), Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
+                {BerichtNR, Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
         int rowNum =0;
         System.out.println("Dokument wird erstellt");
@@ -210,7 +211,7 @@ public class Analysebericht
      * 
      * @return BerichtNR
      */
-    public int getBerichtNR()
+    public String getBerichtNR()
     {
         return BerichtNR;
     }
@@ -283,7 +284,7 @@ public class Analysebericht
      */
     public void setBerichtNR(String BerichtNR)
     {
-        this.BerichtNR = Integer.parseInt(BerichtNR);
+        this.BerichtNR = BerichtNR;
     }
 }
 
