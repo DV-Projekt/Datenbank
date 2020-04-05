@@ -4,7 +4,7 @@
  * Somit kann er auf diese Akten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.7)
+ * @version (0.0.8)
  */
 import java.util.ArrayList;
 
@@ -92,7 +92,7 @@ public class Verwalter
 
         if (ak == null)
         {
-            //Exeption
+            return "Akte wurde nicht gefunden!";
         }
         return "";
     }
@@ -106,18 +106,12 @@ public class Verwalter
 
     public Patientenakte Aktesuchen (int KrankenkassenNr)
     {
-        boolean gefunden = false;
         for (Patientenakte c : Akten)
         {
             if (c.getKrankenkassenNr () == KrankenkassenNr)
             {
-                gefunden = true;
                 return c;
             }
-        }
-        if (gefunden == false)
-        {
-            //Exeption
         }
 
         return null;
