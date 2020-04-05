@@ -24,9 +24,9 @@ public class Verwalter
      * Konstruktor der die ArrayList der Patientenakten erstellt 
      * und zusätzlich eine Patientenakte erstellt und hinzufügt
      */
-    public Verwalter (String Name, int Alter, String Addresse, 
-    String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
-    String Arzt, int Telefonnummer, String Vorerkrankungen, String Allergien)
+    public Verwalter (String Name, String Alter, String Addresse, 
+    String Geschlecht, String KrankenkassenNr, String Blutgruppe, 
+    String Arzt, String Telefonnummer, String Vorerkrankungen, String Allergien)
     {
         Akten = new ArrayList <Patientenakte> ();        
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
@@ -54,9 +54,9 @@ public class Verwalter
      * 
      * @return keiner
      */
-    public void Akteanlegen (String Name, int Alter, String Addresse, 
-    String Geschlecht, int KrankenkassenNr, String Blutgruppe, 
-    String Arzt, int Telefonnummer, String Vorerkrankungen, String Allergien)
+    public String Akteanlegen (String Name, String Alter, String Addresse, 
+    String Geschlecht, String KrankenkassenNr, String Blutgruppe, 
+    String Arzt, String Telefonnummer, String Vorerkrankungen, String Allergien)
     {
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
                 KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
@@ -64,13 +64,16 @@ public class Verwalter
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
         if (ak != null)
         {
-            //Exeption
+            return "Akte wurde nicht gefunden!";
         }
 
         if (ak == null)
         {
             Akten.add(Akte);
+            return "Akte wurde hinzugefügt!";
         }
+        
+        return "";
     }
 
     /**
@@ -81,7 +84,7 @@ public class Verwalter
      * @return keiner
      */
 
-    public String Aktelöschen (int KrankenkassenNr)
+    public String Aktelöschen (String KrankenkassenNr)
     {
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
         if (ak != null)
@@ -104,11 +107,11 @@ public class Verwalter
      * @return Patientenakte
      */
 
-    public Patientenakte Aktesuchen (int KrankenkassenNr)
+    public Patientenakte Aktesuchen (String KrankenkassenNr)
     {
         for (Patientenakte c : Akten)
         {
-            if (c.getKrankenkassenNr () == KrankenkassenNr)
+            if (c.getKrankenkassenNr().equals(KrankenkassenNr))
             {
                 return c;
             }
