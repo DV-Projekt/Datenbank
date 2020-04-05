@@ -14,13 +14,13 @@ import java.io.File;
 public class Patientenakte
 {
     private String Name;
-    private int Alter;
+    private String Alter;
     private String Adresse;
     private String Geschlecht;
-    private int KrankenkassenNr;
+    private String KrankenkassenNr;
     private String Blutgruppe;
     private String ZuständigerArzt;
-    private int Telefonnummer;
+    private String Telefonnummer;
     private String Vorerkrankungen;
     private String Allergien;
     private ArrayList<Analysebericht> Analyseberichte;
@@ -30,13 +30,13 @@ public class Patientenakte
     public Patientenakte()
     {
         Name = "n";
-        Alter= 0;
+        Alter= "0";
         Adresse = "ad";
         Geschlecht = "gesch";
-        KrankenkassenNr = 0;
+        KrankenkassenNr = "0";
         Blutgruppe = "blutgr";
         ZuständigerArzt = "arzt";
-        Telefonnummer = 0;
+        Telefonnummer = "0";
         Vorerkrankungen = "vor";
         Allergien = "all";
         Analyseberichte = new ArrayList<Analysebericht>();
@@ -44,8 +44,8 @@ public class Patientenakte
     }
 
     //erstellt eine neue Patientenakte und weist ihr die eingegebenen Werte zu.
-    public Patientenakte(String N, int Alt, String Ad, String Gesch, int KrankNr, 
-    String Blut, String Arzt, int Tel, String Vor, String All)
+    public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
+    String Blut, String Arzt, String Tel, String Vor, String All)
     {
         Name=N;
         Alter=Alt;
@@ -61,14 +61,14 @@ public class Patientenakte
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
     
-    public void SetKrankenkassenNr (int nr)
+    public void SetKrankenkassenNr (String nr)
     {
         KrankenkassenNr=nr;
     }
     
     
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
-    public int getKrankenkassenNr ()
+    public String getKrankenkassenNr ()
     {
         return KrankenkassenNr;
     }
@@ -79,8 +79,8 @@ public class Patientenakte
     }
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
-    public void Aktebearbeiten(String Ad, String Gesch, int KrankNr, 
-    String Blut, String Arzt, int Tel, String Vor, String All)
+    public void Aktebearbeiten(String Ad, String Gesch, String KrankNr, 
+    String Blut, String Arzt, String Tel, String Vor, String All)
     {
         Adresse=Ad;
         Geschlecht=Gesch;
@@ -156,14 +156,14 @@ public class Patientenakte
     }
 
     //entfernt den Analysebericht der die eingegebene Nummer besitzt.
-    public void Analyseberichtlöschen(int Nummer)
+    public void Analyseberichtlöschen(String Nummer)
     {
         Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gelöscht=false;
         int i=0;
         while(!gelöscht&& it1.hasNext())
         {
-            if(Analyseberichte.get(i).getBerichtNR() == Nummer)
+            if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
             {
                 Analyseberichte.remove(Analyseberichte.get(i));
                 System.out.print("Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.");
@@ -184,8 +184,7 @@ public class Patientenakte
         for(int k = 0; k<fileArray.length; k++)
         {
             String name = fileArray[k].getName();
-            String n = Integer.toString(Nummer);
-            if(name.contains(n))
+            if(name.contains(Nummer))
             {
                 File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
                 d.delete();
@@ -226,7 +225,7 @@ public class Patientenakte
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
     //ihn der Liste mit Notfallkontakten hinzu.
     public void Notfallkontakterstellen(String n, String ad, String bez, 
-    int tel)
+    String tel)
     {
         Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
         Notfallkontakte.add(Kontakt);
