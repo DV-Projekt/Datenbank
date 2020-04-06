@@ -7,6 +7,7 @@
  */
 import java.util.*;
 import java.io.File;
+import java.io.IOException;
 public class Patientenakte
 {
     private String Name;
@@ -43,18 +44,13 @@ public class Patientenakte
     public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
     {
+        String a="Bitte geben Sie eine Nummer ein.";
         if(Alt.matches("[0-9]+"))
             Alter=Alt;
-        else
-            System.out.println("Bitte geben Sie eine Nummer bei Alter ein.");
         if(KrankNr.matches("[0-9]+"))
             KrankenkassenNr=KrankNr;
-        else
-            System.out.println("Bitte geben Sie eine Nummer bei Krankenkassennummer ein.");
         if(Tel.matches("[0-9]+"))
             Telefonnummer=Tel;
-        else
-            System.out.println("Bitte geben Sie eine Nummer bei Telefonnummer ein.");
         //durch if abfragen werden den Attributen keine werte zu gewiesen wenn sie die Angaben
         //nicht erfüllen, wie kann man verhindern dass ein objekt erstellt wird wenn die 
         //vorgaben nicht erfüllt werden?
@@ -82,12 +78,14 @@ public class Patientenakte
     }
     
     //Set Methode für die Telefonnummer des Patienten
-    public void SetTelefonnummer(String t)
+    public String SetTelefonnummer(String t)
     {
+        String a="Bitte geben Sie eine Nummer ein.";
         if(t.matches("[0-9]+"))
             Telefonnummer=t;
         else
-            System.out.print("Bitte geben Sie eine Nummer ein.");
+            return a;
+        return null;
     }
     
     //Set Methode für den zuständigen Arzt
@@ -100,20 +98,27 @@ public class Patientenakte
     //funktioniert noch nicht!
     public void SetBlutgruppe(String b)
     {
-        if(b.matches("A"+"a"+"B"+"b"+"0"+"-"+"+"))
-            Blutgruppe=b;
-        else
-            System.out.print("Bitte geben Sie eine Blutruppe ein.");
+        try
+        {
+           if(b.matches("a+")|b.matches("A+"))
+                Blutgruppe=b;
+        }
+        catch(Exception e)
+        {
+            System.out.print("fehler");
+        }
     }
     
     //Set Methode für das Geschlecht des Patienten
-    public void SetGeschlächt(String gesch)
+    public String SetGeschlächt(String gesch)
     {
+        String a="Bitte geben Sie ein Geschlecht ein.";
         if(gesch.equals("männlich")| gesch.equals("Männlich")
         |gesch.equals("weiblich")|gesch.equals("Weiblich"))
             Geschlecht=gesch;
         else
-            System.out.print("Bitte geben Sie ein Geschlecht ein.");
+            return a;
+        return null;
     }
     
     //Set Methode für die Adresse des Patienten
@@ -123,12 +128,14 @@ public class Patientenakte
     }
     
     //Set Methode für das Alter des Patienten
-    public void SetAlter(String A)
+    public String SetAlter(String A)
     {
+        String a="Bitte geben Sie eine Nummer ein.";
         if(A.matches("[0-9]+"))
             Alter=A;
         else
-            System.out.print("Bitte geben Sie eine Nummer ein.");
+            return a;
+        return null;
     }
     
     //Set Methode für den Patienten Namen
@@ -138,12 +145,14 @@ public class Patientenakte
     }
     
     //Set Methode für die Krankenkassen Nummer
-    public void SetKrankenkassenNr(String nr)
+    public String SetKrankenkassenNr(String nr)
     {
-       if(nr.matches("[0-9]+"))
+       String a="Bitte geben Sie eine Nummer ein.";
+        if(nr.matches("[0-9]+"))
             KrankenkassenNr=nr;
        else
-            System.out.print("Bitte geben Sie eine Nummer ein.");
+            return a;
+       return null;
     }
     
     
@@ -305,7 +314,7 @@ public class Patientenakte
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
     //ihn der Liste mit Notfallkontakten hinzu.
     public void Notfallkontakterstellen(String n, String ad, String bez, 
-    String tel)
+    int tel)
     {
         Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
         Notfallkontakte.add(Kontakt);
