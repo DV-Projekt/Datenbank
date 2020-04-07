@@ -3,7 +3,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.9)
+ * @version (0.0.10)
  */
 import java.util.*;
 import java.io.File;
@@ -44,7 +44,8 @@ public class Patientenakte
     public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
     {
-        String a="Bitte geben Sie eine Nummer ein.";
+        try
+        {
         if(Alt.matches("[0-9]+"))
             Alter=Alt;
         if(KrankNr.matches("[0-9]+"))
@@ -63,6 +64,11 @@ public class Patientenakte
         Allergien=All;
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
+        }
+        catch(Exception e)
+        {
+            System.exit(0);
+        }
     }
     
     //Set Methode für die Allergien des Patienten
@@ -95,18 +101,9 @@ public class Patientenakte
     }
     
     //Set Methode für die Blutgruppe des Patienten
-    //funktioniert noch nicht!
     public void SetBlutgruppe(String b)
     {
-        try
-        {
-           if(b.matches("a+")|b.matches("A+"))
                 Blutgruppe=b;
-        }
-        catch(Exception e)
-        {
-            System.out.print("fehler");
-        }
     }
     
     //Set Methode für das Geschlecht des Patienten
@@ -155,7 +152,6 @@ public class Patientenakte
        return null;
     }
     
-    
     //Get Methode für KrankenkassenNr (benutzt in Verwalter)
     public String getKrankenkassenNr ()
     {
@@ -166,6 +162,7 @@ public class Patientenakte
     {
         return Name;
     }
+    
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
     public void Aktebearbeiten(String Ad, String Gesch, String KrankNr, 
@@ -239,6 +236,7 @@ public class Patientenakte
         return null;
     }
 
+    //Methode zum exportieren der Werte in eine Datei.
     public void Exportieren()
     {
 
@@ -261,36 +259,37 @@ public class Patientenakte
             i++;
         }
         
-        if(gelöscht == true)
+        if(gelöscht == false)
         {
         System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
         }
         if(gelöscht == true)
         {
-        File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
-        File[] fileArray = f.listFiles();
-        boolean r = false;
-        for(int k = 0; k<fileArray.length; k++)
-        {
-            String name = fileArray[k].getName();
-            if(name.contains(Nummer))
+            File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
+            File[] fileArray = f.listFiles();
+            boolean r = false;
+            for(int k = 0; k<fileArray.length; k++)
             {
-                File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
-                d.delete();
-                r= true;
+                String name = fileArray[k].getName();
+                if(name.contains(Nummer))
+                {
+                    File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
+                    d.delete();
+                    r= true;
+                }
+            }
+            if(r==false)
+            {
+                System.out.println("Datei konnte nicht gelöscht werden");
+            }
+            else
+            {
+                System.out.println("Datei wurde gelöscht");
             }
         }
-        if(r==false)
-        {
-            System.out.println("Datei konnte nicht gelöscht werden");
-        }
-        else
-        {
-            System.out.println("Datei wurde gelöscht");
-        }
     }
-}
-    //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
+   
+     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
     //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
@@ -314,7 +313,7 @@ public class Patientenakte
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
     //ihn der Liste mit Notfallkontakten hinzu.
     public void Notfallkontakterstellen(String n, String ad, String bez, 
-    int tel)
+    String tel)
     {
         Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
         Notfallkontakte.add(Kontakt);

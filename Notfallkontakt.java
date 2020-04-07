@@ -11,12 +11,12 @@ public class Notfallkontakt
     private String Name;
     private String Adresse;
     private String Beziehung;
-    private int Telefonnummer;
+    private String Telefonnummer;
      /**
      *constructor for objects of class Notfallkontakt
      */
     
-    public Notfallkontakt(String n, String ad, String bez, int tel)
+    public Notfallkontakt(String n, String ad, String bez, String tel)
     {
         this.Name = n;
         this.Adresse = ad;
@@ -31,7 +31,7 @@ public class Notfallkontakt
      * @param:bez
      * @param:tel
      */
-    public void kontaktdatenbearbeiten(String n, String ad, String bez, int tel)
+    public void kontaktdatenbearbeiten(String n, String ad, String bez, String tel)
     {
         Name = n;
         Adresse = ad;
