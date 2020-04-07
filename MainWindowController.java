@@ -124,7 +124,7 @@ public class MainWindowController extends Main
             warningDaten();
         }
         
-        if(verwalter.Akten.size()==0)
+        else if(verwalter.Akten.size()==0)
         {
             eingabe = eingabefeldsuche.getText();
 
