@@ -123,10 +123,8 @@ public class MainWindowController extends Main
         {
             warningDaten();
         }
-
-        // ArrayList <Patientenakte> Akten = new ArrayList <Patientenakte> ();
-        // Akten = verwalter.getArrayList();
-        if(verwalter.getArrayList().size()==0)
+        
+        if(verwalter.Akten.size()==0)
         {
             eingabe = eingabefeldsuche.getText();
 
@@ -144,7 +142,8 @@ public class MainWindowController extends Main
         }
         else
         {
-            Patientenakte ps = verwalter.Aktesuchen(eingabe);
+            Patientenakte ps = new Patientenakte();
+            ps = verwalter.Aktesuchen(eingabe);
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
                 VBox pane = loader.load();
@@ -165,13 +164,22 @@ public class MainWindowController extends Main
     @FXML
     public void akteanlegen()
     {
-
+        try{
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
+                VBox pane = loader.load();
+                Scene scene = new Scene(pane);
+                Main.primaryStage.setScene(scene);
+                Main.primaryStage.show();
+        }
+        catch(IOException e)
+        {
+                e.printStackTrace();
+        }
     }
 
     @FXML
     public void save()
     {
-
         if(name.getText() == null || name.getText().trim().isEmpty() || alter.getText() == null || alter.getText().trim().isEmpty() || 
         geschlecht.getText() == null || geschlecht.getText().trim().isEmpty() || adresse.getText() == null || adresse.getText().trim().isEmpty() ||
         krankenkassennummer1.getText() == null || krankenkassennummer1.getText().trim().isEmpty() || blutgruppe.getText() == null || 
@@ -183,11 +191,9 @@ public class MainWindowController extends Main
         }
         else
         {
-            verwalter = new Verwalter(name.getText(), alter.getText(), adresse.getText(), geschlecht.getText(), krankenkassennummer1.getText(), 
-                blutgruppe.getText(), arzt.getText(), telefonnummer.getText(), vorerkrankungen.getText(), allergien.getText());
-            // ArrayList <Patientenakte> Akten = new ArrayList <Patientenakte> ();
-            // Akten = Main.verwalter.getArrayList();
-            // Akten.add(Patient);
+            Patientenakte patient = new Patientenakte(name.getText(), alter.getText(), adresse.getText(), geschlecht.getText(), krankenkassennummer1.getText(), 
+                                                      blutgruppe.getText(), arzt.getText(), telefonnummer.getText(), vorerkrankungen.getText(), allergien.getText());
+            verwalter.Akten.add(patient);
 
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));

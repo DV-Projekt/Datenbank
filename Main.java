@@ -17,12 +17,13 @@ import java.io.*;
 public class Main extends Application {
     
     public static Stage primaryStage;
-    public Verwalter verwalter;
+    public Verwalter verwalter  = new Verwalter();
+    
     
     @Override
     public void start(Stage primaryStage) 
     {
-        verwalter = new Verwalter();
+        
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Chemische Analysedatenbank");
         mainWindow();
@@ -30,7 +31,6 @@ public class Main extends Application {
 
     public void mainWindow()
     {   
-        
         try{
  
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));

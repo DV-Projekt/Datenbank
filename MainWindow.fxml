@@ -56,9 +56,11 @@
                         <TextField fx:id="eingabefeldsuche" prefHeight="25.0" prefWidth="209.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" spacing="30.0">
                      <children>
+                        <Button mnemonicParsing="false" text="Akte löschen" />
                         <Button fx:id="suchestarten" mnemonicParsing="false" onAction="#suche" text="Suche starten" />
+                        <Button mnemonicParsing="false" onAction="#akteanlegen" text="Akte anlegen" />
                      </children>
                   </HBox>
                </children>
