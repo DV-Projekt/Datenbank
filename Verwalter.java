@@ -116,6 +116,10 @@ public class Verwalter
             {
                 return c;
             }
+            else
+            {
+               throw new IllegalArgumentException("Keine Akte gefunden");
+            }
         }
         
 

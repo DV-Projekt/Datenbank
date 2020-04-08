@@ -121,7 +121,6 @@ public class Analysebericht
                 {BerichtNR, Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
         int rowNum =0;
-        System.out.println("Dokument wird erstellt");
 
         for (int i=0; i<2; i++) {
             Row row = sheet.createRow(rowNum++);
@@ -141,9 +140,6 @@ public class Analysebericht
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Bericht wurde exportiert");
-
     }
 
     /**
