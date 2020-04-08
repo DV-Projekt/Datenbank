@@ -2,7 +2,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.10)
+ * @version (0.0.11)
  */
 import java.util.*;
 import java.io.File;
@@ -144,11 +144,55 @@ public class Patientenakte
         return KrankenkassenNr;
     }
     
+    //Get Methode für Name
     public String getName ()
     {
         return Name;
     }
     
+    //Get Methode für Alter
+    public String getAlter ()
+    {
+        return Alter;
+    }
+    
+    //Get Methode für Geschlecht
+    public String getGeschlecht ()
+    {
+        return Geschlecht;
+    }
+    
+    //Get Methode für Blutgruppe
+    public String getBlutgruppe ()
+    {
+        return Blutgruppe;
+    }
+    
+     //Get Methode für ZuständigerArzt
+    public String getZuständigerArzt ()
+    {
+        return ZuständigerArzt;
+    }
+    
+     //Get Methode für Telefonnummer
+    public String getTelefonnummer ()
+    {
+        return Telefonnummer;
+    }
+    
+     //Get Methode für Vorerkrankungen
+    public String getVorerkrankungen ()
+    {
+        return Vorerkrankungen;
+    }
+    
+     //Get Methode für Allergien
+    public String getAllergien ()
+    {
+        return Allergien;
+    }
+    
+
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
     public void Aktebearbeiten(String Ad, String Gesch, String KrankNr, 
