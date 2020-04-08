@@ -7,6 +7,7 @@
  * @version (0.0.8)
  */
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class Verwalter
 {
@@ -33,14 +34,14 @@ public class Verwalter
                 KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
         Akten.add(Akte);
     }
-    
-   /**
-    * Get Methode für die ArrayList
-    * 
-    * @param keiner
-    * @return ArrayList "Akten"
-    */ 
-   public ArrayList <Patientenakte> getArrayList ()
+
+    /**
+     * Get Methode für die ArrayList
+     * 
+     * @param keiner
+     * @return ArrayList "Akten"
+     */ 
+    public ArrayList <Patientenakte> getArrayList ()
     {
         return Akten;
     }
@@ -72,7 +73,7 @@ public class Verwalter
             Akten.add(Akte);
             return "Akte wurde hinzugefügt!";
         }
-        
+
         return "";
     }
 
@@ -116,6 +117,7 @@ public class Verwalter
                 return c;
             }
         }
+        
 
         return null;
     }

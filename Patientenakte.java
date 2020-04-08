@@ -43,17 +43,9 @@ public class Patientenakte
     public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
     {
-        try
-        {
-        if(Alt.matches("[0-9]+"))
-            Alter=Alt;
-        if(KrankNr.matches("[0-9]+"))
-            KrankenkassenNr=KrankNr;
-        if(Tel.matches("[0-9]+"))
-            Telefonnummer=Tel;
-        //durch if abfragen werden den Attributen keine werte zu gewiesen wenn sie die Angaben
-        //nicht erfüllen, wie kann man verhindern dass ein objekt erstellt wird wenn die 
-        //vorgaben nicht erfüllt werden?
+        Alter=Alt;
+        KrankenkassenNr=KrankNr;
+        Telefonnummer=Tel;
         Adresse=Ad;
         Blutgruppe=Blut;
         ZuständigerArzt=Arzt;
@@ -63,11 +55,6 @@ public class Patientenakte
         Allergien=All;
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
-        }
-        catch(Exception e)
-        {
-            System.exit(0);
-        }
     }
     
     //Set Methode für die Allergien des Patienten
