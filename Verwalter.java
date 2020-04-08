@@ -65,7 +65,7 @@ public class Verwalter
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
         if (ak != null)
         {
-            return "Akte wurde nicht gefunden!";
+             throw new IllegalArgumentException("Diese Akte gibt es schon!");
         }
 
         if (ak == null)
@@ -96,7 +96,7 @@ public class Verwalter
 
         if (ak == null)
         {
-            return "Akte wurde nicht gefunden!";
+             throw new IllegalArgumentException("Keine Akte gefunden");
         }
         return "";
     }
@@ -106,6 +106,7 @@ public class Verwalter
      * 
      * @param KrankenkassenNummer
      * @return Patientenakte
+     * @throws IllegalArgumentException wenn die KrankenkassenNr nicht übereinstimmen
      */
 
     public Patientenakte Aktesuchen (String KrankenkassenNr)
@@ -116,10 +117,10 @@ public class Verwalter
             {
                 return c;
             }
-            else
-            {
-               throw new IllegalArgumentException("Keine Akte gefunden");
-            }
+            // else
+            // {
+               // throw new IllegalArgumentException("Keine Akte gefunden");
+            // }
         }
         
 
