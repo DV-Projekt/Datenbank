@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
 
+
 public class Verwalter
 {
     public ArrayList <Patientenakte> Akten;
@@ -131,10 +132,6 @@ public class Verwalter
             {
                 return c;
             }
-            // else
-            // {
-            // throw new IllegalArgumentException("Keine Akte gefunden");
-            // }
         }
 
         return null;
@@ -176,7 +173,8 @@ public class Verwalter
                         ob.getTelefonnummer(),ob.getVorerkrankungen(),ob.getAllergien() }};
 
             int rowNum =0;
-
+            
+            try{
             for (int i=0; i < 2 ; i++) {
                 Row row = sheet.createRow(rowNum++);
                 int colNum = 0;
@@ -213,7 +211,7 @@ public class Verwalter
                 rowNum2++;
             }
 
-            try {
+            
                 FileOutputStream outputStream = new FileOutputStream(filename);
                 workbook.write(outputStream);
                 workbook.close();
@@ -221,7 +219,10 @@ public class Verwalter
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            } 
+            } catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
+            
         }
 
     }
