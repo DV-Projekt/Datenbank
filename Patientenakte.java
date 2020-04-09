@@ -162,6 +162,12 @@ public class Patientenakte
         return Geschlecht;
     }
     
+    //Get Methode für Adresse
+    public String getAdresse ()
+    {
+        return Adresse;
+    }
+    
     //Get Methode für Blutgruppe
     public String getBlutgruppe ()
     {
@@ -190,6 +196,12 @@ public class Patientenakte
     public String getAllergien ()
     {
         return Allergien;
+    }
+    
+    //Get Methode für ArrayList der AnalyseBerichte
+    public ArrayList <Analysebericht> getAnalysebericht ()
+    {
+        return Analyseberichte;
     }
     
 

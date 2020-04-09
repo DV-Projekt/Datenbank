@@ -4,10 +4,18 @@
  * Somit kann er auf diese Akten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.8)
+ * @version (0.0.9)
  */
 import java.util.ArrayList;
+import java.io.File;
+import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.commons.collections4.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.*;
 
 public class Verwalter
 {
@@ -35,6 +43,12 @@ public class Verwalter
         Akten.add(Akte);
     }
 
+    public Verwalter (Patientenakte a)
+    {
+        Akten = new ArrayList <Patientenakte> ();  
+        Akten.add(a);
+    }
+
     /**
      * Get Methode für die ArrayList
      * 
@@ -52,7 +66,7 @@ public class Verwalter
      * 
      * @param Name,Alter,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
      * Arzt,Telefonnummer,Vorerkrankungen,Allergien
-     * 
+     * @throws IllegalArgumentException wenn die KrankenkassenNr übereinstimmen
      * @return keiner
      */
     public String Akteanlegen (String Name, String Alter, String Addresse, 
@@ -65,7 +79,7 @@ public class Verwalter
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
         if (ak != null)
         {
-             throw new IllegalArgumentException("Diese Akte gibt es schon!");
+            throw new IllegalArgumentException("Diese Akte gibt es schon!");
         }
 
         if (ak == null)
@@ -80,6 +94,7 @@ public class Verwalter
     /**
      * Aktelöschen: Methode die eine Akte sucht und dannach diese aus der
      * ArrayList entfernt
+     * @throws IllegalArgumentException wenn die KrankenkassenNr nicht übereinstimmen
      * 
      * @param KrankenkassenNr
      * @return keiner
@@ -96,7 +111,7 @@ public class Verwalter
 
         if (ak == null)
         {
-             throw new IllegalArgumentException("Keine Akte gefunden");
+            throw new IllegalArgumentException("Keine Akte gefunden");
         }
         return "";
     }
@@ -106,7 +121,6 @@ public class Verwalter
      * 
      * @param KrankenkassenNummer
      * @return Patientenakte
-     * @throws IllegalArgumentException wenn die KrankenkassenNr nicht übereinstimmen
      */
 
     public Patientenakte Aktesuchen (String KrankenkassenNr)
@@ -119,11 +133,96 @@ public class Verwalter
             }
             // else
             // {
-               // throw new IllegalArgumentException("Keine Akte gefunden");
+            // throw new IllegalArgumentException("Keine Akte gefunden");
             // }
         }
-        
 
         return null;
+    }
+    
+    /**
+     * Exportieren: Methode die eine Patientenakte mit allen ihren Analyseberichten in eine Exeltabelle exportiert
+     * 
+     * @param KrankenkassenNr, Filename
+     * @throws IllegalArgumentException wenn keine Akte gefunde wurde
+     * 
+     */
+    public void Exportieren (String KrankenkassenNr, String Filename)
+    {
+        Patientenakte ob = Aktesuchen (KrankenkassenNr);
+        if (ob == null)
+        {
+            throw new IllegalArgumentException("Keine Akte gefunden");
+        }
+        else 
+        {
+            Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\PatientenakteMitAnalyseberichten");
+            if (!Files.exists(f)) {
+                try {
+                    Files.createDirectories(f);
+                } catch (IOException e) {
+                    e.printStackTrace();    
+                }
+            }
+            String filename = "C:\\ChemischeAnalysedatenbank\\PatientenakteMitAnalyseberichten"+ System.getProperty("file.separator") + Filename + ".xlsx";
+
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Patientenakte mit Analyseberichte");
+
+            String[][] werte = new String [][]{{"Name", "Alter", "Addresse","Geschlecht", 
+                        "KrankenkassenNr", "Blutgruppe", "ZuständigerArzt", "Telefonnummer",
+                        "Vorerkrankungen", "Allergien"},
+                    {ob.getName(),ob.getAlter(),ob.getAdresse(),ob.getGeschlecht(),ob.getKrankenkassenNr(),ob.getBlutgruppe(),ob.getZuständigerArzt(),
+                        ob.getTelefonnummer(),ob.getVorerkrankungen(),ob.getAllergien() }};
+
+            int rowNum =0;
+
+            for (int i=0; i < 2 ; i++) {
+                Row row = sheet.createRow(rowNum++);
+                int colNum = 0;
+                for (int j=0; j< werte[0].length ; j++) {
+                    Cell cell = row.createCell(colNum++);
+                    cell.setCellValue(werte[i][j]);
+                }
+            }
+
+            ArrayList <Analysebericht> bericht = new ArrayList <Analysebericht> ();
+
+            int rowNum2 = rowNum+2;
+
+            for (Analysebericht b: ob.getAnalysebericht ())
+            {
+                bericht.add(b);
+            }            
+
+            for ( int c=0; c< bericht.size(); c++)
+            {
+                Analysebericht ber = bericht.get(c); 
+
+                String[][] werte2 = new String [][] {{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                        {ber.getBerichtNR(),ber.getLaborantenkuerzel(),ber.getAnalysedatum(),ber.getLaborname(),ber.getAnalyseObjekt(),ber.getAnalysemethode(),ber.getAnalyseergebnis()}};
+
+                for (int i=0; i < 2 ; i++) {
+                    Row row = sheet.createRow(rowNum2++);
+                    int colNum = 0;
+                    for (int j=0; j< werte2[0].length ; j++) {
+                        Cell cell = row.createCell(colNum++);
+                        cell.setCellValue(werte2[i][j]);
+                    }
+                }
+                rowNum2++;
+            }
+
+            try {
+                FileOutputStream outputStream = new FileOutputStream(filename);
+                workbook.write(outputStream);
+                workbook.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } 
+        }
+
     }
 }
