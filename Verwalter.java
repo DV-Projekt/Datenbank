@@ -1,10 +1,10 @@
 
 /**
- * Verwalter der Akten. Er enthällt alle Akten. 
- * Somit kann er auf diese Akten zugreifen, sie aufrufen und löschen.
+ * Verwalter der Patientenakten. Er enthällt alle Patientenakten. 
+ * Somit kann er auf diese Patientenakten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.9)
+ * @version (0.0.10)
  */
 import java.util.ArrayList;
 import java.io.File;
@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
-
 
 public class Verwalter
 {
@@ -33,6 +32,8 @@ public class Verwalter
     /**
      * Konstruktor der die ArrayList der Patientenakten erstellt 
      * und zusätzlich eine Patientenakte erstellt und hinzufügt
+     * @param Name,Alter,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
+     * Arzt,Telefonnummer,Vorerkrankungen,Allergien
      */
     public Verwalter (String Name, String Alter, String Addresse, 
     String Geschlecht, String KrankenkassenNr, String Blutgruppe, 
@@ -40,10 +41,15 @@ public class Verwalter
     {
         Akten = new ArrayList <Patientenakte> ();        
         Patientenakte Akte = new Patientenakte (Name,Alter,Addresse,Geschlecht,
-                KrankenkassenNr,Blutgruppe,Arzt, Telefonnummer, Vorerkrankungen,Allergien);
+                KrankenkassenNr,Blutgruppe,Arzt,Telefonnummer,Vorerkrankungen,Allergien);
         Akten.add(Akte);
     }
 
+    /**
+     * Konstruktor der die ArrayList der Patientenakten erstellt
+     * und der man eine schon erstellte Patientenakte übergibt
+     * @param Patientenakte
+     */ 
     public Verwalter (Patientenakte a)
     {
         Akten = new ArrayList <Patientenakte> ();  
@@ -63,12 +69,12 @@ public class Verwalter
 
     /**
      * Akteanlegen: Methode die eine neue Patientenakte anlegt und diese der ArrayList
-     * hinzufügt
+     * hinzufügt dabei wird überprüft ob diese schon exsistiert
+     * @throws IllegalArgumentException wenn die Krankenkassennummern übereinstimmen
      * 
      * @param Name,Alter,Addresse,Geschlecht,KrankenkassenNr,Blutgruppe,
      * Arzt,Telefonnummer,Vorerkrankungen,Allergien
-     * @throws IllegalArgumentException wenn die KrankenkassenNr übereinstimmen
-     * @return keiner
+     * @return String
      */
     public String Akteanlegen (String Name, String Alter, String Addresse, 
     String Geschlecht, String KrankenkassenNr, String Blutgruppe, 
@@ -82,39 +88,46 @@ public class Verwalter
         {
             throw new IllegalArgumentException("Diese Akte gibt es schon!");
         }
-
-        if (ak == null)
+        else
         {
             Akten.add(Akte);
             return "Akte wurde hinzugefügt!";
         }
-
-        return "";
     }
 
     /**
      * Aktelöschen: Methode die eine Akte sucht und dannach diese aus der
-     * ArrayList entfernt
-     * @throws IllegalArgumentException wenn die KrankenkassenNr nicht übereinstimmen
+     * ArrayList entfernt und auch deren exportierte Datei falls vorhanden
+     * @throws IllegalArgumentException wenn die Krankenkassennummern nicht übereinstimmen
      * 
      * @param KrankenkassenNr
-     * @return keiner
+     * @return String
      */
 
     public String Aktelöschen (String KrankenkassenNr)
     {
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
+
         if (ak != null)
         {
             Akten.remove(ak);
+            File f = new File("C:/ChemischeAnalysedatenbank/PatientenakteMitAnalyseberichten");
+            File[] fileArray = f.listFiles();
+            for(int k = 0; k<fileArray.length; k++)
+            {
+                String name = fileArray[k].getName();
+                if(name.contains(KrankenkassenNr))
+                {
+                    File d = new File("C:/ChemischeAnalysedatenbank/PatientenakteMitAnalyseberichten/"+ name);
+                    d.delete();
+                }
+            }
             return "Akte wurde erfolgreich gelöscht!";
         }
-
-        if (ak == null)
+        else
         {
-            throw new IllegalArgumentException("Keine Akte gefunden");
+            throw new IllegalArgumentException("Es wurde keine Akte gefunden die diese Nummer enthällt!");
         }
-        return "";
     }
 
     /**
@@ -136,20 +149,20 @@ public class Verwalter
 
         return null;
     }
-    
+
     /**
      * Exportieren: Methode die eine Patientenakte mit allen ihren Analyseberichten in eine Exeltabelle exportiert
-     * 
-     * @param KrankenkassenNr, Filename
      * @throws IllegalArgumentException wenn keine Akte gefunde wurde
      * 
+     * @param KrankenkassenNr, Filename
+     * @return keiner
      */
     public void Exportieren (String KrankenkassenNr, String Filename)
     {
         Patientenakte ob = Aktesuchen (KrankenkassenNr);
         if (ob == null)
         {
-            throw new IllegalArgumentException("Keine Akte gefunden");
+            throw new IllegalArgumentException("Es wurde keine Akte gefunden die diese Nummer enthällt!");
         }
         else 
         {
@@ -161,7 +174,7 @@ public class Verwalter
                     e.printStackTrace();    
                 }
             }
-            String filename = "C:\\ChemischeAnalysedatenbank\\PatientenakteMitAnalyseberichten"+ System.getProperty("file.separator") + Filename + ".xlsx";
+            String filename = "C:\\ChemischeAnalysedatenbank\\PatientenakteMitAnalyseberichten"+ System.getProperty("file.separator") + KrankenkassenNr+Filename +".xlsx";
 
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Patientenakte mit Analyseberichte");
@@ -173,45 +186,44 @@ public class Verwalter
                         ob.getTelefonnummer(),ob.getVorerkrankungen(),ob.getAllergien() }};
 
             int rowNum =0;
-            
+
             try{
-            for (int i=0; i < 2 ; i++) {
-                Row row = sheet.createRow(rowNum++);
-                int colNum = 0;
-                for (int j=0; j< werte[0].length ; j++) {
-                    Cell cell = row.createCell(colNum++);
-                    cell.setCellValue(werte[i][j]);
-                }
-            }
-
-            ArrayList <Analysebericht> bericht = new ArrayList <Analysebericht> ();
-
-            int rowNum2 = rowNum+2;
-
-            for (Analysebericht b: ob.getAnalysebericht ())
-            {
-                bericht.add(b);
-            }            
-
-            for ( int c=0; c< bericht.size(); c++)
-            {
-                Analysebericht ber = bericht.get(c); 
-
-                String[][] werte2 = new String [][] {{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
-                        {ber.getBerichtNR(),ber.getLaborantenkuerzel(),ber.getAnalysedatum(),ber.getLaborname(),ber.getAnalyseObjekt(),ber.getAnalysemethode(),ber.getAnalyseergebnis()}};
-
                 for (int i=0; i < 2 ; i++) {
-                    Row row = sheet.createRow(rowNum2++);
+                    Row row = sheet.createRow(rowNum++);
                     int colNum = 0;
-                    for (int j=0; j< werte2[0].length ; j++) {
+                    for (int j=0; j< werte[0].length ; j++) {
                         Cell cell = row.createCell(colNum++);
-                        cell.setCellValue(werte2[i][j]);
+                        cell.setCellValue(werte[i][j]);
                     }
                 }
-                rowNum2++;
-            }
 
-            
+                ArrayList <Analysebericht> bericht = new ArrayList <Analysebericht> ();
+
+                int rowNum2 = rowNum+2;
+
+                for (Analysebericht b: ob.getAnalysebericht ())
+                {
+                    bericht.add(b);
+                }            
+
+                for ( int c=0; c< bericht.size(); c++)
+                {
+                    Analysebericht ber = bericht.get(c); 
+
+                    String[][] werte2 = new String [][] {{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                            {ber.getBerichtNR(),ber.getLaborantenkuerzel(),ber.getAnalysedatum(),ber.getLaborname(),ber.getAnalyseObjekt(),ber.getAnalysemethode(),ber.getAnalyseergebnis()}};
+
+                    for (int i=0; i < 2 ; i++) {
+                        Row row = sheet.createRow(rowNum2++);
+                        int colNum = 0;
+                        for (int j=0; j< werte2[0].length ; j++) {
+                            Cell cell = row.createCell(colNum++);
+                            cell.setCellValue(werte2[i][j]);
+                        }
+                    }
+                    rowNum2++;
+                }
+
                 FileOutputStream outputStream = new FileOutputStream(filename);
                 workbook.write(outputStream);
                 workbook.close();
@@ -222,7 +234,7 @@ public class Verwalter
             } catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
             }
-            
+
         }
 
     }
