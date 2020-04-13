@@ -2,11 +2,19 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.11)
+ * @version (0.0.12)
  */
 import java.util.*;
 import java.io.File;
+import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.commons.collections4.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.*;
+
 public class Patientenakte
 {
     private String Name;
@@ -138,7 +146,7 @@ public class Patientenakte
        return null;
     }
     
-    //Get Methode für KrankenkassenNr (benutzt in Verwalter)
+    //Get Methode für KrankenkassenNr
     public String getKrankenkassenNr ()
     {
         return KrankenkassenNr;
@@ -279,9 +287,58 @@ public class Patientenakte
     }
 
     //Methode zum exportieren der Werte in eine Datei.
-    public void Exportieren()
+    public void Exportieren(String Dateiname)
     {
+        Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Patientenakten");
+        if (!Files.exists(f)) 
+        {
+            try 
+            {
+                Files.createDirectories(f);
+            } 
+            catch (IOException e) 
+            {
+                e.printStackTrace();    
+            }
+        }
+        String filename = "C:\\ChemischeAnalysedatenbank\\Patientenakten"+ System.getProperty("file.separator")
+        + KrankenkassenNr + Dateiname + ".xlsx";
 
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Patientenakte "+KrankenkassenNr);
+
+        String[][] werte = new String [][]{{"Name", "Alter", "Adresse","Geschlecht", "KrankenkassenNr", 
+            "Blutgruppe", "ZuständigerArzt", "Telefonnummer", "Vorerkrankungen", "Allergien"},
+                {Name, Alter, Adresse, Geschlecht, KrankenkassenNr, Blutgruppe, ZuständigerArzt, Telefonnummer, 
+                    Vorerkrankungen, Allergien}};
+
+        int rowNum =0;
+
+        for (int i=0; i<2; i++) 
+        {
+            Row row = sheet.createRow(rowNum++);
+            int colNum = 0;
+            for (int j=0; j<7; j++) 
+            {
+                Cell cell = row.createCell(colNum++);
+                cell.setCellValue(werte[i][j]);
+            }
+        }
+
+        try 
+        {
+            FileOutputStream outputStream = new FileOutputStream(filename);
+            workbook.write(outputStream);
+            workbook.close();
+        } 
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
     }
 
     //entfernt den Analysebericht der die eingegebene Nummer besitzt.
