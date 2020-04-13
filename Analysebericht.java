@@ -105,14 +105,19 @@ public class Analysebericht
     public void Berichtexportieren(String Filename)
     {
         Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
-        if (!Files.exists(f)) {
-            try {
+        if (!Files.exists(f)) 
+        {
+            try 
+            {
                 Files.createDirectories(f);
-            } catch (IOException e) {
+            } 
+            catch (IOException e) 
+            {
                 e.printStackTrace();    
             }
         }
-        String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator") + BerichtNR + Filename + ".xlsx";
+        String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator")
+        + BerichtNR + Filename + ".xlsx";
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
@@ -123,22 +128,29 @@ public class Analysebericht
         int rowNum =0;
         System.out.println("Dokument wird erstellt");
 
-        for (int i=0; i<2; i++) {
+        for (int i=0; i<2; i++) 
+        {
             Row row = sheet.createRow(rowNum++);
             int colNum = 0;
-            for (int j=0; j<7; j++) {
+            for (int j=0; j<7; j++) 
+            {
                 Cell cell = row.createCell(colNum++);
                 cell.setCellValue(werte[i][j]);
             }
         }
 
-        try {
+        try 
+        {
             FileOutputStream outputStream = new FileOutputStream(filename);
             workbook.write(outputStream);
             workbook.close();
-        } catch (FileNotFoundException e) {
+        } 
+        catch (FileNotFoundException e) 
+        {
             e.printStackTrace();
-        } catch (IOException e) {
+        } 
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
 
