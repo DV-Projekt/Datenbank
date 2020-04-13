@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Patientenakte here.
  *
@@ -145,11 +144,67 @@ public class Patientenakte
         return KrankenkassenNr;
     }
     
+    //Get Methode für Name
     public String getName ()
     {
         return Name;
     }
     
+    //Get Methode für Alter
+    public String getAlter ()
+    {
+        return Alter;
+    }
+    
+    //Get Methode für Geschlecht
+    public String getGeschlecht ()
+    {
+        return Geschlecht;
+    }
+    
+    //Get Methode für Adresse
+    public String getAdresse ()
+    {
+        return Adresse;
+    }
+    
+    //Get Methode für Blutgruppe
+    public String getBlutgruppe ()
+    {
+        return Blutgruppe;
+    }
+    
+     //Get Methode für ZuständigerArzt
+    public String getZuständigerArzt ()
+    {
+        return ZuständigerArzt;
+    }
+    
+     //Get Methode für Telefonnummer
+    public String getTelefonnummer ()
+    {
+        return Telefonnummer;
+    }
+    
+     //Get Methode für Vorerkrankungen
+    public String getVorerkrankungen ()
+    {
+        return Vorerkrankungen;
+    }
+    
+     //Get Methode für Allergien
+    public String getAllergien ()
+    {
+        return Allergien;
+    }
+    
+    //Get Methode für ArrayList der AnalyseBerichte
+    public ArrayList <Analysebericht> getAnalysebericht ()
+    {
+        return Analyseberichte;
+    }
+    
+
     //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
     //eingegebenen Werte
     public void Aktebearbeiten(String Ad, String Gesch, String KrankNr, 
