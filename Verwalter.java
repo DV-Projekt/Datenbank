@@ -107,21 +107,47 @@ public class Verwalter
     public String Aktelöschen (String KrankenkassenNr)
     {
         Patientenakte ak = Aktesuchen (KrankenkassenNr);
-
         if (ak != null)
         {
             Akten.remove(ak);
+
+            try{
             File f = new File("C:/ChemischeAnalysedatenbank/PatientenakteMitAnalyseberichten");
             File[] fileArray = f.listFiles();
-            for(int k = 0; k<fileArray.length; k++)
+            if(fileArray.length != 0)
             {
-                String name = fileArray[k].getName();
+            for(File v : fileArray)
+            {
+                String name = v.getName();
                 if(name.contains(KrankenkassenNr))
                 {
                     File d = new File("C:/ChemischeAnalysedatenbank/PatientenakteMitAnalyseberichten/"+ name);
                     d.delete();
                 }
             }
+            }else {return "Datei nicht da";}
+
+            File o = new File("C:/ChemischeAnalysedatenbank/Patientenakten");
+            File[] fileArray2 = o.listFiles();
+            if(fileArray2.length != 0)
+            {
+            for(File v : fileArray2)
+            {
+                String name = v.getName();
+                if(name.contains(KrankenkassenNr))
+                {
+                    File d = new File("C:/ChemischeAnalysedatenbank/Patientenakten/"+ name);
+                    d.delete();
+                }
+            }
+            }else {return "Datei nicht da";}
+            }catch (NullPointerException e)
+            {
+                e.printStackTrace();
+            }
+            
+
+
             return "Akte wurde erfolgreich gelöscht!";
         }
         else
