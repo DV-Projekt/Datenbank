@@ -8,8 +8,8 @@
  * @Asma Azan
  * @version 1, 10th March,2020
  * 
- * version 2, 9th April, 2020
- * version 3, 13th April, 2020
+ * @version 2, 9th April, 2020
+ * @version 3, 13th April, 2020
  */
 public class Notfallkontakt
 {
