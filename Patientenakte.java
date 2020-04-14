@@ -248,11 +248,11 @@ public class Patientenakte
     //und gibt bei übereinstimmung den Analysebericht aus der den gesuchten String enthält.
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
-        Iterator<Analysebericht> it1 = Analyseberichte.iterator();
+        //Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gefunden=false;
-        int i=0;
+        //int i=0;
 
-       while(it1.hasNext()&& gefunden==false)
+       for(int i = 0; i< Analyseberichte.size(); i++)
         {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
             {    
@@ -285,8 +285,7 @@ public class Patientenakte
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-
-            i++;
+            
         }
         if(gefunden == false)
         {
