@@ -2,7 +2,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.15)
+ * @version (0.0.16)
  */
 import java.util.*;
 import java.io.File;
@@ -358,12 +358,14 @@ public class Patientenakte
         int i=0;
         while(gelöscht == false && it1.hasNext())
         {
+            try{
             if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
             {
                 Analyseberichte.remove(Analyseberichte.get(i));
                 File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
                 File[] fileArray = f.listFiles();
                 boolean r = false;
+                
                 for(int k = 0; k<fileArray.length; k++)
                 {
                     String name = fileArray[k].getName();
@@ -386,6 +388,10 @@ public class Patientenakte
                 }
             }
             i++;
+            }catch (NullPointerException e)
+            {
+                e.printStackTrace();
+            }
         }
 
         if(gelöscht == false)
