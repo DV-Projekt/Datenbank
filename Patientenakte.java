@@ -29,7 +29,7 @@ public class Patientenakte
     private String Allergien;
     private ArrayList<Analysebericht> Analyseberichte;
     private ArrayList<Notfallkontakt> Notfallkontakte;
-    
+
     //Standardkonstruktor
     public Patientenakte()
     {
@@ -64,19 +64,19 @@ public class Patientenakte
         Analyseberichte = new ArrayList<Analysebericht>();
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
-    
+
     //Set Methode für die Allergien des Patienten
     public void SetAllergien(String all)
     {
         Allergien=all;
     }
-    
+
     //Set Methode für die Vorerkrankungen des Patienten
     public void SetVorerkrankungen(String v)
     {
         Vorerkrankungen=v;
     }
-    
+
     //Set Methode für die Telefonnummer des Patienten
     public String SetTelefonnummer(String t)
     {
@@ -87,19 +87,19 @@ public class Patientenakte
             return a;
         return null;
     }
-    
+
     //Set Methode für den zuständigen Arzt
     public void SetZuständigerArzt(String z)
     {
         ZuständigerArzt=z;
     }
-    
+
     //Set Methode für die Blutgruppe des Patienten
     public void SetBlutgruppe(String b)
     {
-                Blutgruppe=b;
+        Blutgruppe=b;
     }
-    
+
     //Set Methode für das Geschlecht des Patienten
     public String SetGeschlächt(String gesch)
     {
@@ -111,13 +111,13 @@ public class Patientenakte
             return a;
         return null;
     }
-    
+
     //Set Methode für die Adresse des Patienten
     public void SetAdresse(String ad)
     {
         Adresse=ad;
     }
-    
+
     //Set Methode für das Alter des Patienten
     public String SetAlter(String A)
     {
@@ -128,90 +128,90 @@ public class Patientenakte
             return a;
         return null;
     }
-    
+
     //Set Methode für den Patienten Namen
     public void SetName(String N)
     {
         Name=N;
     }
-    
+
     //Set Methode für die Krankenkassen Nummer
     public String SetKrankenkassenNr(String nr)
     {
-       String a="Bitte geben Sie eine Nummer ein.";
+        String a="Bitte geben Sie eine Nummer ein.";
         if(nr.matches("[0-9]+"))
             KrankenkassenNr=nr;
-       else
+        else
             return a;
-       return null;
+        return null;
     }
-    
+
     //Get Methode für KrankenkassenNr
     public String getKrankenkassenNr ()
     {
         return KrankenkassenNr;
     }
-    
+
     //Get Methode für Name
     public String getName ()
     {
         return Name;
     }
-    
+
     //Get Methode für Alter
     public String getAlter ()
     {
         return Alter;
     }
-    
+
     //Get Methode für Geschlecht
     public String getGeschlecht ()
     {
         return Geschlecht;
     }
-    
+
     //Get Methode für Adresse
     public String getAdresse ()
     {
         return Adresse;
     }
-    
+
     //Get Methode für Blutgruppe
     public String getBlutgruppe ()
     {
         return Blutgruppe;
     }
-    
+
     //Get Methode für ZuständigerArzt
     public String getZuständigerArzt ()
     {
         return ZuständigerArzt;
     }
-    
+
     //Get Methode für Telefonnummer
     public String getTelefonnummer ()
     {
         return Telefonnummer;
     }
-    
+
     //Get Methode für Vorerkrankungen
     public String getVorerkrankungen ()
     {
         return Vorerkrankungen;
     }
-    
+
     //Get Methode für Allergien
     public String getAllergien()
     {
         return Allergien;
     }
-    
+
     //Get Methode für ArrayList der AnalyseBerichte
     public ArrayList <Analysebericht> getAnalysebericht()
     {
         return Analyseberichte;
     }
-    
+
     //Get Methode für ArrayList der Notfallkontakte
     public ArrayList <Notfallkontakt> getNotfallkontakte()
     {
@@ -251,7 +251,8 @@ public class Patientenakte
         Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gefunden=false;
         int i=0;
-        while(it1.hasNext()&&!gefunden)
+
+       while(it1.hasNext()&& gefunden==false)
         {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
             {    
@@ -284,10 +285,13 @@ public class Patientenakte
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
+
             i++;
         }
-        if(!gefunden)//System out print durch exeptions ersetzen für oberfläche
-            System.out.print("Keinen Analysebericht gefunden der "+gesucht+" enthält");
+        if(gefunden == false)
+        {
+            throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
+        }
         return null;
     }
 
@@ -307,13 +311,13 @@ public class Patientenakte
             }
         }
         String filename = "C:\\ChemischeAnalysedatenbank\\Patientenakten"+ System.getProperty("file.separator")
-        + KrankenkassenNr + Dateiname + ".xlsx";
+            + KrankenkassenNr + Dateiname + ".xlsx";
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Patientenakte "+KrankenkassenNr);
 
         String[][] werte = new String [][]{{"Name", "Alter", "Adresse","Geschlecht", "KrankenkassenNr", 
-            "Blutgruppe", "ZuständigerArzt", "Telefonnummer", "Vorerkrankungen", "Allergien"},
+                    "Blutgruppe", "ZuständigerArzt", "Telefonnummer", "Vorerkrankungen", "Allergien"},
                 {Name, Alter, Adresse, Geschlecht, KrankenkassenNr, Blutgruppe, ZuständigerArzt, Telefonnummer, 
                     Vorerkrankungen, Allergien}};
 
@@ -352,7 +356,7 @@ public class Patientenakte
         Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gelöscht=false;
         int i=0;
-        while(!gelöscht&& it1.hasNext())
+        while(gelöscht == false && it1.hasNext())
         {
             if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
             {
@@ -383,13 +387,13 @@ public class Patientenakte
             }
             i++;
         }
-        
+
         if(gelöscht == false)
         {
-        System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
+            System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
         }
     }
-   
+
     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
     //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
