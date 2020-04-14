@@ -108,13 +108,11 @@ public class MainWindowController extends Main
 
     public Main main;
 
-    //public Verwalter v;
-
     public void setMain(Main main)
     {
         this.main = main;
     }
-
+    
     @FXML
     public void suche()
     {   
@@ -123,22 +121,15 @@ public class MainWindowController extends Main
         {
             warningDaten();
         }
-        
+
         else if(verwalter.Akten.size()==0)
         {
-            eingabe = eingabefeldsuche.getText();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Keine Akten vorhanden!");
+            alert.setContentText("Bitte Akte anlegen");
 
-            try{
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
-                VBox pane = loader.load();
-                Scene scene = new Scene(pane);
-                Main.primaryStage.setScene(scene);
-                Main.primaryStage.show();
-            }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
+            alert.showAndWait();
         }
         else
         {
@@ -165,15 +156,15 @@ public class MainWindowController extends Main
     public void akteanlegen()
     {
         try{
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
-                VBox pane = loader.load();
-                Scene scene = new Scene(pane);
-                Main.primaryStage.setScene(scene);
-                Main.primaryStage.show();
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
+            VBox pane = loader.load();
+            Scene scene = new Scene(pane);
+            Main.primaryStage.setScene(scene);
+            Main.primaryStage.show();
         }
         catch(IOException e)
         {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -192,7 +183,7 @@ public class MainWindowController extends Main
         else
         {
             Patientenakte patient = new Patientenakte(name.getText(), alter.getText(), adresse.getText(), geschlecht.getText(), krankenkassennummer1.getText(), 
-                                                      blutgruppe.getText(), arzt.getText(), telefonnummer.getText(), vorerkrankungen.getText(), allergien.getText());
+                    blutgruppe.getText(), arzt.getText(), telefonnummer.getText(), vorerkrankungen.getText(), allergien.getText());
             verwalter.Akten.add(patient);
 
             try{

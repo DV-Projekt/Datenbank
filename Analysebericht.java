@@ -3,7 +3,7 @@
  * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.16
+ * @version 0.0.17
  * 
  */
 
@@ -30,7 +30,8 @@ public class Analysebericht
 
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
-     * Dabei werden die Daten Laborant, Analysedatum, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
+     * Dabei werden die Daten Laborant, Analysedatum, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis als Parameter übergeben.
+     * Die Berichtnummer wird zufällig erstellt.
      * 
      * @param Laborantenkuerzel
      * @param Analysedatum
@@ -48,12 +49,14 @@ public class Analysebericht
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
+        int nr = (int) (Math.random()*(10000-1)+1);
+        BerichtNR = Integer.toString(nr);
     }
 
     /**
      * Der Konstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht. 
      * Dabei werden die Daten Laborant, Laborname, Analyseobjekt, Analysemethode und Analyseergebnis durch Parameter übergeben.
-     * Das aktuelle Datum wird durch die Klasse Calendar erzeugt.
+     * Das aktuelle Datum wird durch die Klasse Calendar erzeugt und es wird eine zufällige Berichtnummer erstellt.
      * 
      * @param Laborantenkuerzel
      * @param Laborname
@@ -70,7 +73,25 @@ public class Analysebericht
         this.AnalyseObjekt = AnalyseObjekt;
         this.Analysemethode = Analysemethode;
         this.Analyseergebnis = Analyseergebnis;
-        int nr = (int) (Math.random()*(1000-1)+1);
+        int nr = (int) (Math.random()*(10000-1)+1);
+        BerichtNR = Integer.toString(nr);
+    }
+    
+    /**
+     * Der Standardkonstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht mit den vorgegebenen Werten für die Attribute und einer zufälligen Berichtnummer. 
+     * Das aktuelle Datum wird durch die Klasse Calendar erzeugt.
+     * 
+     */
+    public Analysebericht()
+    {
+        Laborantenkuerzel = "Frau Tschan";
+        Calendar date = Calendar.getInstance();
+        Analysedatum = date.get(Calendar.MONTH) + "-" + (date.get(Calendar.DAY_OF_MONTH) + 1 ) + "-" + date.get(Calendar.YEAR);
+        Laborname = "HFU";
+        AnalyseObjekt = "Blut";
+        Analysemethode = "Gelelektrophorese";
+        Analyseergebnis = "Funktioniert";
+        int nr = (int) (Math.random()*(10000-1)+1);
         BerichtNR = Integer.toString(nr);
     }
 
