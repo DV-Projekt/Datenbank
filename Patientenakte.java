@@ -2,7 +2,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.17)
+ * @version (0.0.18)
  */
 import java.util.*;
 import java.io.File;
@@ -254,33 +254,33 @@ public class Patientenakte
 
        for(int i = 0; i< Analyseberichte.size(); i++)
         {
-            if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
+            if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
+            else if(Analyseberichte.get(i).getLaborname().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
 
             }
-            else if(Analyseberichte.get(i).getAnalyseObjekt().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalysemethode().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalysemethode().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalyseergebnis().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseergebnis().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalysedatum().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalysedatum().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
