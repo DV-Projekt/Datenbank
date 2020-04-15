@@ -252,7 +252,7 @@ public class Patientenakte
         boolean gefunden=false;
         int i=0;
 
-       while(it1.hasNext()&& gefunden==false)
+        while(it1.hasNext()&& gefunden==false)
         {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
             {    
@@ -285,7 +285,6 @@ public class Patientenakte
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-
             i++;
         }
         if(gefunden == false)
