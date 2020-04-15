@@ -2,7 +2,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.18)
+ * @version (0.0.19)
  */
 import java.util.*;
 import java.io.File;
