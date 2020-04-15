@@ -2,7 +2,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.17)
+ * @version (0.0.18)
  */
 import java.util.*;
 import java.io.File;
@@ -248,48 +248,47 @@ public class Patientenakte
     //und gibt bei übereinstimmung den Analysebericht aus der den gesuchten String enthält.
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
-        Iterator<Analysebericht> it1 = Analyseberichte.iterator();
+        //Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gefunden=false;
-        int i=0;
+        //int i=0;
+       for(int i = 0; i< Analyseberichte.size(); i++)
+       {
+            if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getLaborname().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
 
-        while(it1.hasNext()&& gefunden==false)
-        {
-            if(Analyseberichte.get(i).getLaborantenkuerzel().equals(gesucht))
+            }
+            else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getLaborname().equals(gesucht))
-            {    
-                gefunden=true;
-                return Analyseberichte.get(i);
-
-            }
-            else if(Analyseberichte.get(i).getAnalyseObjekt().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalysemethode().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalysemethode().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseergebnis().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalyseergebnis().equals(gesucht))
+            else if(Analyseberichte.get(i).getAnalysedatum().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalysedatum().equals(gesucht))
-            {    
-                gefunden=true;
-                return Analyseberichte.get(i);
+            if(gefunden == false)
+            {
+                throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
             }
-            i++;
-        }
-        if(gefunden == false)
-        {
-            throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
+            return null;
         }
         return null;
     }
@@ -423,9 +422,9 @@ public class Patientenakte
     //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
     //ihn der Liste mit Notfallkontakten hinzu.
     public void Notfallkontakterstellen(String n, String ad, String bez, 
-    String tel)
+    String tel, String bg)
     {
-        Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
+        Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel, bg);
         Notfallkontakte.add(Kontakt);
     }
 
