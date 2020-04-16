@@ -2,7 +2,7 @@
  * Write a description of class Patientenakte here.
  *
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.19)
+ * @version (0.0.20)
  */
 import java.util.*;
 import java.io.File;
@@ -248,9 +248,7 @@ public class Patientenakte
     //und gibt bei übereinstimmung den Analysebericht aus der den gesuchten String enthält.
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
-        //Iterator<Analysebericht> it1 = Analyseberichte.iterator();
-        boolean gefunden=false;
-        //int i=0;
+       boolean gefunden=false;
        for(int i = 0; i< Analyseberichte.size(); i++)
        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
@@ -349,53 +347,56 @@ public class Patientenakte
     }
 
     //entfernt den Analysebericht der die eingegebene Nummer besitzt.
-    public void Analyseberichtlöschen(String Nummer)
+    public String Analyseberichtlöschen(String Nummer)
     {
         Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gelöscht=false;
         int i=0;
         while(gelöscht == false && it1.hasNext())
         {
-            try{
-            if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
+            try
             {
-                Analyseberichte.remove(Analyseberichte.get(i));
-                File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
-                File[] fileArray = f.listFiles();
-                boolean r = false;
-                
-                for(int k = 0; k<fileArray.length; k++)
-                {
-                    String name = fileArray[k].getName();
-                    if(name.contains(Nummer))
+                if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
+                {   
+                    Analyseberichte.remove(Analyseberichte.get(i));
+                    File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
+                    File[] fileArray = f.listFiles();
+                    boolean r = false;
+                    for(int k = 0; k<fileArray.length; k++)
                     {
-                        File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
-                        d.delete();
-                        r= true;
+                        String name = fileArray[k].getName();
+                        if(name.contains(Nummer))
+                        {
+                            File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
+                            d.delete();
+                            r= true;
+                        }
+                    }   
+                    if(r==false)
+                    {   
+                        String d="Datei konnte nicht gelöscht werden";
+                        return d;
+                    }
+                    else
+                    {
+                        String b="Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.";
+                        gelöscht=true;
+                        return b;
                     }
                 }
-                if(r==false)
-                {
-                    System.out.println("Datei konnte nicht gelöscht werden");
-                }
-                else
-                {
-                    System.out.println("Datei wurde gelöscht");
-                    System.out.print("Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.");
-                    gelöscht=true;
-                }
+                i++;
             }
-            i++;
-            }catch (NullPointerException e)
+            catch (NullPointerException e)
             {
                 e.printStackTrace();
             }
         }
-
         if(gelöscht == false)
         {
-            System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
+            String c="Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.";
+            return c;
         }
+        return null;
     }
 
     //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
@@ -414,8 +415,6 @@ public class Patientenakte
             }
             i++;
         }
-        if(!gefunden)
-            System.out.print("Kein Notfallkontakt mit dem Namen: "+gesucht+" gefunden.");
         return null;
     }
 
@@ -434,6 +433,5 @@ public class Patientenakte
     public void Notfallkontaktlöschen(String Name)
     {
         Notfallkontakte.remove(Notfallkontaktaufrufen(Name));
-        System.out.print("Der Notfallkontakt mit dem Namen: "+Name+" wurde erfolgreich gelöscht.");
     }
 }
