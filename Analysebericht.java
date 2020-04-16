@@ -117,7 +117,7 @@ public class Analysebericht
 
     /**
      * Die Methode Berichtexportieren erzeugt beim Aufruf eine xlsx-Datei (Excel-Datei), in denen alle Attribute und ihre zugehörigen Werte abgespeichert werden.
-     * Dazu wird ein frei wähbarer Filename (übergeben durch den Parameter Filename) und die Berichtnummer als Dateiname gewählt. Die Berichtnummer gewährleistet, 
+     * Dazu wird ein frei wählbarer Filename (übergeben durch den Parameter Filename) und die Berichtnummer als Dateiname gewählt. Die Berichtnummer gewährleistet, 
      * dass jeder exportierte Bericht eindeutig identifiziert werden kann. Falls noch nicht vorhanden, erstellt die Methode einen Ordner ChemischeAnalysedatenbank 
      * und einen Unterordner Analyseberichte, in dem alle Berichte abgespeichert werden.
      * 

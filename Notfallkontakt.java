@@ -27,16 +27,21 @@ public class Notfallkontakt
  */
      public Notfallkontakt()
 {
-        Name = "n";
-        Adresse = "ad";
-        Beziehung= "bez";
-        telefonnummer= "tel";
-        Blutgrupp = "bg";
+        Name = "Max Mustermann";
+        Adresse = "Musterstraße 20";
+        Beziehung= "bruder";
+        telefonnummer= "07720 1234567";
+        Blutgrupp = "A-";
     } 
   
     
 /**
      *constructor for objects of class Notfallkontakt
+     *@param: n
+     *@param: ad    
+     *@param: bez
+     *@param: tel
+     *@param: bg
      */
     
     public Notfallkontakt(String n, String ad, String bez, String tel,String bg)
@@ -91,12 +96,10 @@ public void setname(String n)
    */
 
   
-public void setbeziehung(String bez)
+public String setbeziehung(String bez)
     {
-       
-       
-          if
-          (
+        String a = "Bitte gültige Beziehung eingbeben";
+    if( 
         bez.equals("schwester")|bez.equals("Schwester")|bez.equals("bruder")| bez.equals("Bruder")
         |bez.equals("mutter")|bez.equals("Mutter")|bez.equals("Vater")| bez.equals("vater")
         |bez.equals("grossmutter")|bez.equals("Grossmutter")|bez.equals("grossvater")| bez.equals("Grossvater")
@@ -108,53 +111,62 @@ public void setbeziehung(String bez)
         |bez.equals("freund")|bez.equals("Freund")|bez.equals("Freundin")| bez.equals("freundin")
         |bez.equals("Ehemann")|bez.equals("Ehefrau")|bez.equals("ehemann")|bez.equals("ehefrau")|bez.equals("nachbar")
         |bez.equals("Nachbar")|bez.equals("Nachbarin")|bez.equals("nachbarin"))
-         
+    try
+    {
         Beziehung = bez;
-        //System.out.println(bez);
-        else
-        
-         System.out.println("Bitte gültige Beziehung eingeben");
-        
-        
+    }
+   
+    catch(Exception e)
+    {
+           return a;
+    }   
+    return null;
     }  
-    
+ 
     /**
      * Set method to set blood type of emergency contact
      * @param: bg
      */
 
 
-public void setblutgruppe(String bg)
+  public String setblutgruppe(String bg)
   {
-      if(bg.equals("O+")|bg.equals("O-")|bg.equals("A+")|bg.equals("A-")|bg.equals("B+")|
+      String a = "Bitte gültige Blutgruppe eingeben!";
+      
+    if(bg.equals("O+")|bg.equals("O-")|bg.equals("A+")|bg.equals("A-")|bg.equals("B+")|
       bg.equals("B-")|bg.equals("AB+")|bg.equals("AB-"))
+      try
     {
       Blutgrupp=bg;
     }
-      else
+      catch(Exception e)
     {
-      System.out.println("Bitte gültige Blutgruppe eingeben!");
+      return a;
     }
-}
+    return null;
+} 
 
 
 /**
  * Set method to set telephone number of emergency contact
+ * @param: tel
  */
 
 
-public void settelefonnummer(String tel)
+public String settelefonnummer(String tel)
 {
-    if(tel.matches("[0-9]+"))
-    {
+    String a = "Bitte gültige Telefonnummer eingeben!";
+   if(tel.matches("[0-9]+"))
+    try
+   {
         telefonnummer = tel;
-        //System.out.println(tel);
-    }
-    else
-    {
-        System.out.println("Bitte gültige Telefonnummer eingeben!");
-        
-}
+   }
+    
+    catch(Exception e)
+   {
+        return a;  
+   }
+   return null;
 }
 /**
      * Method to get name of emergency contact
