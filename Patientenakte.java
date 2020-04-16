@@ -3,7 +3,7 @@
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
  * Außerdem erstellt sie für jeden neuen Patienten eine Datei.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.22)
+ * @version (0.0.23)
  */
 import java.util.*;
 import java.io.File;
@@ -347,7 +347,6 @@ public class Patientenakte
      * @param gesucht   eingegebener String des gesuchten Attributes
      *
      * @return Analyseberichte.get(i)   Analysebericht(e) inklusive des gesuchten String
-     * @return null   wenn Nichts gefunden wurde
      */
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
@@ -458,7 +457,6 @@ public class Patientenakte
      * 
      * @return b  wenn die Datei gelöscht wurde
      * @return d  wenn die Datei nicht gelöscht werden konnte
-     * @return null   wenn keine Datei mit der eingegebenen Nummer gefunden wurde
      */
     public String Analyseberichtlöschen(String Nummer)
     {
@@ -518,7 +516,6 @@ public class Patientenakte
      * @param gesucht  Der Gesuchte Name des Notfallkontaktes
      * 
      * @return Notfallkontakte.get(i)  gefundener Notfallkontakt
-     * @return null  Wenn kein Notfallkontakt mit dem gesuchten String gefunden wurde
      */
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
