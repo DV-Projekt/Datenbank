@@ -1,8 +1,9 @@
 /**
- * Write a description of class Patientenakte here.
- *
+ * In dieser Klasse wird eine Patientenakte neu initialisiert. 
+ * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
+ * Außerdem erstellt sie für jeden neuen Patienten eine Datei.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.18)
+ * @version (0.0.23)
  */
 import java.util.*;
 import java.io.File;
@@ -30,7 +31,9 @@ public class Patientenakte
     private ArrayList<Analysebericht> Analyseberichte;
     private ArrayList<Notfallkontakt> Notfallkontakte;
 
-    //Standardkonstruktor
+    /**
+     * Der Standardkonstruktor welcher eine neue Patientenakte erstellt
+     */
     public Patientenakte()
     {
         Name = "n";
@@ -47,7 +50,20 @@ public class Patientenakte
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
 
-    //erstellt eine neue Patientenakte und weist ihr die eingegebenen Werte zu.
+    /** 
+     * Konstruktor welcher eine neue Patientenakte erstellt und ihr die angegebenen Werte zuweist. 
+     * 
+     * @param N     Name des Patienten
+     * @param Alt   Alter des Patienten
+     * @param Ad    Adresse des Patienten
+     * @param Gesch Geschlecht des Patienten
+     * @param KrankNr Krankenkassennummer des Patienten
+     * @param Blut  Blutgruppe des Patienten
+     * @param Arzt  Zuständiger Arzt des Patienten
+     * @param Tel   Telefonnummer des Patienten
+     * @param Vor   Vorerkrankungen des Patienten
+     * @param All   Allergien des Patienten
+     */
     public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
     {
@@ -65,19 +81,28 @@ public class Patientenakte
         Notfallkontakte = new ArrayList<Notfallkontakt>();
     }
 
-    //Set Methode für die Allergien des Patienten
+    /** Set-Methode für die Allergien des Patienten 
+     * 
+     *  @param all  Allergien des Patienten
+     */
     public void SetAllergien(String all)
     {
         Allergien=all;
     }
 
-    //Set Methode für die Vorerkrankungen des Patienten
+    /** Set-Methode für die Vorerkrankungen des Patienten
+     * 
+     * @param v  Vorerkrankungen des Patienten
+     */
     public void SetVorerkrankungen(String v)
     {
         Vorerkrankungen=v;
     }
 
-    //Set Methode für die Telefonnummer des Patienten
+    /** Set-Methode für die Telefonnummer des Patienten
+     * 
+     * @param t  Telefonnummer des Patienten
+     */
     public String SetTelefonnummer(String t)
     {
         String a="Bitte geben Sie eine Nummer ein.";
@@ -88,19 +113,28 @@ public class Patientenakte
         return null;
     }
 
-    //Set Methode für den zuständigen Arzt
+    /** Set-Methode für den zuständigen Arzt 
+     * 
+     * @param z  zuständiger Arzt des Patienten
+     */
     public void SetZuständigerArzt(String z)
     {
         ZuständigerArzt=z;
     }
 
-    //Set Methode für die Blutgruppe des Patienten
+    /** Set-Methode für die Blutgruppe des Patienten
+     * 
+     * @param b  Blutgruppe des Patienten
+     */
     public void SetBlutgruppe(String b)
     {
         Blutgruppe=b;
     }
 
-    //Set Methode für das Geschlecht des Patienten
+    /** Set-Methode für das Geschlecht des Patienten
+     * 
+     * @param gesch  Geschlecht des Patienten
+     */
     public String SetGeschlächt(String gesch)
     {
         String a="Bitte geben Sie ein Geschlecht ein.";
@@ -112,13 +146,19 @@ public class Patientenakte
         return null;
     }
 
-    //Set Methode für die Adresse des Patienten
+    /** Set-Methode für die Adresse des Patienten
+     * 
+     * @param ad  Adresse des Patienten 
+     */
     public void SetAdresse(String ad)
     {
         Adresse=ad;
     }
 
-    //Set Methode für das Alter des Patienten
+    /** Set-Methode für das Alter des Patienten
+     * 
+     * @param A  Alter des Patienten
+     */
     public String SetAlter(String A)
     {
         String a="Bitte geben Sie eine Nummer ein.";
@@ -129,13 +169,19 @@ public class Patientenakte
         return null;
     }
 
-    //Set Methode für den Patienten Namen
+    /** Set-Methode für den Patienten Namen
+     * 
+     * @param N   Name des Patienten
+     */
     public void SetName(String N)
     {
         Name=N;
     }
 
-    //Set Methode für die Krankenkassen Nummer
+    /** Set-Methode für die Krankenkassen Nummer
+     * 
+     * @param nr  Krankenkassennummer des Patienten
+     */
     public String SetKrankenkassenNr(String nr)
     {
         String a="Bitte geben Sie eine Nummer ein.";
@@ -146,80 +192,125 @@ public class Patientenakte
         return null;
     }
 
-    //Get Methode für KrankenkassenNr
+    /** Get-Methode für die KrankenkassenNr
+     * 
+     * @return KrankenkassenNr 
+     */
     public String getKrankenkassenNr ()
     {
         return KrankenkassenNr;
     }
 
-    //Get Methode für Name
+    /** Get-Methode für den Namen
+     * 
+     * @return Name
+     */
     public String getName ()
     {
         return Name;
     }
 
-    //Get Methode für Alter
+    /** Get-Methode für das Alter
+     * 
+     * @return Alter 
+     */
     public String getAlter ()
     {
         return Alter;
     }
 
-    //Get Methode für Geschlecht
+    /** Get-Methode für das Geschlecht
+     * 
+     * @return Geschlecht
+     */
     public String getGeschlecht ()
     {
         return Geschlecht;
     }
 
-    //Get Methode für Adresse
+    /** Get-Methode für die Adresse
+     * 
+     * @return Adresse
+     */
     public String getAdresse ()
     {
         return Adresse;
     }
 
-    //Get Methode für Blutgruppe
+    /** Get-Methode für die Blutgruppe
+     * 
+     * @return Blutgruppe
+     */
     public String getBlutgruppe ()
     {
         return Blutgruppe;
     }
 
-    //Get Methode für ZuständigerArzt
+    /** Get-Methode für den zuständigen Arzt
+     * 
+     * @return ZuständigerArzt 
+     */
     public String getZuständigerArzt ()
     {
         return ZuständigerArzt;
     }
 
-    //Get Methode für Telefonnummer
+    /** Get-Methode für die Telefonnummer
+     * 
+     * @return Telefonnummer 
+     */
     public String getTelefonnummer ()
     {
         return Telefonnummer;
     }
 
-    //Get Methode für Vorerkrankungen
+    /** Get-Methode für die Vorerkrankungen
+     * 
+     * @return Vorerkrankungen
+     */
     public String getVorerkrankungen ()
     {
         return Vorerkrankungen;
     }
 
-    //Get Methode für Allergien
+    /** Get-Methode für die Allergien
+     * 
+     * @return Allergien
+     */
     public String getAllergien()
     {
         return Allergien;
     }
 
-    //Get Methode für ArrayList der AnalyseBerichte
+    /** Get-Methode für die ArrayList der AnalyseBerichte
+     * 
+     * @return Analyseberichte 
+     */
     public ArrayList <Analysebericht> getAnalysebericht()
     {
         return Analyseberichte;
     }
 
-    //Get Methode für ArrayList der Notfallkontakte
+    /** Get-Methode für die ArrayList der Notfallkontakte
+     * 
+     * @return Notfallkontakte 
+     */
     public ArrayList <Notfallkontakt> getNotfallkontakte()
     {
         return Notfallkontakte;
     }
 
-    //ändert die Werte einer bereits vorhandenen Patientenakte auf die neu 
-    //eingegebenen Werte
+    /** Die Methode Aktebearbeiten ändert die Werte einer bereits vorhandenen Patientenakte auf die neu eingegebenen Werte
+     * 
+     * @param Ad  Adresse des Patienten
+     * @param Gesch  Geschlecht des Patienten
+     * @param KrankNr  Krankenkassennummer des Patienten
+     * @param Blut  Blutgruppe des Patienten
+     * @param Arzt  zuständiger Arzt des Patienten
+     * @param Tel  Telefonnummer des Patienten
+     * @param Vor  Vorerkrankungen des Patienten
+     * @param All  Allergien des Patienten 
+     */
     public void Aktebearbeiten(String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
     {
@@ -233,8 +324,14 @@ public class Patientenakte
         Allergien=All;  
     }
 
-    //erstellt einen neuen Analysebericht mit den eingegebenen Werten und fügt
-    //ihn der Liste von Analyseberichten hinzu.
+    /** Die Methode Analyseberichtanlegen erstellt einen neuen Analysebericht mit den eingegebenen Werten und fügt
+     * ihn der Liste von Analyseberichten hinzu.
+     * 
+     * @param Laborantenkuerzel   Kürzel des Laboranten aus der Klasse Analyseberichte
+     * @param Laborname   Name des Labors aus der Klasse Analyseberichte
+     * @param AnalyseObjekt   Objekt der Analyse aus der Klasse Analyseberichte
+     * @param Analysemethode  Methode der Analyse aus der Klasse Analyseberichte
+     */
     public void Analyseberichtanlegen(String Laborantenkuerzel, String 
     Laborname, String AnalyseObjekt, String Analysemethode, 
     String Analyseergebnis)
@@ -244,16 +341,18 @@ public class Patientenakte
         Analyseberichte.add(Bericht);
     }
 
-    //Vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte liste mit dem eingegebenen String
-    //und gibt bei übereinstimmung den Analysebericht aus der den gesuchten String enthält.
+    /** Die Methode Analyseberichtsuchen vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte Liste mit dem eingegebenen String
+     * und gibt bei Übereinstimmung den Analysebericht aus der den gesuchten String enthält.
+     * 
+     * @param gesucht   eingegebener String des gesuchten Attributes
+     *
+     * @return Analyseberichte.get(i)   Analysebericht(e) inklusive des gesuchten String
+     */
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
-        //Iterator<Analysebericht> it1 = Analyseberichte.iterator();
-        boolean gefunden=false;
-        //int i=0;
-
+       boolean gefunden=false;
        for(int i = 0; i< Analyseberichte.size(); i++)
-        {
+       {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
@@ -285,16 +384,19 @@ public class Patientenakte
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            
-        }
-        if(gefunden == false)
-        {
-            throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
+            if(gefunden == false)
+            {
+                throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
+            }
+            return null;
         }
         return null;
     }
 
-    //Methode zum exportieren der Werte in eine Datei.
+    /** Die Methode Exportieren wird verwendet um die Werte in eine Datei zu exportieren.
+     * 
+     * @param Dateiname   Der Name den die Datei haben soll
+     */
     public void Exportieren(String Dateiname)
     {
         Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Patientenakten");
@@ -349,58 +451,72 @@ public class Patientenakte
         }
     }
 
-    //entfernt den Analysebericht der die eingegebene Nummer besitzt.
-    public void Analyseberichtlöschen(String Nummer)
+    /** Die Methode Analyseberichtlöschen entfernt den Analysebericht welcher die eingegebene Nummer besitzt.
+     * 
+     * @param Nummer  die gesuchte Nummer die eingegeben wird
+     * 
+     * @return b  wenn die Datei gelöscht wurde
+     * @return d  wenn die Datei nicht gelöscht werden konnte
+     */
+    public String Analyseberichtlöschen(String Nummer)
     {
         Iterator<Analysebericht> it1 = Analyseberichte.iterator();
         boolean gelöscht=false;
         int i=0;
         while(gelöscht == false && it1.hasNext())
         {
-            try{
-            if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
+            try
             {
-                Analyseberichte.remove(Analyseberichte.get(i));
-                File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
-                File[] fileArray = f.listFiles();
-                boolean r = false;
-                
-                for(int k = 0; k<fileArray.length; k++)
-                {
-                    String name = fileArray[k].getName();
-                    if(name.contains(Nummer))
+                if(Analyseberichte.get(i).getBerichtNR().equals(Nummer))
+                {   
+                    Analyseberichte.remove(Analyseberichte.get(i));
+                    File f = new File("C:/ChemischeAnalysedatenbank/Analyseberichte");
+                    File[] fileArray = f.listFiles();
+                    boolean r = false;
+                    for(int k = 0; k<fileArray.length; k++)
                     {
-                        File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
-                        d.delete();
-                        r= true;
+                        String name = fileArray[k].getName();
+                        if(name.contains(Nummer))
+                        {
+                            File d = new File("C:/ChemischeAnalysedatenbank/Analyseberichte/"+name);
+                            d.delete();
+                            r= true;
+                        }
+                    }   
+                    if(r==false)
+                    {   
+                        String d="Datei konnte nicht gelöscht werden";
+                        return d;
+                    }
+                    else
+                    {
+                        String b="Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.";
+                        gelöscht=true;
+                        return b;
                     }
                 }
-                if(r==false)
-                {
-                    System.out.println("Datei konnte nicht gelöscht werden");
-                }
-                else
-                {
-                    System.out.println("Datei wurde gelöscht");
-                    System.out.print("Der Analysebericht mit der Nummer: "+Nummer+" wurde erfolgreich gelöscht.");
-                    gelöscht=true;
-                }
+                i++;
             }
-            i++;
-            }catch (NullPointerException e)
+            catch (NullPointerException e)
             {
                 e.printStackTrace();
             }
         }
-
         if(gelöscht == false)
         {
-            System.out.print("Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.");
+            String c="Es wurde kein Analysebericht mit der Nummer: "+Nummer+" zum löschen gefunden.";
+            return c;
         }
+        return null;
     }
 
-    //Vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
-    //String und gibt bei übereinstimmung den Notfallkontakt der den gesuchten String enthält aus.
+    /** Die Methode Notfallkontaktaufrufen vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
+     * String und gibt bei Übereinstimmung den Notfallkontakt, der den gesuchten String enthält, aus.
+     * 
+     * @param gesucht  Der Gesuchte Name des Notfallkontaktes
+     * 
+     * @return Notfallkontakte.get(i)  gefundener Notfallkontakt
+     */
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
         Iterator<Notfallkontakt> it2 = Notfallkontakte.iterator();
@@ -415,26 +531,33 @@ public class Patientenakte
             }
             i++;
         }
-        if(!gefunden)
-            System.out.print("Kein Notfallkontakt mit dem Namen: "+gesucht+" gefunden.");
         return null;
     }
 
-    //Erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
-    //ihn der Liste mit Notfallkontakten hinzu.
+    /** Die Methode Notfallkontakterstellen erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
+     * ihn der Liste mit Notfallkontakten hinzu.
+     * 
+     * @param n  Name des Notfallkontaktes
+     * @param ad  Adresse des Notfallkontaktes
+     * @param bez  Beziehung des Notfallkontaktes zum Patienten
+     * @param tel  Telefonnummer des Notfallkontaktes
+     * @param bg   Blutgruppe des Notfallkontaktes
+     */
     public void Notfallkontakterstellen(String n, String ad, String bez, 
-    String tel)
+    String tel, String bg)
     {
-        Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel);
+        Notfallkontakt Kontakt = new Notfallkontakt(n, ad, bez, tel, bg);
         Notfallkontakte.add(Kontakt);
     }
 
-    //führt die Methode Notfallkontaktaufrufen mit dem eingegebenen String aus und entfernt den Notfallkontakt der
-    //von Notfallkontaktsuchen zurück gegeben wird von der Liste der Notfallkontakte. Macht eine Ausgabe auf dem 
-    //Bildschirm dass der Nofallkontakt mit dem eingegebenen Namen gelöscht wurde.
+    /** Die Methode Notfallkontaktlöschen führt die Methode Notfallkontaktaufrufen mit dem eingegebenen String aus und entfernt den Notfallkontakt der
+     * von Notfallkontaktsuchen zurück gegeben wird von der Liste der Notfallkontakte. Danach macht sie eine Ausgabe auf dem 
+     * Bildschirm dass der Nofallkontakt mit dem eingegebenen Namen gelöscht wurde.
+     * 
+     * @param Name  Name des gesuchten Notfallkontaktes
+    */
     public void Notfallkontaktlöschen(String Name)
     {
         Notfallkontakte.remove(Notfallkontaktaufrufen(Name));
-        System.out.print("Der Notfallkontakt mit dem Namen: "+Name+" wurde erfolgreich gelöscht.");
     }
 }
