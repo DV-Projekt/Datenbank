@@ -1,15 +1,16 @@
-// import java.util.Arrays;
-// import java.util.OptionalInt;
-// import java.util.stream.IntStream;
+
 
 /**
  * Class Notfallkontakt to contact emergency contact in case of urgency 
+ * The sole purpose of this class is to save and edit data of an emergency contact that 
+ * can be contacted if neccessary
  *
  * @Asma Azan
  * @version 1, 10th March,2020
  * 
  * @version 2, 9th April, 2020
  * @version 3, 13th April, 2020
+ * @version 4, 16th April.2020
  */
 public class Notfallkontakt
 {
@@ -26,7 +27,7 @@ public class Notfallkontakt
  * standard constructor for objects of class Notfallkontakt
  */
      public Notfallkontakt()
-{
+{       //standard constructor
         Name = "Max Mustermann";
         Adresse = "Musterstraße 20";
         Beziehung= "bruder";
@@ -37,11 +38,11 @@ public class Notfallkontakt
     
 /**
      *constructor for objects of class Notfallkontakt
-     *@param: n
-     *@param: ad    
-     *@param: bez
-     *@param: tel
-     *@param: bg
+     *@param: n-Name of emergency contact
+     *@param: ad-Adresse of emergency contact  
+     *@param: bez-Beziehung; how is this emergency contact related to the patient?
+     *@param: tel-Telefonnummer of emergency contact
+     *@param: bg-Blutgruppe; Blood type of emergency contact
      */
     
     public Notfallkontakt(String n, String ad, String bez, String tel,String bg)
@@ -57,17 +58,17 @@ public class Notfallkontakt
 
 /**
    * Set method to set adress of emergency contact
-   * @param: ad
+   * @param: ad- Adress of the emergency contact
    */
   public void setadresse(String ad)
     {
         this.Adresse= ad;
     }
-    // set method for name of emergency contact
+    
     
     /**
      *  set Method to set name of emergency contact
-     *  @param: n
+     *  @param: n-Name of emergency contact
      */
 public void setname(String n)
     {
@@ -77,10 +78,10 @@ public void setname(String n)
 /**
      * Method to edit already existing, or new contact details
      *
-     * @param: n
-     * @param:ad
-     * @param:bez
-     * @param:tel
+     * @param: n-Name
+     * @param:ad-Adresse
+     * @param:bez-Beziehung
+     * @param:tel-Telefonnummer
      */
     public void kontaktdatenbearbeiten(String n, String ad, String bez, String tel)
     {
@@ -92,8 +93,8 @@ public void setname(String n)
    
   /**
    * Set method to set relation of emergency contact to patient
-   * @param: bez
-   * @return: a;
+   * @param: bez-Beziehungen
+   * @return: a(String)- variable
    */
 
   
@@ -126,8 +127,8 @@ public String setbeziehung(String bez)
  
     /**
      * Set method to set blood type of emergency contact
-     * @param: bg
-     * @return: a;
+     * @param: bg-Blutgruppe of the person
+     * @return: a(String)
      */
 
 
@@ -151,7 +152,8 @@ public String setbeziehung(String bez)
 
 /**
  * Set method to set telephone number of emergency contact
- * @param: tel
+ * @param: tel- Telefonnummer of the person
+ * @return: a(String)
  */
 
 
@@ -172,7 +174,7 @@ public String settelefonnummer(String tel)
 }
 /**
      * Get-Method to get name of emergency contact
-     * @return: Name
+     * @return: Name(String)
      */
     public String getName()
     {
@@ -180,7 +182,7 @@ public String settelefonnummer(String tel)
     }
 /**
      * Get-method to get adress of emergency contact
-     * @return: Adresse
+     * @return: Adresse(String)
      */
     public String getadresse()
     { return Adresse;
@@ -188,7 +190,7 @@ public String settelefonnummer(String tel)
     
 /**
      *return method to get relation of emergency contact to patient
-     *@return: Beziehung
+     *@return: Beziehung(String)
      */
     public String getbeziehung()
     {
@@ -196,7 +198,7 @@ public String settelefonnummer(String tel)
     }
 /**
      * Get-method to get telephone number of emergrncy contact
-     * @return: telefonnummer
+     * @return: telefonnummer(String)
      */
      public String gettelefonnummer()
     {
@@ -205,7 +207,7 @@ public String settelefonnummer(String tel)
     
     /**
      *Get- method to get blood type of emergency contact
-     * @return: Blutgrupp
+     * @return: Blutgruppe(String)
      */
     public String getblutgruppe()
     {
