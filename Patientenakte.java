@@ -135,11 +135,11 @@ public class Patientenakte
      * 
      * @param gesch  Geschlecht des Patienten
      */
-    public String SetGeschlächt(String gesch)
+    public String SetGeschlecht(String gesch)
     {
         String a="Bitte geben Sie ein Geschlecht ein.";
         if(gesch.equals("männlich")| gesch.equals("Männlich")
-        |gesch.equals("weiblich")|gesch.equals("Weiblich"))
+        |gesch.equals("weiblich")|gesch.equals("Weiblich"))     //evtl. divers?
             Geschlecht=gesch;
         else
             return a;
@@ -346,7 +346,7 @@ public class Patientenakte
      * 
      * @param gesucht   eingegebener String des gesuchten Attributes
      *
-     * @return Analyseberichte.get(i)   Analysebericht(e) inklusive des gesuchten String
+     * @return Analyseberichte.get(i)   Analysebericht(e) inklusive des gesuchten String    //?
      */
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
