@@ -93,6 +93,7 @@ public void setname(String n)
   /**
    * Set method to set relation of emergency contact to patient
    * @param: bez
+   * @return: a;
    */
 
   
@@ -126,12 +127,13 @@ public String setbeziehung(String bez)
     /**
      * Set method to set blood type of emergency contact
      * @param: bg
+     * @return: a;
      */
 
 
   public String setblutgruppe(String bg)
   {
-      String a = "Bitte gültige Blutgruppe eingeben!";
+     String a = "Bitte gültige Blutgruppe eingeben!";
       
     if(bg.equals("O+")|bg.equals("O-")|bg.equals("A+")|bg.equals("A-")|bg.equals("B+")|
       bg.equals("B-")|bg.equals("AB+")|bg.equals("AB-"))
@@ -155,9 +157,9 @@ public String setbeziehung(String bez)
 
 public String settelefonnummer(String tel)
 {
-    String a = "Bitte gültige Telefonnummer eingeben!";
+   String a = "Bitte gültige Telefonnummer eingeben!";
    if(tel.matches("[0-9]+"))
-    try
+   try
    {
         telefonnummer = tel;
    }
@@ -169,7 +171,7 @@ public String settelefonnummer(String tel)
    return null;
 }
 /**
-     * Method to get name of emergency contact
+     * Get-Method to get name of emergency contact
      * @return: Name
      */
     public String getName()
@@ -177,7 +179,7 @@ public String settelefonnummer(String tel)
         return Name;
     }
 /**
-     * Method to get adress of emergency contact
+     * Get-method to get adress of emergency contact
      * @return: Adresse
      */
     public String getadresse()
@@ -193,7 +195,7 @@ public String settelefonnummer(String tel)
         return Beziehung;
     }
 /**
-     * method to get telephone number of emergrncy contact
+     * Get-method to get telephone number of emergrncy contact
      * @return: telefonnummer
      */
      public String gettelefonnummer()
@@ -202,7 +204,7 @@ public String settelefonnummer(String tel)
     }
     
     /**
-     * metod to get blood type of emergency contact
+     *Get- method to get blood type of emergency contact
      * @return: Blutgrupp
      */
     public String getblutgruppe()
