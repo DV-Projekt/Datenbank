@@ -3,7 +3,7 @@
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
  * Außerdem erstellt sie für jeden neuen Patienten eine Exelatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.24)
+ * @version (0.0.25)
  */
 import java.util.*;
 import java.io.File;
@@ -111,7 +111,7 @@ public class Patientenakte
      * 
      * Ändert das Attribut Telefonnummer auf den eingegebenen String, falls dieser nur aus Zahlen besteht
      * @param t (String) Telefonnummer des Patienten
-     * Rückgabe: keine
+     * @return a (String)
      */
     public String SetTelefonnummer(String t)
     {
@@ -149,10 +149,11 @@ public class Patientenakte
      * 
      * Ändert das Attribut Geschlächt auf den eingegebenen String, falls dieser männlich oder weiblich ist.
      * @param gesch (String) Geschlecht des Patienten
-     * Rückgabe: keine
+     * @return a (String)
      */
     public String SetGeschlecht(String gesch)
     {
+        //divers noch hinzufügen
         String a="Bitte geben Sie ein Geschlecht ein.";
         if(gesch.equals("männlich")| gesch.equals("Männlich")
         |gesch.equals("weiblich")|gesch.equals("Weiblich"))     //evtl. divers?
@@ -176,7 +177,7 @@ public class Patientenakte
      * 
      * Ändert das Attribut Alter auf den eingegebenen String, falls dieser eine Nummer ist.
      * @param A (String) Alter des Patienten
-     * Rückgabe: keine
+     * @retrun a (String)
      */
     public String SetAlter(String A)
     {
@@ -203,7 +204,7 @@ public class Patientenakte
      * 
      * Ändert das Attribut KrankenkassenNr auf den eingegebenen String, falls dieser eine Zahl ist.
      * @param nr (String) Krankenkassennummer des Patienten
-     * Rückgabe: keine
+     * @return a (String)
      */
     public String SetKrankenkassenNr(String nr)
     {
