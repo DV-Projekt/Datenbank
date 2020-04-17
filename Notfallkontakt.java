@@ -14,7 +14,7 @@
 public class Notfallkontakt
 {
   
-    //Attributes of the class Notfallkontak
+    //Attributes of the class Notfallkontakt
     private String Name;
     private String Adresse;
     private String Beziehung;
