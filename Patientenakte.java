@@ -1,9 +1,9 @@
 /**
  * In dieser Klasse wird eine Patientenakte neu initialisiert. 
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
- * Außerdem erstellt sie für jeden neuen Patienten eine Datei.
+ * Außerdem erstellt sie für jeden neuen Patienten eine Exelatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.23)
+ * @version (0.0.24)
  */
 import java.util.*;
 import java.io.File;
@@ -32,7 +32,10 @@ public class Patientenakte
     private ArrayList<Notfallkontakt> Notfallkontakte;
 
     /**
-     * Der Standardkonstruktor welcher eine neue Patientenakte erstellt
+     * Der Standardkonstruktor welcher eine neue Patientenakte mit bereits festgelegten Werten für die Attribute erstellt
+     * 
+     * Parameter: keine
+     * Rückgabe: keine
      */
     public Patientenakte()
     {
@@ -63,6 +66,7 @@ public class Patientenakte
      * @param Tel   Telefonnummer des Patienten
      * @param Vor   Vorerkrankungen des Patienten
      * @param All   Allergien des Patienten
+     * Rückgabe: keine
      */
     public Patientenakte(String N, String Alt, String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
@@ -83,7 +87,9 @@ public class Patientenakte
 
     /** Set-Methode für die Allergien des Patienten 
      * 
-     *  @param all  Allergien des Patienten
+     * Ändert das Attribut Allergie auf den eingegebenen String
+     * @param all (String) Allergien des Patienten
+     * Rückgabe: keine
      */
     public void SetAllergien(String all)
     {
@@ -92,7 +98,9 @@ public class Patientenakte
 
     /** Set-Methode für die Vorerkrankungen des Patienten
      * 
-     * @param v  Vorerkrankungen des Patienten
+     * Ändert das Attribut Vorerkrankung auf den eingegebenen String
+     * @param v (String) Vorerkrankungen des Patienten
+     * Rückgabe: keine
      */
     public void SetVorerkrankungen(String v)
     {
@@ -101,7 +109,9 @@ public class Patientenakte
 
     /** Set-Methode für die Telefonnummer des Patienten
      * 
-     * @param t  Telefonnummer des Patienten
+     * Ändert das Attribut Telefonnummer auf den eingegebenen String, falls dieser nur aus Zahlen besteht
+     * @param t (String) Telefonnummer des Patienten
+     * Rückgabe: keine
      */
     public String SetTelefonnummer(String t)
     {
@@ -115,7 +125,9 @@ public class Patientenakte
 
     /** Set-Methode für den zuständigen Arzt 
      * 
-     * @param z  zuständiger Arzt des Patienten
+     * Ändert das Attribut zuständigerArzt auf den eingegebenen String
+     * @param z (String) zuständiger Arzt des Patienten
+     * Rückgabe: keine
      */
     public void SetZuständigerArzt(String z)
     {
@@ -124,7 +136,9 @@ public class Patientenakte
 
     /** Set-Methode für die Blutgruppe des Patienten
      * 
-     * @param b  Blutgruppe des Patienten
+     * Ändert das Attribut Blutgruppe auf den eingegebenen String
+     * @param b (String) Blutgruppe des Patienten
+     * Rückgabe: keine
      */
     public void SetBlutgruppe(String b)
     {
@@ -133,7 +147,9 @@ public class Patientenakte
 
     /** Set-Methode für das Geschlecht des Patienten
      * 
-     * @param gesch  Geschlecht des Patienten
+     * Ändert das Attribut Geschlächt auf den eingegebenen String, falls dieser männlich oder weiblich ist.
+     * @param gesch (String) Geschlecht des Patienten
+     * Rückgabe: keine
      */
     public String SetGeschlecht(String gesch)
     {
@@ -148,7 +164,8 @@ public class Patientenakte
 
     /** Set-Methode für die Adresse des Patienten
      * 
-     * @param ad  Adresse des Patienten 
+     * Ändert das Attribut Adresse auf den eingegebenen String
+     * @param ad (String) Adresse des Patienten 
      */
     public void SetAdresse(String ad)
     {
@@ -157,7 +174,9 @@ public class Patientenakte
 
     /** Set-Methode für das Alter des Patienten
      * 
-     * @param A  Alter des Patienten
+     * Ändert das Attribut Alter auf den eingegebenen String, falls dieser eine Nummer ist.
+     * @param A (String) Alter des Patienten
+     * Rückgabe: keine
      */
     public String SetAlter(String A)
     {
@@ -171,7 +190,9 @@ public class Patientenakte
 
     /** Set-Methode für den Patienten Namen
      * 
-     * @param N   Name des Patienten
+     * Ändert das Attribut Name auf den eingegebenen String
+     * @param N (String) Name des Patienten
+     * Rückgabe: keine
      */
     public void SetName(String N)
     {
@@ -180,7 +201,9 @@ public class Patientenakte
 
     /** Set-Methode für die Krankenkassen Nummer
      * 
-     * @param nr  Krankenkassennummer des Patienten
+     * Ändert das Attribut KrankenkassenNr auf den eingegebenen String, falls dieser eine Zahl ist.
+     * @param nr (String) Krankenkassennummer des Patienten
+     * Rückgabe: keine
      */
     public String SetKrankenkassenNr(String nr)
     {
@@ -194,7 +217,8 @@ public class Patientenakte
 
     /** Get-Methode für die KrankenkassenNr
      * 
-     * @return KrankenkassenNr 
+     * Gibt einem die Krankenkassennummer des Patienten.
+     * @return KrankenkassenNr (String)  
      */
     public String getKrankenkassenNr ()
     {
@@ -203,7 +227,8 @@ public class Patientenakte
 
     /** Get-Methode für den Namen
      * 
-     * @return Name
+     * Gibt einem den Namen des Patienten.
+     * @return Name (String) 
      */
     public String getName ()
     {
@@ -212,7 +237,8 @@ public class Patientenakte
 
     /** Get-Methode für das Alter
      * 
-     * @return Alter 
+     * Gibt einem das Alter des Patienten.
+     * @return Alter (String)  
      */
     public String getAlter ()
     {
@@ -221,7 +247,8 @@ public class Patientenakte
 
     /** Get-Methode für das Geschlecht
      * 
-     * @return Geschlecht
+     * Gibt einem das Geschlecht des Patienten.
+     * @return Geschlecht (String) 
      */
     public String getGeschlecht ()
     {
@@ -230,7 +257,8 @@ public class Patientenakte
 
     /** Get-Methode für die Adresse
      * 
-     * @return Adresse
+     * Gibt einem die Adresse des Patienten.
+     * @return Adresse (String) 
      */
     public String getAdresse ()
     {
@@ -239,7 +267,8 @@ public class Patientenakte
 
     /** Get-Methode für die Blutgruppe
      * 
-     * @return Blutgruppe
+     * Gibt einem die Blutgruppe des Patienten.
+     * @return Blutgruppe (String) 
      */
     public String getBlutgruppe ()
     {
@@ -248,7 +277,8 @@ public class Patientenakte
 
     /** Get-Methode für den zuständigen Arzt
      * 
-     * @return ZuständigerArzt 
+     * Gibt einem den zuständigen Arzt des Patienten.
+     * @return ZuständigerArzt (String)  
      */
     public String getZuständigerArzt ()
     {
@@ -257,7 +287,8 @@ public class Patientenakte
 
     /** Get-Methode für die Telefonnummer
      * 
-     * @return Telefonnummer 
+     * Gibt einem die Telefonnummer des Patienten.
+     * @return Telefonnummer (String)  
      */
     public String getTelefonnummer ()
     {
@@ -266,7 +297,8 @@ public class Patientenakte
 
     /** Get-Methode für die Vorerkrankungen
      * 
-     * @return Vorerkrankungen
+     * Gibt einem die Vorerkrankungen des Patienten.
+     * @return Vorerkrankungen (String) 
      */
     public String getVorerkrankungen ()
     {
@@ -275,7 +307,8 @@ public class Patientenakte
 
     /** Get-Methode für die Allergien
      * 
-     * @return Allergien
+     * Gibt einem die Allergien des Patienten.
+     * @return Allergien (String) 
      */
     public String getAllergien()
     {
@@ -284,7 +317,8 @@ public class Patientenakte
 
     /** Get-Methode für die ArrayList der AnalyseBerichte
      * 
-     * @return Analyseberichte 
+     * Gibt einem alle Analyseberichte des Patienten.
+     * @return Analyseberichte (Analysebericht)
      */
     public ArrayList <Analysebericht> getAnalysebericht()
     {
@@ -293,7 +327,8 @@ public class Patientenakte
 
     /** Get-Methode für die ArrayList der Notfallkontakte
      * 
-     * @return Notfallkontakte 
+     * Gibt einem alle Notfallkontakte des Patienten
+     * @return Notfallkontakte (Notfallkontakt)
      */
     public ArrayList <Notfallkontakt> getNotfallkontakte()
     {
@@ -302,14 +337,15 @@ public class Patientenakte
 
     /** Die Methode Aktebearbeiten ändert die Werte einer bereits vorhandenen Patientenakte auf die neu eingegebenen Werte
      * 
-     * @param Ad  Adresse des Patienten
-     * @param Gesch  Geschlecht des Patienten
-     * @param KrankNr  Krankenkassennummer des Patienten
-     * @param Blut  Blutgruppe des Patienten
-     * @param Arzt  zuständiger Arzt des Patienten
-     * @param Tel  Telefonnummer des Patienten
-     * @param Vor  Vorerkrankungen des Patienten
-     * @param All  Allergien des Patienten 
+     * @param Ad (String) Adresse des Patienten
+     * @param Gesch (String) Geschlecht des Patienten
+     * @param KrankNr (String) Krankenkassennummer des Patienten
+     * @param Blut (String) Blutgruppe des Patienten
+     * @param Arzt (String) zuständiger Arzt des Patienten
+     * @param Tel (String) Telefonnummer des Patienten
+     * @param Vor (String) Vorerkrankungen des Patienten
+     * @param All (String) Allergien des Patienten
+     * Rückgabe: keine
      */
     public void Aktebearbeiten(String Ad, String Gesch, String KrankNr, 
     String Blut, String Arzt, String Tel, String Vor, String All)
@@ -327,10 +363,11 @@ public class Patientenakte
     /** Die Methode Analyseberichtanlegen erstellt einen neuen Analysebericht mit den eingegebenen Werten und fügt
      * ihn der Liste von Analyseberichten hinzu.
      * 
-     * @param Laborantenkuerzel   Kürzel des Laboranten aus der Klasse Analyseberichte
-     * @param Laborname   Name des Labors aus der Klasse Analyseberichte
-     * @param AnalyseObjekt   Objekt der Analyse aus der Klasse Analyseberichte
-     * @param Analysemethode  Methode der Analyse aus der Klasse Analyseberichte
+     * @param Laborantenkuerzel (String) Kürzel des Laboranten aus der Klasse Analyseberichte
+     * @param Laborname (String)  Name des Labors aus der Klasse Analyseberichte
+     * @param AnalyseObjekt (String) Objekt der Analyse aus der Klasse Analyseberichte
+     * @param Analysemethode (String) Methode der Analyse aus der Klasse Analyseberichte
+     * Rückgabe: keine
      */
     public void Analyseberichtanlegen(String Laborantenkuerzel, String 
     Laborname, String AnalyseObjekt, String Analysemethode, 
@@ -341,12 +378,11 @@ public class Patientenakte
         Analyseberichte.add(Bericht);
     }
 
-    /** Die Methode Analyseberichtsuchen vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte Liste mit dem eingegebenen String
-     * und gibt bei Übereinstimmung den Analysebericht aus der den gesuchten String enthält.
+    /** Die Methode Analyseberichtsuchen vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte Liste 
+     * mit dem eingegebenen String und gibt bei Übereinstimmung den Analysebericht aus der den gesuchten String enthält.
      * 
-     * @param gesucht   eingegebener String des gesuchten Attributes
-     *
-     * @return Analyseberichte.get(i)   Analysebericht(e) inklusive des gesuchten String    //?
+     * @param gesucht (String) eingegebener String des gesuchten Attributes
+     * @return Analysebericht (Analysebericht) Analysebericht(e) die den gesuchten String enthalten
      */
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
@@ -393,9 +429,10 @@ public class Patientenakte
         return null;
     }
 
-    /** Die Methode Exportieren wird verwendet um die Werte in eine Datei zu exportieren.
+    /** Die Methode Exportieren wird verwendet um die Werte der Attribute in eine Exeldatei zu exportieren.
      * 
-     * @param Dateiname   Der Name den die Datei haben soll
+     * @param Dateiname (String) Der Name den die Datei haben soll
+     * Rückgabe: keine
      */
     public void Exportieren(String Dateiname)
     {
@@ -455,8 +492,8 @@ public class Patientenakte
      * 
      * @param Nummer  die gesuchte Nummer die eingegeben wird
      * 
-     * @return b  wenn die Datei gelöscht wurde
-     * @return d  wenn die Datei nicht gelöscht werden konnte
+     * @return b (String)  wenn die Datei gelöscht wurde
+     * @return d (String)  wenn die Datei nicht gelöscht werden konnte
      */
     public String Analyseberichtlöschen(String Nummer)
     {
@@ -510,12 +547,13 @@ public class Patientenakte
         return null;
     }
 
-    /** Die Methode Notfallkontaktaufrufen vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste mit Notfallkontakten mit dem eingegebenen 
-     * String und gibt bei Übereinstimmung den Notfallkontakt, der den gesuchten String enthält, aus.
+    /** Die Methode Notfallkontaktaufrufen vergleicht das Attribut Name jedes Notfallkontaktes aus der Liste der 
+     * Notfallkontakten mit dem eingegebenen String und gibt bei Übereinstimmung den Notfallkontakt, der den gesuchten 
+     * String enthält, aus.
      * 
-     * @param gesucht  Der Gesuchte Name des Notfallkontaktes
+     * @param gesucht (String) Der Gesuchte Name des Notfallkontaktes
      * 
-     * @return Notfallkontakte.get(i)  gefundener Notfallkontakt
+     * @return Notfallkontakt (Notfallkontakt) Notfallkontakt der den eingegebenen String enthält.
      */
     public Notfallkontakt Notfallkontaktaufrufen(String gesucht)
     {
@@ -537,11 +575,12 @@ public class Patientenakte
     /** Die Methode Notfallkontakterstellen erstellt einen neuen Notfallkontakt mit den eingegebenen Werten und fügt
      * ihn der Liste mit Notfallkontakten hinzu.
      * 
-     * @param n  Name des Notfallkontaktes
-     * @param ad  Adresse des Notfallkontaktes
-     * @param bez  Beziehung des Notfallkontaktes zum Patienten
-     * @param tel  Telefonnummer des Notfallkontaktes
-     * @param bg   Blutgruppe des Notfallkontaktes
+     * @param n (String) Name des Notfallkontaktes
+     * @param ad (String) Adresse des Notfallkontaktes
+     * @param bez (String) Beziehung des Notfallkontaktes zum Patienten
+     * @param tel (String) Telefonnummer des Notfallkontaktes
+     * @param bg (String) Blutgruppe des Notfallkontaktes
+     * Rückgabe: keine
      */
     public void Notfallkontakterstellen(String n, String ad, String bez, 
     String tel, String bg)
@@ -550,11 +589,11 @@ public class Patientenakte
         Notfallkontakte.add(Kontakt);
     }
 
-    /** Die Methode Notfallkontaktlöschen führt die Methode Notfallkontaktaufrufen mit dem eingegebenen String aus und entfernt den Notfallkontakt der
-     * von Notfallkontaktsuchen zurück gegeben wird von der Liste der Notfallkontakte. Danach macht sie eine Ausgabe auf dem 
-     * Bildschirm dass der Nofallkontakt mit dem eingegebenen Namen gelöscht wurde.
+    /** Die Methode Notfallkontaktlöschen führt die Methode Notfallkontaktaufrufen mit dem eingegebenen String aus und 
+     * entfernt den Notfallkontakt der von Notfallkontaktsuchen zurück gegeben wird von der Liste der Notfallkontakte. 
      * 
-     * @param Name  Name des gesuchten Notfallkontaktes
+     * @param Name (String) Name des gesuchten Notfallkontaktes
+     * Rückgabe: keine
     */
     public void Notfallkontaktlöschen(String Name)
     {
