@@ -3,7 +3,7 @@
  * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.17
+ * @version 0.0.18
  * 
  */
 
@@ -76,7 +76,7 @@ public class Analysebericht
         int nr = (int) (Math.random()*(10000-1)+1);
         BerichtNR = Integer.toString(nr);
     }
-    
+
     /**
      * Der Standardkonstruktor der Klasse Analysebericht erstellt einen neuen Analysebericht mit den vorgegebenen Werten für die Attribute und einer zufälligen Berichtnummer. 
      * Das aktuelle Datum wird durch die Klasse Calendar erzeugt.
@@ -137,8 +137,7 @@ public class Analysebericht
                 e.printStackTrace();    
             }
         }
-        String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator")
-        + BerichtNR + Filename + ".xlsx";
+        String filename = "C:\\ChemischeAnalysedatenbank\\Analyseberichte"+ System.getProperty("file.separator")+ BerichtNR + Filename + ".xlsx";
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
