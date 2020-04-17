@@ -4,7 +4,7 @@
  * Somit kann er auf diese Patientenakten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.12)
+ * @version (0.0.13)
  */
 import java.util.ArrayList;
 import java.io.File;
@@ -32,8 +32,16 @@ public class Verwalter
     /**
      * Konstruktor der die ArrayList der Patientenakten erstellt 
      * und zusätzlich eine Patientenakte erstellt und hinzufügt
-     * @param Name,Alter,Adresse,Geschlecht,KrankenkassenNr,Blutgruppe,
-     * Arzt,Telefonnummer,Vorerkrankungen,Allergien
+     * @param Name
+     * @param Alter
+     * @param Adresse
+     * @param Geschlecht
+     * @param KrankenkassenNr
+     * @param Blutgruppe
+     * @param Arzt
+     * @param Telefonnummer
+     * @param Vorerkrankungen
+     * @param Allergien
      */
     public Verwalter (String Name, String Alter, String Adresse, 
     String Geschlecht, String KrankenkassenNr, String Blutgruppe, 
@@ -48,7 +56,7 @@ public class Verwalter
     /**
      * Konstruktor der die ArrayList der Patientenakten erstellt
      * und der man eine schon erstellte Patientenakte übergibt
-     * @param Patientenakte
+     * @param Patientenakte a
      */ 
     public Verwalter (Patientenakte a)
     {
@@ -59,7 +67,7 @@ public class Verwalter
     /**
      * Get Methode für die ArrayList
      * 
-     * @param keiner
+     * @param -
      * @return ArrayList "Akten"
      */ 
     public ArrayList <Patientenakte> getArrayList ()
@@ -72,9 +80,17 @@ public class Verwalter
      * hinzufügt dabei wird überprüft, ob diese schon exsistiert
      * @throws IllegalArgumentException wenn die Krankenkassennummern übereinstimmen und es somit schon so eine Patientenakte gib
      * 
-     * @param Name,Alter,Adresse,Geschlecht,KrankenkassenNr,Blutgruppe,
-     * Arzt,Telefonnummer,Vorerkrankungen,Allergien
-     * @return String
+     * @param Name
+     * @param Alter
+     * @param Adresse
+     * @param Geschlecht
+     * @param KrankenkassenNr
+     * @param Blutgruppe
+     * @param Arzt
+     * @param Telefonnummer
+     * @param Vorerkrankungen
+     * @param Allergien
+     * @return hinzu (String)
      */
     public String Akteanlegen (String Name, String Alter, String Adresse, 
     String Geschlecht, String KrankenkassenNr, String Blutgruppe,
@@ -91,7 +107,8 @@ public class Verwalter
         else
         {
             Akten.add(Akte);
-            return "Akte wurde hinzugefügt!";
+            String hinzu = "Akte wurde hinzugefügt!";
+            return hinzu;
         }
     }
 
@@ -101,7 +118,7 @@ public class Verwalter
      * @throws IllegalArgumentException wenn die Krankenkassennummern nicht übereinstimmen
      * 
      * @param KrankenkassenNr
-     * @return String
+     * @return gelöscht (String)
      */
 
     public String Aktelöschen (String KrankenkassenNr)
@@ -145,7 +162,8 @@ public class Verwalter
             {
                 e.printStackTrace();
             }
-            return "Akte wurde erfolgreich gelöscht!";
+            String gelöscht = "Akte wurde erfolgreich gelöscht!";
+            return gelöscht;
         }
         else
         {
@@ -157,7 +175,7 @@ public class Verwalter
      * Aktesuchen: Methode die eine Akte nach der Krankenkassennummer sucht
      * 
      * @param KrankenkassenNummer
-     * @return Patientenakte
+     * @return Patientenakte c
      */
 
     public Patientenakte Aktesuchen (String KrankenkassenNr)
@@ -177,8 +195,9 @@ public class Verwalter
      * Exportieren: Methode die eine Patientenakte mit allen ihren Analyseberichten in eine Exeltabelle exportiert
      * @throws IllegalArgumentException wenn keine Akte gefunde wurde
      * 
-     * @param KrankenkassenNr,Filename
-     * @return keiner
+     * @param KrankenkassenNr
+     * @param Filename
+     * @return -
      */
     public void Exportieren (String KrankenkassenNr, String Filename)
     {
