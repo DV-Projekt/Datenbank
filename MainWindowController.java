@@ -16,7 +16,7 @@ import java.io.*;
 import javafx.scene.control.Alert;
 import java.awt.Frame;
 import java.util.*;
-public class MainWindowController extends Main
+public class MainWindowController extends Verwalter
 {
     //Views
     @FXML 
@@ -77,7 +77,7 @@ public class MainWindowController extends Main
     private Alert alert1;
 
     @FXML 
-    private TextField ausgabename;
+    private Text ausgabename = new Text("");
 
     @FXML 
     private TextField ausgabealter;
@@ -116,7 +116,7 @@ public class MainWindowController extends Main
     @FXML
     public void suche()
     {   
-        String eingabe = "";
+        String eingabe = eingabefeldsuche.getText();
         if(eingabefeldsuche.getText() == null || eingabefeldsuche.getText().trim().isEmpty())
         {
             warningDaten();
@@ -141,8 +141,10 @@ public class MainWindowController extends Main
                 Scene scene = new Scene(pane);
                 Main.primaryStage.setScene(scene);
                 Main.primaryStage.show();
-
+                
+                
                 ausgabename.setText(ps.getName());
+                ausgabename.setVisible(true);
             }
             catch(IOException e)
             {
@@ -209,5 +211,10 @@ public class MainWindowController extends Main
 
         alert.showAndWait();
     }
-
+    
+    @FXML
+    public void aktelöschen()
+    {
+        eingabefeldsuche.setText("Hey");
+    }
 }

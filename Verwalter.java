@@ -20,7 +20,7 @@ import java.nio.file.*;
 public class Verwalter
 {
     public ArrayList <Patientenakte> Akten;
-
+    public static Verwalter verwalter;
     /**
      * Konstruktor der eine Leere ArrayList der Patientenakten erstellt
      */
@@ -28,7 +28,12 @@ public class Verwalter
     {
         Akten = new ArrayList <Patientenakte> ();
     }
-
+    
+    public static void erstelleVerwalter()
+    {
+        verwalter = new Verwalter();
+    }
+    
     /**
      * Konstruktor der die ArrayList der Patientenakten erstellt 
      * und zusätzlich eine Patientenakte erstellt und hinzufügt
