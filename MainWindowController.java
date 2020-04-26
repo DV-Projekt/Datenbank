@@ -77,7 +77,7 @@ public class MainWindowController extends Verwalter
     private Alert alert1;
 
     @FXML 
-    private Text ausgabename = new Text("");
+    private Text ausgabename;
 
     @FXML 
     private TextField ausgabealter;
@@ -138,13 +138,17 @@ public class MainWindowController extends Verwalter
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
                 VBox pane = loader.load();
+                
+                MainWindowController mainWindowController = loader.getController();
+                mainWindowController.setMain(main);
+                
                 Scene scene = new Scene(pane);
                 Main.primaryStage.setScene(scene);
                 Main.primaryStage.show();
                 
                 
+                
                 ausgabename.setText(ps.getName());
-                ausgabename.setVisible(true);
             }
             catch(IOException e)
             {
@@ -160,6 +164,10 @@ public class MainWindowController extends Verwalter
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
             VBox pane = loader.load();
+            
+            MainWindowController mainWindowController = loader.getController();
+            mainWindowController.setMain(main);
+            
             Scene scene = new Scene(pane);
             Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
@@ -191,6 +199,10 @@ public class MainWindowController extends Verwalter
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
                 VBox pane = loader.load();
+                
+                MainWindowController mainWindowController = loader.getController();
+                mainWindowController.setMain(main);
+                
                 Scene scene = new Scene(pane);
                 Main.primaryStage.setScene(scene);
                 Main.primaryStage.show();
@@ -213,8 +225,8 @@ public class MainWindowController extends Verwalter
     }
     
     @FXML
-    public void aktelöschen()
+    public void aktelöschenn()
     {
-        eingabefeldsuche.setText("Hey");
+        krankenkassennummer.setText("Hey");
     }
 }
