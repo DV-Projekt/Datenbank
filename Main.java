@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse GUI.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.7
+ * @version 0.0.9
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -17,7 +17,6 @@ import java.io.*;
 public class Main extends Application {
     
     public static Stage primaryStage;
-    public Verwalter verwalter  = new Verwalter();
     
     
     @Override
@@ -31,6 +30,7 @@ public class Main extends Application {
 
     public void mainWindow()
     {   
+        Verwalter.erstelleVerwalter();
         try{
  
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));

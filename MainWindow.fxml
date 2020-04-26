@@ -58,7 +58,7 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="30.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Akte löschen" />
+                        <Button fx:id="aktelöschen" mnemonicParsing="false" onAction="#aktelöschenn" text="Akte löschen" />
                         <Button fx:id="suchestarten" mnemonicParsing="false" onAction="#suche" text="Suche starten" />
                         <Button mnemonicParsing="false" onAction="#akteanlegen" text="Akte anlegen" />
                      </children>
