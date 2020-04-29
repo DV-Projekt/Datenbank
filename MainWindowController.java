@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.12
+ * @version 0.0.13
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -16,6 +16,16 @@ import java.io.*;
 import javafx.scene.control.Alert;
 import java.awt.Frame;
 import java.util.*;
+import java.util.*;
+import java.io.File;
+import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.commons.collections4.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.*;
 public class MainWindowController extends Verwalter
 {
     //Views
@@ -77,7 +87,7 @@ public class MainWindowController extends Verwalter
     private Alert alert1;
 
     @FXML 
-    private Text ausgabename;
+    private TextField ausgabename;
 
     @FXML 
     private TextField ausgabealter;
@@ -107,12 +117,12 @@ public class MainWindowController extends Verwalter
     private TextArea ausgabeallergien;
 
     public Main main;
-
+    private Patientenakte p = new Patientenakte();
     public void setMain(Main main)
     {
         this.main = main;
     }
-    
+
     @FXML
     public void suche()
     {   
@@ -135,20 +145,28 @@ public class MainWindowController extends Verwalter
         {
             Patientenakte ps = new Patientenakte();
             ps = verwalter.Aktesuchen(eingabe);
+            p = ps;
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
                 VBox pane = loader.load();
-                
+
                 MainWindowController mainWindowController = loader.getController();
-                mainWindowController.setMain(main);
-                
+                setMain(main);
+
                 Scene scene = new Scene(pane);
-                Main.primaryStage.setScene(scene);
-                Main.primaryStage.show();
-                
-                
-                
-                ausgabename.setText(ps.getName());
+                main.primaryStage.setScene(scene);
+                main.primaryStage.show();
+
+                mainWindowController.ausgabename.setText(ps.getName());
+                mainWindowController.ausgabealter.setText(ps.getAlter());
+                mainWindowController.ausgabeadresse.setText(ps.getAdresse());
+                mainWindowController.ausgabegeschlecht.setText(ps.getGeschlecht());
+                mainWindowController.auskrankenkassennummer1.setText(ps.getKrankenkassenNr());
+                mainWindowController.ausgabeblutgruppe.setText(ps.getBlutgruppe());
+                mainWindowController.ausgabearzt.setText(ps.getZuständigerArzt());
+                mainWindowController.ausgabetelefonnummer.setText(ps.getTelefonnummer());
+                mainWindowController.ausgabevorerkrankungen.setText(ps.getVorerkrankungen());
+                mainWindowController.ausgabeallergien.setText(ps.getAllergien());
             }
             catch(IOException e)
             {
@@ -164,10 +182,10 @@ public class MainWindowController extends Verwalter
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("secondWindow.fxml"));
             VBox pane = loader.load();
-            
+
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
-            
+
             Scene scene = new Scene(pane);
             Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
@@ -199,10 +217,10 @@ public class MainWindowController extends Verwalter
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
                 VBox pane = loader.load();
-                
+
                 MainWindowController mainWindowController = loader.getController();
                 mainWindowController.setMain(main);
-                
+
                 Scene scene = new Scene(pane);
                 Main.primaryStage.setScene(scene);
                 Main.primaryStage.show();
@@ -223,10 +241,47 @@ public class MainWindowController extends Verwalter
 
         alert.showAndWait();
     }
-    
+
     @FXML
     public void aktelöschenn()
     {
         krankenkassennummer.setText("Hey");
+    }
+
+    @FXML
+    public void analysebanlegen()
+    {
+        krankenkassennummer.setText("Hey");
+    }
+
+    @FXML
+    public void patientenakteexportieren()
+    {
+        Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Patientenakten");
+        if (!Files.exists(f)) 
+        {
+            try 
+            {
+                Files.createDirectories(f);
+            } 
+            catch (IOException e) 
+            {
+                e.printStackTrace();    
+            }
+        }
+
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Speicherort auswählen");
+
+        filechooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel (*.xlsx)", "*.xlsx"));
+        File file = filechooser.showSaveDialog(Main.primaryStage);
+        
+        p.Exportieren2(file.getPath());
+    }
+    
+    @FXML
+    public void notfallkontanlegen()
+    {
     }
 }

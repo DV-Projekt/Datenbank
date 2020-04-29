@@ -32,6 +32,8 @@ public class Verwalter
     public static void erstelleVerwalter()
     {
         verwalter = new Verwalter();
+        Patientenakte p = new Patientenakte();
+        verwalter.Akten.add(p);
     }
     
     /**

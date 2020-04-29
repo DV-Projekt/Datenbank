@@ -387,9 +387,9 @@ public class Patientenakte
      */
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
-       boolean gefunden=false;
-       for(int i = 0; i< Analyseberichte.size(); i++)
-       {
+        boolean gefunden=false;
+        for(int i = 0; i< Analyseberichte.size(); i++)
+        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
@@ -450,7 +450,7 @@ public class Patientenakte
             }
         }
         String filename = "C:\\ChemischeAnalysedatenbank\\Patientenakten"+ System.getProperty("file.separator")
-            + KrankenkassenNr + Dateiname + ".xlsx";
+            + KrankenkassenNr + Dateiname ;
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Patientenakte "+KrankenkassenNr);
@@ -476,6 +476,46 @@ public class Patientenakte
         try 
         {
             FileOutputStream outputStream = new FileOutputStream(filename);
+            workbook.write(outputStream);
+            workbook.close();
+        } 
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void Exportieren2(String Dateiname)
+    {
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Patientenakte "+KrankenkassenNr);
+
+        String[][] werte = new String [][]{{"Name", "Alter", "Adresse","Geschlecht", "KrankenkassenNr", 
+                    "Blutgruppe", "ZuständigerArzt", "Telefonnummer", "Vorerkrankungen", "Allergien"},
+                {Name, Alter, Adresse, Geschlecht, KrankenkassenNr, Blutgruppe, ZuständigerArzt, Telefonnummer, 
+                    Vorerkrankungen, Allergien}};
+
+        int rowNum =0;
+
+        for (int i=0; i<2; i++) 
+        {
+            Row row = sheet.createRow(rowNum++);
+            int colNum = 0;
+            for (int j=0; j<7; j++) 
+            {
+                Cell cell = row.createCell(colNum++);
+                cell.setCellValue(werte[i][j]);
+            }
+        }
+
+        try 
+        {
+            FileOutputStream outputStream = new FileOutputStream(Dateiname);
             workbook.write(outputStream);
             workbook.close();
         } 
@@ -595,7 +635,7 @@ public class Patientenakte
      * 
      * @param Name (String) Name des gesuchten Notfallkontaktes
      * Rückgabe: keine
-    */
+     */
     public void Notfallkontaktlöschen(String Name)
     {
         Notfallkontakte.remove(Notfallkontaktaufrufen(Name));
