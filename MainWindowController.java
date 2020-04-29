@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.13
+ * @version 0.0.14
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -137,6 +137,16 @@ public class MainWindowController extends Verwalter
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Achtung");
             alert.setHeaderText("Keine Akten vorhanden!");
+            alert.setContentText("Bitte Akte anlegen");
+
+            alert.showAndWait();
+        }
+        
+        else if(verwalter.Aktesuchen(eingabe) == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Eingegebene Nummer existiert im System nicht!");
             alert.setContentText("Bitte Akte anlegen");
 
             alert.showAndWait();
@@ -276,8 +286,9 @@ public class MainWindowController extends Verwalter
         filechooser.setInitialDirectory(new File(System.getProperty("user.home")));
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel (*.xlsx)", "*.xlsx"));
         File file = filechooser.showSaveDialog(Main.primaryStage);
+        String change = new String(file.getPath());
         
-        p.Exportieren2(file.getPath());
+        p.Exportieren2(change.replaceAll(file.getName(), p.getKrankenkassenNr() + file.getName()));
     }
     
     @FXML

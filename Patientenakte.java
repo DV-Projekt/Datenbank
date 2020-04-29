@@ -43,7 +43,7 @@ public class Patientenakte
         Alter= "0";
         Adresse = "ad";
         Geschlecht = "gesch";
-        KrankenkassenNr = "0";
+        KrankenkassenNr = "123";
         Blutgruppe = "blutgr";
         ZuständigerArzt = "arzt";
         Telefonnummer = "0";
