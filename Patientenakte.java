@@ -1,7 +1,7 @@
 /**
  * In dieser Klasse wird eine Patientenakte neu initialisiert. 
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
- * Außerdem erstellt sie für jeden neuen Patienten eine Exelatei die alle Attributwerte enthält.
+ * Außerdem erstellt sie für jeden neuen Patienten eine Exeldatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
  * @version (0.0.25)
  */
@@ -177,7 +177,7 @@ public class Patientenakte
      * 
      * Ändert das Attribut Alter auf den eingegebenen String, falls dieser eine Nummer ist.
      * @param A (String) Alter des Patienten
-     * @retrun a (String)
+     * @return a (String)
      */
     public String SetAlter(String A)
     {
