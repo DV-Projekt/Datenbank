@@ -8,6 +8,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -126,6 +127,7 @@
                   <Button mnemonicParsing="false" onAction="#analysespeichern" prefHeight="25.0" prefWidth="79.0" text="Speichern" />
                </children>
             </VBox>
+            <ToggleButton layoutX="42.0" layoutY="14.0" mnemonicParsing="false" onAction="#backtopatientenakte" prefHeight="27.0" prefWidth="32.0" text="&lt;" />
       </children>
     </AnchorPane>
   </children>
