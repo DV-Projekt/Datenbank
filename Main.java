@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse GUI.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.10
+ * @version 0.0.11
  */
 import javafx.application.*;
 import javafx.stage.*;

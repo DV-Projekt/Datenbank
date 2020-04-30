@@ -370,11 +370,11 @@ public class Patientenakte
      * @param Analysemethode (String) Methode der Analyse aus der Klasse Analyseberichte
      * Rückgabe: keine
      */
-    public void Analyseberichtanlegen(String Laborantenkuerzel, String 
+    public void Analyseberichtanlegen(String Laborantenkuerzel, String Analysedatum, String 
     Laborname, String AnalyseObjekt, String Analysemethode, 
     String Analyseergebnis)
     {
-        Analysebericht Bericht=new Analysebericht(Laborantenkuerzel, Laborname,
+        Analysebericht Bericht=new Analysebericht(Laborantenkuerzel, Analysedatum, Laborname,
                 AnalyseObjekt, Analysemethode, Analyseergebnis);
         Analyseberichte.add(Bericht);
     }

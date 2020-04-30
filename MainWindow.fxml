@@ -15,7 +15,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
   <children>
-    <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+    <MenuBar fx:id="menuBar">
       <menus>
             <Menu fx:id="datei" mnemonicParsing="false" onAction="#akteanlegen" text="Datei">
               <items>

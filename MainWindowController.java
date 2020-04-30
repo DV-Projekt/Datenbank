@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.14
+ * @version 0.0.15
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
+
 public class MainWindowController extends Verwalter
 {
     //Views
@@ -115,6 +116,24 @@ public class MainWindowController extends Verwalter
 
     @FXML 
     private TextArea ausgabeallergien;
+    
+    @FXML 
+    private TextField laborantenkuerzel;
+    
+    @FXML 
+    private TextField analysedatum;
+    
+    @FXML 
+    private TextField laborname;
+    
+    @FXML 
+    private TextArea analyseobjekt;
+    
+    @FXML 
+    private TextArea analysemethode;
+    
+    @FXML 
+    private TextArea analyseergebnis;
 
     public Main main;
     private Patientenakte p = new Patientenakte();
@@ -255,13 +274,65 @@ public class MainWindowController extends Verwalter
     @FXML
     public void aktelöschenn()
     {
-        krankenkassennummer.setText("Hey");
+        String eingabe = eingabefeldsuche.getText();
+        if(eingabefeldsuche.getText() == null || eingabefeldsuche.getText().trim().isEmpty())
+        {
+            warningDaten();
+        }
+
+        else if(verwalter.Akten.size()==0)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Keine Akten vorhanden!");
+            alert.setContentText("Bitte Akte anlegen");
+
+            alert.showAndWait();
+        }
+        
+        else if(verwalter.Aktesuchen(eingabe) == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Eingegebene Nummer existiert im System nicht!");
+            alert.setContentText("Bitte Akte anlegen");
+
+            alert.showAndWait();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Akte wird unwiderruflich gelöscht");
+            alert.setContentText("Bitte bestätigen");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            
+            if (result.isPresent() && result.get() == ButtonType.YES) 
+            {
+                verwalter.Aktelöschen(eingabe);
+            }
+        }
     }
 
     @FXML
     public void analysebanlegen()
     {
-        krankenkassennummer.setText("Hey");
+        try{
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("analysebericht.fxml"));
+            VBox pane = loader.load();
+
+            MainWindowController mainWindowController = loader.getController();
+            mainWindowController.setMain(main);
+
+            Scene scene = new Scene(pane);
+            Main.primaryStage.setScene(scene);
+            Main.primaryStage.show();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -294,5 +365,40 @@ public class MainWindowController extends Verwalter
     @FXML
     public void notfallkontanlegen()
     {
+    }
+    
+    @FXML
+    public void analysespeichern()
+    {
+        if(laborantenkuerzel.getText() == null || laborantenkuerzel.getText().trim().isEmpty() || 
+        analysedatum.getText() == null || analysedatum.getText().trim().isEmpty() || 
+        laborname.getText() == null || laborname.getText().trim().isEmpty() || analyseobjekt.getText() == null || 
+        analyseobjekt.getText().trim().isEmpty() || analysemethode.getText() == null || 
+        analysemethode.getText().trim().isEmpty() || analyseergebnis.getText() == null || 
+        analyseergebnis.getText().trim().isEmpty())
+        {
+            warningDaten(); 
+        }
+        else
+        {
+            String nr = p.getKrankenkassenNr();
+            verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());;
+            
+            try{
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
+                VBox pane = loader.load();
+
+                MainWindowController mainWindowController = loader.getController();
+                mainWindowController.setMain(main);
+
+                Scene scene = new Scene(pane);
+                Main.primaryStage.setScene(scene);
+                Main.primaryStage.show();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 }
