@@ -42,32 +42,47 @@
                      <children>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Name:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Name:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="name" />
                               <HBox />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Alter:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Alter:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="alter" />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Adresse:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Adresse:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="adresse" />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Geschlecht:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Geschlecht:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="geschlecht" />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Krankenkassennummer:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Krankenkassennr.:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="krankenkassennummer1" />
                            </children>
                         </HBox>
@@ -77,31 +92,46 @@
                      <children>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Telefonnummer:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Telefonnummer:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="telefonnummer" prefHeight="26.0" prefWidth="160.0" />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Zuständiger Arzt:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Zuständiger Arzt:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="arzt" prefHeight="26.0" prefWidth="160.0" />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="130.0" text="Blutgruppe:" />
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Blutgruppe:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextField fx:id="blutgruppe" prefHeight="26.0" prefWidth="160.0" />
                            </children>
                         </HBox>
                         <HBox spacing="30.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="135.0" text="Allergien:" />
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Allergien:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextArea fx:id="allergien" prefHeight="113.0" prefWidth="160.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="114.0" prefWidth="158.0" spacing="30.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="134.0" text="Vorerkrankungen:" />
+                              <Label prefHeight="18.0" prefWidth="134.0" text="Vorerkrankungen:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <TextArea fx:id="vorerkrankungen" prefHeight="113.0" prefWidth="160.0" />
                            </children>
                         </HBox>

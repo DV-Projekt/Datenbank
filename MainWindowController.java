@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.17
+ * @version 0.0.18
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -193,7 +193,10 @@ public class MainWindowController extends Verwalter
         else
         {
 
-            p = verwalter.Aktesuchen(eingabe);
+            p = new Patientenakte(verwalter.Aktesuchen(eingabe).getName(), verwalter.Aktesuchen(eingabe).getAlter(), verwalter.Aktesuchen(eingabe).getAdresse(), 
+            verwalter.Aktesuchen(eingabe).getGeschlecht(), verwalter.Aktesuchen(eingabe).getKrankenkassenNr(), verwalter.Aktesuchen(eingabe).getBlutgruppe(), 
+            verwalter.Aktesuchen(eingabe).getZuständigerArzt(), verwalter.Aktesuchen(eingabe).getTelefonnummer(), verwalter.Aktesuchen(eingabe).getVorerkrankungen(), 
+            verwalter.Aktesuchen(eingabe).getAllergien());
 
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
@@ -265,7 +268,7 @@ public class MainWindowController extends Verwalter
 
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
-                VBox pane = loader.load();
+                AnchorPane pane = loader.load();
 
                 MainWindowController mainWindowController = loader.getController();
                 mainWindowController.setMain(main);
@@ -474,21 +477,10 @@ public class MainWindowController extends Verwalter
     }
 
     @FXML
-    public void notfallanlegen()
-    {
-        verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.getText(), notfallbeziehung.getText(), 
-            notfalltelefonnummer.getText(), notfallblutgruppe.getText());
-
-        patientenakteladen();
-
-    }
-    
-    @FXML
     public void patientenakteladen()
     {
         try{
-            Patientenakte ps = new Patientenakte();
-            ps = verwalter.Aktesuchen(p.getKrankenkassenNr());
+            
 
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
             VBox pane = loader.load();
@@ -500,25 +492,64 @@ public class MainWindowController extends Verwalter
             main.primaryStage.setScene(scene);
             main.primaryStage.show();
 
-            mainWindowController.ausgabename.setText(ps.getName());
-            mainWindowController.ausgabealter.setText(ps.getAlter());
-            mainWindowController.ausgabeadresse.setText(ps.getAdresse());
-            mainWindowController.ausgabegeschlecht.setText(ps.getGeschlecht());
-            mainWindowController.auskrankenkassennummer1.setText(ps.getKrankenkassenNr());
-            mainWindowController.ausgabeblutgruppe.setText(ps.getBlutgruppe());
-            mainWindowController.ausgabearzt.setText(ps.getZuständigerArzt());
-            mainWindowController.ausgabetelefonnummer.setText(ps.getTelefonnummer());
-            mainWindowController.ausgabevorerkrankungen.setText(ps.getVorerkrankungen());
-            mainWindowController.ausgabeallergien.setText(ps.getAllergien());
+            mainWindowController.ausgabename.setText(p.getName());
+            mainWindowController.ausgabealter.setText(p.getAlter());
+            mainWindowController.ausgabeadresse.setText(p.getAdresse());
+            mainWindowController.ausgabegeschlecht.setText(p.getGeschlecht());
+            mainWindowController.auskrankenkassennummer1.setText(p.getKrankenkassenNr());
+            mainWindowController.ausgabeblutgruppe.setText(p.getBlutgruppe());
+            mainWindowController.ausgabearzt.setText(p.getZuständigerArzt());
+            mainWindowController.ausgabetelefonnummer.setText(p.getTelefonnummer());
+            mainWindowController.ausgabevorerkrankungen.setText(p.getVorerkrankungen());
+            mainWindowController.ausgabeallergien.setText(p.getAllergien());
         }
         catch(IOException e)
         {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void backtopatientenakte()
     {
         patientenakteladen();
+    }
+
+    @FXML
+    public void backtohome()
+    {
+        try{
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
+            AnchorPane pane = loader.load();
+
+            MainWindowController mainWindowController = loader.getController();
+            setMain(main);
+
+            Scene scene = new Scene(pane);
+            main.primaryStage.setScene(scene);
+            main.primaryStage.show();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void notfallspeichern()
+    {
+        if(notfallname.getText() == null || notfallname.getText().trim().isEmpty() || notfalladresse.getText() == null || notfalladresse.getText().trim().isEmpty() || 
+        notfallbeziehung.getText() == null || notfallbeziehung.getText().trim().isEmpty() || notfalltelefonnummer.getText() == null || notfalltelefonnummer.getText().trim().isEmpty() ||
+        notfallblutgruppe.getText() == null || notfallblutgruppe.getText().trim().isEmpty())
+        {
+            warningDaten(); 
+        }
+        else
+        {
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.getText(), notfallbeziehung.getText(), 
+                notfalltelefonnummer.getText(), notfallblutgruppe.getText());
+
+            patientenakteladen();
+        }
     }
 }
