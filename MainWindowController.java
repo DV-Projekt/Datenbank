@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.18
+ * @version 0.0.19
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -155,7 +155,7 @@ public class MainWindowController extends Verwalter
 
     public Main main;
 
-    private Patientenakte p = new Patientenakte();
+    //private Patientenakte p = new Patientenakte();
 
     public void setMain(Main main)
     {
@@ -429,11 +429,10 @@ public class MainWindowController extends Verwalter
     @FXML
     public void patientbearbeiten()
     {
-        ausgabename.setEditable(true);
+        //ausgabename.setEditable(true);
         ausgabegeschlecht.setEditable(true);
         ausgabeadresse.setEditable(true);
-        ausgabealter.setEditable(true);
-        auskrankenkassennummer1.setEditable(true);
+        //ausgabealter.setEditable(true); 
         ausgabeblutgruppe.setEditable(true);
         ausgabearzt.setEditable(true);
         ausgabevorerkrankungen.setEditable(true);
@@ -457,16 +456,17 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabegeschlecht.getText(),
-                ausgabeadresse.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), ausgabearzt.getText(), ausgabetelefonnummer.getText(),
+            verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabeadresse.getText(),
+                ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), ausgabearzt.getText(), ausgabetelefonnummer.getText(),
                 ausgabevorerkrankungen.getText(), ausgabeallergien.getText());
-
+                
+            p = verwalter.Aktesuchen(auskrankenkassennummer1.getText());    
             speichernbutton.setDisable(true);
 
-            ausgabename.setEditable(false);
+            //ausgabename.setEditable(false);
             ausgabegeschlecht.setEditable(false);
             ausgabeadresse.setEditable(false);
-            ausgabealter.setEditable(false);
+            //ausgabealter.setEditable(false);
             auskrankenkassennummer1.setEditable(false);
             ausgabeblutgruppe.setEditable(false);
             ausgabearzt.setEditable(false);

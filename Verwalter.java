@@ -21,6 +21,7 @@ public class Verwalter
 {
     public ArrayList <Patientenakte> Akten;
     public static Verwalter verwalter;
+    public static Patientenakte p;
     /**
      * Konstruktor der eine Leere ArrayList der Patientenakten erstellt
      */
@@ -32,7 +33,7 @@ public class Verwalter
     public static void erstelleVerwalter()
     {
         verwalter = new Verwalter();
-        Patientenakte p = new Patientenakte();
+        p = new Patientenakte();
         verwalter.Akten.add(p);
     }
     
