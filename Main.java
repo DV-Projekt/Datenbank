@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse GUI.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.9
+ * @version 0.0.11
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.fxml.*;
 import java.io.*;
-//import java.awt.Frame;
+
 public class Main extends Application {
     
     public static Stage primaryStage;
@@ -31,10 +31,12 @@ public class Main extends Application {
     public void mainWindow()
     {   
         Verwalter.erstelleVerwalter();
+        
+        
         try{
  
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
-            VBox pane = loader.load();
+            AnchorPane pane = loader.load();
 
             primaryStage.setMinHeight(500.00);
             primaryStage.setMinWidth(600.00);
