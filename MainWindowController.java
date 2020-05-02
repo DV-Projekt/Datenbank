@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.19
+ * @version 0.0.20
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -166,6 +166,7 @@ public class MainWindowController extends Verwalter
     public void suche()
     {   
         String eingabe = eingabefeldsuche.getText();
+        
         if(eingabefeldsuche.getText() == null || eingabefeldsuche.getText().trim().isEmpty())
         {
             warningDaten();
@@ -179,6 +180,7 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Akte anlegen");
 
             alert.showAndWait();
+            eingabefeldsuche.clear();
         }
 
         else if(verwalter.Aktesuchen(eingabe) == null)
@@ -189,14 +191,15 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Akte anlegen");
 
             alert.showAndWait();
+            eingabefeldsuche.clear();
         }
         else
         {
 
             p = new Patientenakte(verwalter.Aktesuchen(eingabe).getName(), verwalter.Aktesuchen(eingabe).getAlter(), verwalter.Aktesuchen(eingabe).getAdresse(), 
-            verwalter.Aktesuchen(eingabe).getGeschlecht(), verwalter.Aktesuchen(eingabe).getKrankenkassenNr(), verwalter.Aktesuchen(eingabe).getBlutgruppe(), 
-            verwalter.Aktesuchen(eingabe).getZuständigerArzt(), verwalter.Aktesuchen(eingabe).getTelefonnummer(), verwalter.Aktesuchen(eingabe).getVorerkrankungen(), 
-            verwalter.Aktesuchen(eingabe).getAllergien());
+                verwalter.Aktesuchen(eingabe).getGeschlecht(), verwalter.Aktesuchen(eingabe).getKrankenkassenNr(), verwalter.Aktesuchen(eingabe).getBlutgruppe(), 
+                verwalter.Aktesuchen(eingabe).getZuständigerArzt(), verwalter.Aktesuchen(eingabe).getTelefonnummer(), verwalter.Aktesuchen(eingabe).getVorerkrankungen(), 
+                verwalter.Aktesuchen(eingabe).getAllergien());
 
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
@@ -301,6 +304,7 @@ public class MainWindowController extends Verwalter
         if(eingabefeldsuche.getText() == null || eingabefeldsuche.getText().trim().isEmpty())
         {
             warningDaten();
+            eingabefeldsuche.clear();
         }
 
         else if(verwalter.Akten.size()==0)
@@ -311,6 +315,7 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Akte anlegen");
 
             alert.showAndWait();
+            eingabefeldsuche.clear();
         }
 
         else if(verwalter.Aktesuchen(eingabe) == null)
@@ -321,6 +326,7 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Akte anlegen");
 
             alert.showAndWait();
+            eingabefeldsuche.clear();
         }
         else
         {
@@ -331,10 +337,11 @@ public class MainWindowController extends Verwalter
 
             Optional<ButtonType> result = alert.showAndWait();
 
-            if (result.isPresent() && result.get() == ButtonType.YES) 
+            if (result.isPresent() && result.get() == ButtonType.OK) 
             {
                 verwalter.Aktelöschen(eingabe);
             }
+            eingabefeldsuche.clear();
         }
     }
 
@@ -380,9 +387,16 @@ public class MainWindowController extends Verwalter
         filechooser.setInitialDirectory(new File(System.getProperty("user.home")));
         filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel (*.xlsx)", "*.xlsx"));
         File file = filechooser.showSaveDialog(Main.primaryStage);
-        String change = new String(file.getPath());
 
-        p.Exportieren2(change.replaceAll(file.getName(), p.getKrankenkassenNr() + file.getName()));
+        if (file == null)
+        {
+            
+        }
+        else
+        {
+            String change = new String(file.getPath());
+            p.Exportieren2(change.replaceAll(file.getName(), p.getKrankenkassenNr() + file.getName()));
+        }
     }
 
     @FXML
@@ -459,7 +473,7 @@ public class MainWindowController extends Verwalter
             verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabeadresse.getText(),
                 ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), ausgabearzt.getText(), ausgabetelefonnummer.getText(),
                 ausgabevorerkrankungen.getText(), ausgabeallergien.getText());
-                
+
             p = verwalter.Aktesuchen(auskrankenkassennummer1.getText());    
             speichernbutton.setDisable(true);
 
@@ -480,7 +494,6 @@ public class MainWindowController extends Verwalter
     public void patientenakteladen()
     {
         try{
-            
 
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
             VBox pane = loader.load();
@@ -552,4 +565,5 @@ public class MainWindowController extends Verwalter
             patientenakteladen();
         }
     }
+    
 }

@@ -1,4 +1,3 @@
-
 /**
  * Verwalter der Patientenakten. Er enthällt alle Patientenakten. 
  * Somit kann er auf diese Patientenakten zugreifen, sie aufrufen und löschen.

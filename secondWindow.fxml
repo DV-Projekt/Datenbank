@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -17,12 +18,12 @@
   <children>
     <MenuBar>
       <menus>
-        <Menu mnemonicParsing="false" text="Datei">
+        <Menu mnemonicParsing="false">
                <items>
                   <MenuItem mnemonicParsing="false" text="Akte suchen" />
                </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false">
           <items>
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
           </items>
@@ -148,6 +149,7 @@
                   </Button>
                </children>
             </HBox>
+            <ToggleButton layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#backtohome" prefHeight="27.0" prefWidth="28.0" text="&lt;" />
       </children>
     </AnchorPane>
   </children>
