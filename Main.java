@@ -30,15 +30,14 @@ public class Main extends Application {
     public void mainWindow()
     {   
         Verwalter.erstelleVerwalter();
-        
-        
+
         try{
  
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
             AnchorPane pane = loader.load();
 
-            primaryStage.setMinHeight(500.00);
-            primaryStage.setMinWidth(600.00);
+            primaryStage.setMinHeight(480.00);
+            primaryStage.setMinWidth(640.00);
 
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(this);
@@ -54,12 +53,6 @@ public class Main extends Application {
         }
     }
     
-    public Stage getPrimaryStage()
-    {
-        return primaryStage;
-    }
-    
-
     public static void main(String[] args)
     {
         launch(args);

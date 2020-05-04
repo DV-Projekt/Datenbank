@@ -170,7 +170,7 @@
                           </items>
                         </MenuButton>
                         <Button mnemonicParsing="false" onAction="#patientbearbeiten" text="Bearbeiten" />
-                        <Button fx:id="speichernbutton" disable="true" mnemonicParsing="false" onAction="#speichernb" text="Speichern" />
+                        <Button fx:id="speichernbutton" disable="true" mnemonicParsing="false" onAction="#speichernpatientenaktebearbeiten" text="Speichern" />
                      </children>
                   </HBox>
                </children>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="800.0" minWidth="1000.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <VBox alignment="TOP_CENTER" fillWidth="false" layoutY="88.0" prefHeight="574.0" prefWidth="1000.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="TOP_CENTER">
+                     <children>
+                        <Label alignment="TOP_CENTER" prefHeight="27.0" prefWidth="157.0" text="Analysebericht" underline="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="BerichtNR" underline="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="328.0" spacing="20.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="135.0" text="Laborantenkürzel:" textOverrun="WORD_ELLIPSIS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="laborantenkuerzelanzeige" prefHeight="25.0" prefWidth="160.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="332.0" spacing="20.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="135.0" text="Analysedatum:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="analysedatumanzeige" prefHeight="25.0" prefWidth="160.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="332.0" spacing="20.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="20.0" prefWidth="135.0" text="Laborname:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="labornameanzeige" prefHeight="25.0" prefWidth="160.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="332.0" spacing="20.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="20.0" prefWidth="135.0" text="Analyseobjekt:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="analyseobjektanzeige" prefHeight="37.0" prefWidth="158.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="52.0" prefWidth="332.0" spacing="20.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="135.0" text="Analysemethode:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="analysemethodeanzeige" prefHeight="52.0" prefWidth="160.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="53.0" prefWidth="332.0" spacing="20.0">
+                     <children>
+                        <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="135.0" text="Analyseergebnis:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="analyseergebnisanzeige" prefHeight="18.0" prefWidth="160.0" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Exportieren" />
+                        <Button mnemonicParsing="false" onAction="#analysebearbeiten" text="Bearbeiten" />
+                        <Button fx:id="speichernbuttonanalysebericht" disable="true" mnemonicParsing="false" onAction="#analysebearbeitenspeichern" prefHeight="25.0" prefWidth="79.0" text="Speichern" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ToggleButton layoutX="43.0" layoutY="32.0" mnemonicParsing="false" onAction="#backtopatientenakte" prefHeight="27.0" prefWidth="32.0" text="&lt;" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

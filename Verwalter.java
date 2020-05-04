@@ -211,7 +211,7 @@ public class Verwalter
         Patientenakte ob = Aktesuchen (KrankenkassenNr);
         if (ob == null)
         {
-            throw new IllegalArgumentException("Es wurde keine Akte gefunden die diese Nummer enthällt!");
+            throw new IllegalArgumentException("Es wurde keine Akte gefunden die diese Nummer enthält!");
         }
         else 
         {

@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.20
+ * @version 0.0.21
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -152,7 +152,34 @@ public class MainWindowController extends Verwalter
 
     @FXML
     private TextField notfallblutgruppe;
-
+    
+    @FXML
+    private TextField analyseberichtnummer;
+    
+    @FXML
+    private Label BerichtNR;
+    
+    @FXML
+    private TextField laborantenkuerzelanzeige;
+    
+    @FXML
+    private TextField analysedatumanzeige;
+    
+    @FXML
+    private TextField labornameanzeige;
+    
+    @FXML
+    private TextArea analyseobjektanzeige;
+    
+    @FXML
+    private TextArea analysemethodeanzeige;
+    
+    @FXML
+    private TextArea analyseergebnisanzeige;
+    
+    @FXML
+    private Button speichernbuttonanalysebericht;
+    
     public Main main;
 
     //private Patientenakte p = new Patientenakte();
@@ -457,7 +484,7 @@ public class MainWindowController extends Verwalter
     }
 
     @FXML
-    public void speichernb()
+    public void speichernpatientenaktebearbeiten()
     {
         if(ausgabename.getText() == null || ausgabename.getText().trim().isEmpty() || ausgabealter.getText() == null || ausgabealter.getText().trim().isEmpty() || 
         ausgabegeschlecht.getText() == null || ausgabegeschlecht.getText().trim().isEmpty() || ausgabeadresse.getText() == null || ausgabeadresse.getText().trim().isEmpty() ||
@@ -566,4 +593,103 @@ public class MainWindowController extends Verwalter
         }
     }
     
+    @FXML
+    public void analyseberichtsuche()
+    {   
+        String eingabe = analyseberichtnummer.getText();
+        
+        if(analyseberichtnummer.getText() == null || analyseberichtnummer.getText().trim().isEmpty())
+        {
+            warningDaten();
+        }
+
+        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht().size()==0)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Kein Analysebericht vorhanden!");
+            alert.setContentText("Bitte Analysebericht anlegen");
+
+            alert.showAndWait();
+            eingabefeldsuche.clear();
+        }
+
+        else if(verwalter.Aktesuchen(eingabe) == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Eingegebene Nummer existiert im System nicht!");
+            alert.setContentText("Bitte Analysebericht anlegen");
+
+            alert.showAndWait();
+            eingabefeldsuche.clear();
+        }
+        else
+        {
+            try{
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("analyseberichtanzeigen.fxml"));
+                VBox pane = loader.load();
+
+                MainWindowController mainWindowController = loader.getController();
+                setMain(main);
+
+                Scene scene = new Scene(pane);
+                main.primaryStage.setScene(scene);
+                main.primaryStage.show();
+
+                mainWindowController.BerichtNR.setText(p.Analyseberichtsuchen(eingabe).getBerichtNR());
+                mainWindowController.laborantenkuerzelanzeige.setText(p.Analyseberichtsuchen(eingabe).getLaborantenkuerzel());
+                mainWindowController.labornameanzeige.setText(p.Analyseberichtsuchen(eingabe).getLaborname());
+                mainWindowController.analyseobjektanzeige.setText(p.Analyseberichtsuchen(eingabe).getAnalyseObjekt());
+                mainWindowController.analysemethodeanzeige.setText(p.Analyseberichtsuchen(eingabe).getAnalysemethode());
+                mainWindowController.analyseergebnisanzeige.setText(p.Analyseberichtsuchen(eingabe).getAnalyseergebnis());
+                mainWindowController.analysedatum.setText(p.Analyseberichtsuchen(eingabe).getAnalysedatum());
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    
+    @FXML
+    public void analysebearbeiten()
+    {
+        laborantenkuerzelanzeige.setEditable(true);
+        analysedatumanzeige.setEditable(true); 
+        labornameanzeige.setEditable(true);
+        analyseobjektanzeige.setEditable(true);
+        analysemethode.setEditable(true);
+        analyseergebnis.setEditable(true);
+
+        speichernbuttonanalysebericht.setDisable(false);
+    }
+    
+    @FXML
+    public void analysebearbeitenspeichern()
+    {
+        if(laborantenkuerzelanzeige.getText() == null || laborantenkuerzelanzeige.getText().trim().isEmpty() || analysedatumanzeige.getText() == null || analysedatumanzeige.getText().trim().isEmpty() || 
+        labornameanzeige.getText() == null || labornameanzeige.getText().trim().isEmpty() || analyseobjektanzeige.getText() == null || analyseobjektanzeige.getText().trim().isEmpty() ||
+        analysemethodeanzeige.getText() == null || analysemethodeanzeige.getText().trim().isEmpty() || analyseergebnis.getText() == null || analyseergebnis.getText().trim().isEmpty())
+        {
+            warningDaten(); 
+        }
+        else
+        {
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen(BerichtNR.getText()).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
+                analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
+
+            p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
+            
+            speichernbuttonanalysebericht.setDisable(true);
+
+            laborantenkuerzelanzeige.setEditable(false);
+            analysedatumanzeige.setEditable(false);
+            labornameanzeige.setEditable(false);
+            analyseobjektanzeige.setEditable(false);
+            analysemethodeanzeige.setEditable(false);
+            analyseergebnis.setEditable(false);
+        }
+    }
 }
