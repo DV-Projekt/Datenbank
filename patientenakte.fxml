@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
+<VBox alignment="TOP_CENTER" prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
   <children>
     <MenuBar>
       <menus>
@@ -171,6 +171,7 @@
                         </MenuButton>
                         <Button mnemonicParsing="false" onAction="#patientbearbeiten" text="Bearbeiten" />
                         <Button fx:id="speichernbutton" disable="true" mnemonicParsing="false" onAction="#speichernpatientenaktebearbeiten" text="Speichern" />
+                        <Button mnemonicParsing="false" onAction="#subWindow" text="Suche" />
                      </children>
                   </HBox>
                </children>
