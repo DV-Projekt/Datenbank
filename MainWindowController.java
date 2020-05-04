@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.21
+ * @version 0.0.22
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -689,6 +689,9 @@ public class MainWindowController extends Verwalter
         }
         else
         {
+            gef.Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
+                    analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
+                    
             verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen(BerichtNR.getText()).get(0).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
                     analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
             
