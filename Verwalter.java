@@ -1,4 +1,3 @@
-
 /**
  * Verwalter der Patientenakten. Er enthällt alle Patientenakten. 
  * Somit kann er auf diese Patientenakten zugreifen, sie aufrufen und löschen.
@@ -20,7 +19,8 @@ import java.nio.file.*;
 public class Verwalter
 {
     public ArrayList <Patientenakte> Akten;
-
+    public static Verwalter verwalter;
+    public static Patientenakte p;
     /**
      * Konstruktor der eine Leere ArrayList der Patientenakten erstellt
      */
@@ -28,7 +28,14 @@ public class Verwalter
     {
         Akten = new ArrayList <Patientenakte> ();
     }
-
+    
+    public static void erstelleVerwalter()
+    {
+        verwalter = new Verwalter();
+        p = new Patientenakte();
+        verwalter.Akten.add(p);
+    }
+    
     /**
      * Konstruktor der die ArrayList der Patientenakten erstellt 
      * und zusätzlich eine Patientenakte erstellt und hinzufügt
@@ -204,7 +211,7 @@ public class Verwalter
         Patientenakte ob = Aktesuchen (KrankenkassenNr);
         if (ob == null)
         {
-            throw new IllegalArgumentException("Es wurde keine Akte gefunden die diese Nummer enthällt!");
+            throw new IllegalArgumentException("Es wurde keine Akte gefunden die diese Nummer enthält!");
         }
         else 
         {

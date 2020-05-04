@@ -1,7 +1,7 @@
 /**
  * In dieser Klasse wird eine Patientenakte neu initialisiert. 
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
- * Außerdem erstellt sie für jeden neuen Patienten eine Exelatei die alle Attributwerte enthält.
+ * Außerdem erstellt sie für jeden neuen Patienten eine Exeldatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
  * @version (0.0.25)
  */
@@ -43,7 +43,7 @@ public class Patientenakte
         Alter= "0";
         Adresse = "ad";
         Geschlecht = "gesch";
-        KrankenkassenNr = "0";
+        KrankenkassenNr = "123";
         Blutgruppe = "blutgr";
         ZuständigerArzt = "arzt";
         Telefonnummer = "0";
@@ -177,7 +177,7 @@ public class Patientenakte
      * 
      * Ändert das Attribut Alter auf den eingegebenen String, falls dieser eine Nummer ist.
      * @param A (String) Alter des Patienten
-     * @retrun a (String)
+     * @return a (String)
      */
     public String SetAlter(String A)
     {
@@ -370,11 +370,11 @@ public class Patientenakte
      * @param Analysemethode (String) Methode der Analyse aus der Klasse Analyseberichte
      * Rückgabe: keine
      */
-    public void Analyseberichtanlegen(String Laborantenkuerzel, String 
+    public void Analyseberichtanlegen(String Laborantenkuerzel, String Analysedatum, String 
     Laborname, String AnalyseObjekt, String Analysemethode, 
     String Analyseergebnis)
     {
-        Analysebericht Bericht=new Analysebericht(Laborantenkuerzel, Laborname,
+        Analysebericht Bericht=new Analysebericht(Laborantenkuerzel, Analysedatum, Laborname,
                 AnalyseObjekt, Analysemethode, Analyseergebnis);
         Analyseberichte.add(Bericht);
     }
@@ -388,7 +388,6 @@ public class Patientenakte
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
        boolean gefunden=false;
-       
        for(int i = 0; i< Analyseberichte.size(); i++)
        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
@@ -451,7 +450,7 @@ public class Patientenakte
             }
         }
         String filename = "C:\\ChemischeAnalysedatenbank\\Patientenakten"+ System.getProperty("file.separator")
-            + KrankenkassenNr + Dateiname + ".xlsx";
+            + KrankenkassenNr + Dateiname ;
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Patientenakte "+KrankenkassenNr);
@@ -477,6 +476,46 @@ public class Patientenakte
         try 
         {
             FileOutputStream outputStream = new FileOutputStream(filename);
+            workbook.write(outputStream);
+            workbook.close();
+        } 
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void Exportieren2(String Dateiname)
+    {
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Patientenakte "+KrankenkassenNr);
+
+        String[][] werte = new String [][]{{"Name", "Alter", "Adresse","Geschlecht", "KrankenkassenNr", 
+                    "Blutgruppe", "ZuständigerArzt", "Telefonnummer", "Vorerkrankungen", "Allergien"},
+                {Name, Alter, Adresse, Geschlecht, KrankenkassenNr, Blutgruppe, ZuständigerArzt, Telefonnummer, 
+                    Vorerkrankungen, Allergien}};
+
+        int rowNum =0;
+
+        for (int i=0; i<2; i++) 
+        {
+            Row row = sheet.createRow(rowNum++);
+            int colNum = 0;
+            for (int j=0; j<7; j++) 
+            {
+                Cell cell = row.createCell(colNum++);
+                cell.setCellValue(werte[i][j]);
+            }
+        }
+
+        try 
+        {
+            FileOutputStream outputStream = new FileOutputStream(Dateiname);
             workbook.write(outputStream);
             workbook.close();
         } 
@@ -596,7 +635,7 @@ public class Patientenakte
      * 
      * @param Name (String) Name des gesuchten Notfallkontaktes
      * Rückgabe: keine
-    */
+     */
     public void Notfallkontaktlöschen(String Name)
     {
         Notfallkontakte.remove(Notfallkontaktaufrufen(Name));

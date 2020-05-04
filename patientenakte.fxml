@@ -1,94 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1000.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
+<VBox prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowController">
   <children>
     <MenuBar>
       <menus>
-        <Menu mnemonicParsing="false" text="Datei">
+        <Menu mnemonicParsing="false">
                <items>
                   <MenuItem mnemonicParsing="false" text="Akte suchen" />
                </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false">
           <items>
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" minHeight="700.0" minWidth="600.0" prefHeight="1000.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="800.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
       <children>
-            <VBox layoutX="6.0" spacing="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+            <HBox alignment="TOP_CENTER" layoutX="89.0" layoutY="121.0" prefHeight="517.0" prefWidth="857.0" spacing="100.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="54.0">
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="100.0" />
-                  <HBox spacing="30.0">
+                  <VBox prefHeight="619.0" prefWidth="348.0" spacing="60.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Name:" />
-                        <TextField fx:id="ausgabename" editable="false" />
-                        <HBox />
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Vorerkrankungen:" />
-                        <TextArea fx:id="ausgabevorerkrankungen" editable="false" prefHeight="113.0" prefWidth="200.0" />
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Name:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabename" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="362.0" spacing="30.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Geschlecht:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabegeschlecht" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Adresse:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabeadresse" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Alter:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabealter" editable="false" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Krankenkassennr.:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="auskrankenkassennummer1" editable="false" prefHeight="25.0" prefWidth="161.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="619.0" prefWidth="335.0" spacing="60.0">
+                     <children>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="130.0" text="Blutgruppe:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabeblutgruppe" editable="false" prefHeight="25.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Zuständiger Arzt:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabearzt" editable="false" prefHeight="25.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Vorerkrankungen:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="ausgabevorerkrankungen" editable="false" prefHeight="90.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="30.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Telefonnummer:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ausgabetelefonnummer" editable="false" prefHeight="25.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="91.0" prefWidth="495.0" spacing="30.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Allergien:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="ausgabeallergien" editable="false" prefHeight="90.0" prefWidth="160.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="322.0" layoutY="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="316.0" text="Patientenakte" underline="true">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" layoutY="626.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" spacing="30.0">
+                     <children>
+                        <MenuButton contentDisplay="CENTER" mnemonicParsing="false" text="Exportieren">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#patientenakteexportieren" text="Patientenakte" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                        </MenuButton>
+                        <MenuButton alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Erstellen">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#notfallkontakt" text="Notfallkontakt" />
+                            <MenuItem mnemonicParsing="false" onAction="#analysebanlegen" text="Analysebericht" />
+                          </items>
+                        </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#patientbearbeiten" text="Bearbeiten" />
+                        <Button fx:id="speichernbutton" disable="true" mnemonicParsing="false" onAction="#speichernpatientenaktebearbeiten" text="Speichern" />
                      </children>
                   </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Alter:" />
-                        <TextField fx:id="ausgabealter" editable="false" />
-                        <Label prefHeight="20.0" prefWidth="160.0" text="Allergien:" />
-                        <TextArea fx:id="ausgabeallergien" editable="false" prefHeight="113.0" prefWidth="200.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Adresse:" />
-                        <TextField fx:id="ausgabeadresse" editable="false" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Geschlecht:" />
-                        <TextField fx:id="ausgabegeschlecht" editable="false" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Krankenkassennummer:" />
-                        <TextField fx:id="auskrankenkassennummer1" editable="false" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Blutgruppe:" />
-                        <TextField fx:id="ausgabeblutgruppe" editable="false" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Zuständiger Arzt:" />
-                        <TextField fx:id="arzt" editable="false" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0">
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Telefonnummer:" />
-                        <TextField fx:id="telefonnummer" editable="false" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0" />
-                  <HBox alignment="TOP_CENTER" prefHeight="26.0" prefWidth="713.0" spacing="30.0" />
                </children>
             </VBox>
-            <VBox AnchorPane.bottomAnchor="948.8000000000001" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="400.0" />
+            <ToggleButton layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#backtohome" prefHeight="27.0" prefWidth="30.0" text="&lt;" />
       </children>
     </AnchorPane>
   </children>
