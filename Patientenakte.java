@@ -425,9 +425,9 @@ public class Patientenakte
             {
                 throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
             }
-            return gefber;
+            
         }
-        return null;
+        return gefber;
     }
 
     /** Die Methode Exportieren wird verwendet um die Werte der Attribute in eine Exeldatei zu exportieren.

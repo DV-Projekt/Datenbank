@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.22
+ * @version 0.0.23
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -473,8 +473,8 @@ public class MainWindowController extends Verwalter
         else
         {
             String nr = p.getKrankenkassenNr();
-            verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());;
-
+            verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
+            p.Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
             patientenakteladen();
         }
     }
@@ -689,10 +689,12 @@ public class MainWindowController extends Verwalter
         }
         else
         {
+            gef = new Analysebericht();
             gef.Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
                     analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
                     
-            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen(BerichtNR.getText()).get(0).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
+            
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht().get(0).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
                     analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
             
             p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
@@ -758,18 +760,18 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Analysebericht anlegen");
 
             alert.showAndWait();
-            eingabefeldsuche.clear();
+            
         }
 
-        // else if(verwalter.Aktesuchen(eingabe) == null)
-        // {
-        // Alert alert = new Alert(Alert.AlertType.WARNING);
-        // alert.setTitle("Achtung");
-        // alert.setHeaderText("Eingegebene Nummer existiert im System nicht!");
-        // alert.setContentText("Bitte Analysebericht anlegen");
+        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht() == null)
+        {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Achtung");
+        alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gewunfen");
+        alert.setContentText("Bitte erneut suchen");
 
-        // alert.showAndWait();
-        // }
+        alert.showAndWait();
+        }
         else
         {
             listanalyseberichte.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -797,16 +799,13 @@ public class MainWindowController extends Verwalter
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("analyseberichtanzeigen.fxml"));
             VBox pane = loader.load();
 
-            substage.setMinHeight(500.00);
-            substage.setMinWidth(600.00);
-
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
             Scene scene = new Scene(pane);
 
             main.primaryStage.setScene(scene);
             main.primaryStage.show();
-            substage.close();
+          
 
             mainWindowController.BerichtNR.setText(gef.getBerichtNR());
             mainWindowController.laborantenkuerzelanzeige.setText(gef.getLaborantenkuerzel());
@@ -815,7 +814,7 @@ public class MainWindowController extends Verwalter
             mainWindowController.analysemethodeanzeige.setText(gef.getAnalysemethode());
             mainWindowController.analyseergebnisanzeige.setText(gef.getAnalyseergebnis());
             mainWindowController.analysedatum.setText(gef.getAnalysedatum());
-
+            substage.close();
         } 
         catch(IOException e){
             e.printStackTrace();
