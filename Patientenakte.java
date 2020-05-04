@@ -3,7 +3,7 @@
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
  * Außerdem erstellt sie für jeden neuen Patienten eine Exeldatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.25)
+ * @version (0.0.27)
  */
 import java.util.*;
 import java.io.File;
@@ -385,47 +385,47 @@ public class Patientenakte
      * @param gesucht (String) eingegebener String des gesuchten Attributes
      * @return Analysebericht (Analysebericht) Analysebericht(e) die den gesuchten String enthalten
      */
-    public Analysebericht Analyseberichtsuchen(String gesucht)
+    public ArrayList Analyseberichtsuchen(String gesucht)
     {
        boolean gefunden=false;
+       ArrayList<Analysebericht> gefber = new ArrayList<Analysebericht>();
        for(int i = 0; i< Analyseberichte.size(); i++)
        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
-                return Analyseberichte.get(i);
+                gefber.add(Analyseberichte.get(i));
             }
             else if(Analyseberichte.get(i).getLaborname().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
-                return Analyseberichte.get(i);
-
+                gefber.add(Analyseberichte.get(i));
             }
             else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
-                return Analyseberichte.get(i);
+                gefber.add(Analyseberichte.get(i));
             }
             else if(Analyseberichte.get(i).getAnalysemethode().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
-                return Analyseberichte.get(i);
+                gefber.add(Analyseberichte.get(i));
             }
             else if(Analyseberichte.get(i).getAnalyseergebnis().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
-                return Analyseberichte.get(i);
+                gefber.add(Analyseberichte.get(i));
             }
             else if(Analyseberichte.get(i).getAnalysedatum().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
-                return Analyseberichte.get(i);
+                gefber.add(Analyseberichte.get(i));
             }
             if(gefunden == false)
             {
                 throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
             }
-            return null;
+            return gefber;
         }
         return null;
     }
