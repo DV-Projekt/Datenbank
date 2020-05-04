@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="Notfallkontakt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="175.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="200.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beziehung" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="225.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnummer" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="250.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Blutgruppe" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="275.0" />
+      <TextField fx:id="Adresse" promptText="Adresse" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0" />
+      <TextField fx:id="Name" promptText="Name" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="175.0" />
+      <TextField fx:id="Beziehung" promptText="Beziehung" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="225.0" />
+      <TextField fx:id="Telefonnummer" promptText="Telefonnummer" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="250.0" />
+      <TextField fx:id="Blutgruppe" promptText="Blutgruppe" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="275.0" />
+      <HBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notfallkontakt" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

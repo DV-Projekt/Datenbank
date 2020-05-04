@@ -388,6 +388,7 @@ public class Patientenakte
     public Analysebericht Analyseberichtsuchen(String gesucht)
     {
        boolean gefunden=false;
+       
        for(int i = 0; i< Analyseberichte.size(); i++)
        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
