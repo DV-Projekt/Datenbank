@@ -401,6 +401,11 @@ public class Patientenakte
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
+            else if(Analyseberichte.get(i).getBerichtNR().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                gefber.add(Analyseberichte.get(i));
+            }
             else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
@@ -429,7 +434,55 @@ public class Patientenakte
         }
         return gefber;
     }
-
+    
+    public Analysebericht Analyseberichtsuchen2(String gesucht)
+    {
+       boolean gefunden=false;
+       for(int i = 0; i< Analyseberichte.size(); i++)
+       {
+            if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getLaborname().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getBerichtNR().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalysemethode().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalyseergebnis().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            else if(Analyseberichte.get(i).getAnalysedatum().equalsIgnoreCase(gesucht))
+            {    
+                gefunden=true;
+                return Analyseberichte.get(i);
+            }
+            if(gefunden == false)
+            {
+                throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
+            }
+            
+        }
+        return null;
+    }
     /** Die Methode Exportieren wird verwendet um die Werte der Attribute in eine Exeldatei zu exportieren.
      * 
      * @param Dateiname (String) Der Name den die Datei haben soll

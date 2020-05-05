@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.25
+ * @version 0.0.26
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -190,17 +190,14 @@ public class MainWindowController extends Verwalter
     @FXML
     private Button anzeigebutton;
 
-    @FXML Stage substage;
 
     public Main main;
-
-    private Analysebericht gef;
 
     public void setMain(Main main)
     {
         this.main = main;
     }
-    
+
     @FXML
     public void Notfallkontakterstellen()
     {
@@ -220,7 +217,7 @@ public class MainWindowController extends Verwalter
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void suche()
     {   
@@ -494,7 +491,7 @@ public class MainWindowController extends Verwalter
         {
             String nr = p.getKrankenkassenNr();
             verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
-            p.Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
+            p = verwalter.Aktesuchen(nr);
             patientenakteladen();
         }
     }
@@ -692,8 +689,8 @@ public class MainWindowController extends Verwalter
         analysedatumanzeige.setEditable(true); 
         labornameanzeige.setEditable(true);
         analyseobjektanzeige.setEditable(true);
-        analysemethode.setEditable(true);
-        analyseergebnis.setEditable(true);
+        analysemethodeanzeige.setEditable(true);
+        analyseergebnisanzeige.setEditable(true);
 
         speichernbuttonanalysebericht.setDisable(false);
     }
@@ -703,30 +700,26 @@ public class MainWindowController extends Verwalter
     {
         if(laborantenkuerzelanzeige.getText() == null || laborantenkuerzelanzeige.getText().trim().isEmpty() || analysedatumanzeige.getText() == null || analysedatumanzeige.getText().trim().isEmpty() || 
         labornameanzeige.getText() == null || labornameanzeige.getText().trim().isEmpty() || analyseobjektanzeige.getText() == null || analyseobjektanzeige.getText().trim().isEmpty() ||
-        analysemethodeanzeige.getText() == null || analysemethodeanzeige.getText().trim().isEmpty() || analyseergebnis.getText() == null || analyseergebnis.getText().trim().isEmpty())
+        analysemethodeanzeige.getText() == null || analysemethodeanzeige.getText().trim().isEmpty() || analyseergebnisanzeige.getText() == null || analyseergebnisanzeige.getText().trim().isEmpty())
         {
             warningDaten(); 
         }
         else
         {
-            gef = new Analysebericht();
-            gef.Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
-                    analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
-                    
-            
-            verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht().get(0).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
-                    analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnis.getText());
-            
-            p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
+            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen2(berichtnr).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
+                analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnisanzeige.getText());
 
-            speichernbuttonanalysebericht.setDisable(true);
+            p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
 
             laborantenkuerzelanzeige.setEditable(false);
             analysedatumanzeige.setEditable(false);
             labornameanzeige.setEditable(false);
             analyseobjektanzeige.setEditable(false);
             analysemethodeanzeige.setEditable(false);
-            analyseergebnis.setEditable(false);
+            analyseergebnisanzeige.setEditable(false);
+            
+            speichernbuttonanalysebericht.setDisable(true);
         }
     }
 
@@ -737,29 +730,23 @@ public class MainWindowController extends Verwalter
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("SubWindow.fxml"));
             VBox pane = loader.load();
 
-            substage = new Stage();
-            substage.setMinHeight(500.00);
-            substage.setMinWidth(600.00);
+            main.substage = new Stage();
+            main.substage.setMinHeight(500.00);
+            main.substage.setMinWidth(600.00);
 
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
             Scene scene = new Scene(pane);
 
-            substage.initModality(Modality.APPLICATION_MODAL);
+            main.substage.initModality(Modality.APPLICATION_MODAL);
 
-            substage.setScene(scene);
-            substage.showAndWait();
+            main.substage.setScene(scene);
+            main.substage.show();
 
         } 
         catch(IOException e){
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    public void clear()
-    {
-        analyseberichtsuchenfeld.clear();
     }
 
     @FXML
@@ -780,17 +767,17 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Analysebericht anlegen");
 
             alert.showAndWait();
-            
+
         }
 
         else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht() == null)
         {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Achtung");
-        alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gewunfen");
-        alert.setContentText("Bitte erneut suchen");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gewunfen");
+            alert.setContentText("Bitte erneut suchen");
 
-        alert.showAndWait();
+            alert.showAndWait();
         }
         else
         {
@@ -806,6 +793,7 @@ public class MainWindowController extends Verwalter
             }
 
             anzeigebutton.setDisable(false);
+
         }
     }
 
@@ -814,6 +802,7 @@ public class MainWindowController extends Verwalter
     {
         String berichtnummer = listanalyseberichte.getSelectionModel().getSelectedItem().toString();
         String berichtnummer2 = berichtnummer.replace("Analysebericht Nr. ", "");
+        Analysebericht gef = p.Analyseberichtsuchen2(berichtnummer2);
 
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("analyseberichtanzeigen.fxml"));
@@ -825,19 +814,53 @@ public class MainWindowController extends Verwalter
 
             main.primaryStage.setScene(scene);
             main.primaryStage.show();
-          
 
-            mainWindowController.BerichtNR.setText(gef.getBerichtNR());
+            mainWindowController.BerichtNR.setText("Analysebericht Nr. "+berichtnummer2);
             mainWindowController.laborantenkuerzelanzeige.setText(gef.getLaborantenkuerzel());
             mainWindowController.labornameanzeige.setText(gef.getLaborname());
             mainWindowController.analyseobjektanzeige.setText(gef.getAnalyseObjekt());
             mainWindowController.analysemethodeanzeige.setText(gef.getAnalysemethode());
             mainWindowController.analyseergebnisanzeige.setText(gef.getAnalyseergebnis());
-            mainWindowController.analysedatum.setText(gef.getAnalysedatum());
-            substage.close();
+            mainWindowController.analysedatumanzeige.setText(gef.getAnalysedatum());
+            main.substage.close();
         } 
         catch(IOException e){
             e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void analyseberichtexportieren()
+    {
+        Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
+        if (!Files.exists(f)) 
+        {
+            try 
+            {
+                Files.createDirectories(f);
+            } 
+            catch (IOException e) 
+            {
+                e.printStackTrace();    
+            }
+        }
+
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Speicherort auswählen");
+
+        filechooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel (*.xlsx)", "*.xlsx"));
+        File file = filechooser.showSaveDialog(Main.primaryStage);
+
+        if (file == null)
+        {
+
+        }
+        else
+        {
+            String change = new String(file.getPath());
+            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
+            p.Analyseberichtsuchen2(berichtnr).Berichtexportieren2(change.replaceAll(file.getName(), berichtnr + file.getName()));
         }
     }
 }

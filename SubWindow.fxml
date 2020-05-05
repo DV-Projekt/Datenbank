@@ -39,7 +39,7 @@
                <children>
                   <VBox>
                      <children>
-                        <TextField fx:id="analyseberichtsuchenfeld" onAction="#clear" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
+                        <TextField fx:id="analyseberichtsuchenfeld" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
                         <ListView fx:id="listanalyseberichte" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>

@@ -173,7 +173,43 @@ public class Analysebericht
             e.printStackTrace();
         }
     }
+    
+    public void Berichtexportieren2(String Dateipfad)
+    {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
 
+        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                {BerichtNR, Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
+
+        int rowNum =0;
+
+        for (int i=0; i<2; i++) 
+        {
+            Row row = sheet.createRow(rowNum++);
+            int colNum = 0;
+            for (int j=0; j<7; j++) 
+            {
+                Cell cell = row.createCell(colNum++);
+                cell.setCellValue(werte[i][j]);
+            }
+        }
+
+        try 
+        {
+            FileOutputStream outputStream = new FileOutputStream(Dateipfad);
+            workbook.write(outputStream);
+            workbook.close();
+        } 
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+    }
     /**
      * Get-Methode für Laborantenkuerzel
      * 
