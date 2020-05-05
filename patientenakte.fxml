@@ -158,12 +158,7 @@
                <children>
                   <HBox alignment="TOP_CENTER" spacing="30.0">
                      <children>
-                        <MenuButton contentDisplay="CENTER" mnemonicParsing="false" text="Exportieren">
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#patientenakteexportieren" text="Patientenakte" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#patientenakteexportieren" text="Exportieren" />
                         <MenuButton alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Erstellen">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#notfallkontakt" text="Notfallkontakt" />
@@ -172,7 +167,7 @@
                         </MenuButton>
                         <Button mnemonicParsing="false" onAction="#patientbearbeiten" text="Bearbeiten" />
                         <Button fx:id="speichernbutton" disable="true" mnemonicParsing="false" onAction="#speichernpatientenaktebearbeiten" text="Speichern" />
-                        <Button mnemonicParsing="false" onAction="#subWindow" text="Suche" />
+                        <Button mnemonicParsing="false" onAction="#subWindow" text="Analysebericht Suche" />
                      </children>
                   </HBox>
                </children>

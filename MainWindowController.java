@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.26
+ * @version 0.0.27
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -190,9 +190,7 @@ public class MainWindowController extends Verwalter
     @FXML
     private Button anzeigebutton;
 
-
     public Main main;
-
     public void setMain(Main main)
     {
         this.main = main;
@@ -718,7 +716,7 @@ public class MainWindowController extends Verwalter
             analyseobjektanzeige.setEditable(false);
             analysemethodeanzeige.setEditable(false);
             analyseergebnisanzeige.setEditable(false);
-            
+
             speichernbuttonanalysebericht.setDisable(true);
         }
     }
@@ -828,7 +826,7 @@ public class MainWindowController extends Verwalter
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void analyseberichtexportieren()
     {
@@ -861,6 +859,26 @@ public class MainWindowController extends Verwalter
             String change = new String(file.getPath());
             String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
             p.Analyseberichtsuchen2(berichtnr).Berichtexportieren2(change.replaceAll(file.getName(), berichtnr + file.getName()));
+            p.Analyseberichtsuchen2(berichtnr).Berichtexportieren(change.replaceAll(file.getName(), berichtnr + file.getName()));
+        }
+    }
+
+    @FXML
+    public void analyseberichtlöschen()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Achtung");
+        alert.setHeaderText("Analysebericht wird unwiderruflich gelöscht");
+        alert.setContentText("Bitte bestätigen");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) 
+        {
+            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
+
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtlöschen(berichtnr);
+
         }
     }
 }

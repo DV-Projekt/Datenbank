@@ -99,6 +99,7 @@
                   </HBox>
                   <HBox spacing="20.0">
                      <children>
+                        <Button mnemonicParsing="false" onAction="#analyseberichtlöschen" text="Löschen" />
                         <Button mnemonicParsing="false" onAction="#analyseberichtexportieren" text="Exportieren" />
                         <Button mnemonicParsing="false" onAction="#analysebearbeiten" text="Bearbeiten" />
                         <Button fx:id="speichernbuttonanalysebericht" disable="true" mnemonicParsing="false" onAction="#analysebearbeitenspeichern" prefHeight="25.0" prefWidth="79.0" text="Speichern" />
