@@ -146,7 +146,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="322.0" layoutY="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Button fx:id="Notfallkontakterstellen" mnemonicParsing="false" onAction="#Notfallkontakterstellen" text="Notfallkontakt erstellen" />
+                  <Button fx:id="Notfallkontakterstellen" mnemonicParsing="false" onAction="#handleNotfallkontakterstellen" text="Notfallkontakt erstellen" />
                   <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="316.0" text="Patientenakte" underline="true">
                      <font>
                         <Font name="System Bold" size="18.0" />

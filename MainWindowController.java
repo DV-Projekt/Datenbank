@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.23
+ * @version 0.0.24
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -202,7 +202,7 @@ public class MainWindowController extends Verwalter
     }
     
     @FXML
-    public void handleNotfallkontakterstellen()
+    public void Notfallkontakterstellen()
     {
         try{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("Notfallkontakt.fxml"));
