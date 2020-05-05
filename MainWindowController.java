@@ -190,7 +190,7 @@ public class MainWindowController extends Verwalter
     @FXML
     private Button anzeigebutton;
 
-    Stage substage;
+    @FXML Stage substage;
 
     public Main main;
 

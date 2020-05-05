@@ -49,7 +49,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="laborantenkuerzelanzeige" prefHeight="25.0" prefWidth="160.0" />
+                        <TextField fx:id="laborantenkuerzelanzeige" editable="false" prefHeight="25.0" prefWidth="160.0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="332.0" spacing="20.0">
@@ -59,7 +59,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="analysedatumanzeige" prefHeight="25.0" prefWidth="160.0" />
+                        <TextField fx:id="analysedatumanzeige" editable="false" prefHeight="25.0" prefWidth="160.0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="332.0" spacing="20.0">
@@ -69,7 +69,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="labornameanzeige" prefHeight="25.0" prefWidth="160.0" />
+                        <TextField fx:id="labornameanzeige" editable="false" prefHeight="25.0" prefWidth="160.0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="38.0" prefWidth="332.0" spacing="20.0">
@@ -79,7 +79,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="analyseobjektanzeige" prefHeight="37.0" prefWidth="158.0" />
+                        <TextArea fx:id="analyseobjektanzeige" editable="false" prefHeight="37.0" prefWidth="158.0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="52.0" prefWidth="332.0" spacing="20.0">
@@ -89,7 +89,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="analysemethodeanzeige" prefHeight="52.0" prefWidth="160.0" />
+                        <TextArea fx:id="analysemethodeanzeige" editable="false" prefHeight="52.0" prefWidth="160.0" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="53.0" prefWidth="332.0" spacing="20.0">
@@ -99,7 +99,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="analyseergebnisanzeige" prefHeight="18.0" prefWidth="160.0" />
+                        <TextArea fx:id="analyseergebnisanzeige" editable="false" prefHeight="18.0" prefWidth="160.0" />
                      </children>
                   </HBox>
                   <HBox spacing="20.0">
