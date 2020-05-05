@@ -200,7 +200,27 @@ public class MainWindowController extends Verwalter
     {
         this.main = main;
     }
+    
+    @FXML
+    public void handleNotfallkontakterstellen()
+    {
+        try{
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("Notfallkontakt.fxml"));
+            VBox pane = loader.load();
 
+            MainWindowController mainWindowController = loader.getController();
+            mainWindowController.setMain(main);
+
+            Scene scene = new Scene(pane);
+            Main.primaryStage.setScene(scene);
+            Main.primaryStage.show();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
     @FXML
     public void suche()
     {   
