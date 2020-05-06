@@ -3,7 +3,7 @@
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
  * Außerdem erstellt sie für jeden neuen Patienten eine Exeldatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.27)
+ * @version (0.0.29)
  */
 import java.util.*;
 import java.io.File;
@@ -614,7 +614,7 @@ public class Patientenakte
                             r= true;
                         }
                     }   
-                    if(r==false)
+                    if(r==true)
                     {   
                         String d="Datei konnte nicht gelöscht werden";
                         return d;
