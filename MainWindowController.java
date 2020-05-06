@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.27
+ * @version 0.0.28
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -731,7 +731,9 @@ public class MainWindowController extends Verwalter
             main.substage = new Stage();
             main.substage.setMinHeight(500.00);
             main.substage.setMinWidth(600.00);
-
+            
+            main.substage.setTitle("Analysebericht suchen");
+            
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
             Scene scene = new Scene(pane);
@@ -765,33 +767,46 @@ public class MainWindowController extends Verwalter
             alert.setContentText("Bitte Analysebericht anlegen");
 
             alert.showAndWait();
-
+            analyseberichtsuchenfeld.clear();
         }
 
         else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht() == null)
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Achtung");
-            alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gewunfen");
+            alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gefunden");
             alert.setContentText("Bitte erneut suchen");
 
             alert.showAndWait();
+            analyseberichtsuchenfeld.clear();
         }
         else
         {
             listanalyseberichte.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
             ArrayList <Analysebericht> aba = new ArrayList<Analysebericht>();
-            aba = p.Analyseberichtsuchen(eingabe);
-
-            for(Analysebericht e : aba)
+            if(p.Analyseberichtsuchen(eingabe)==null)
             {
-                listanalyseberichte.getItems().add("Analysebericht Nr. "+e.getBerichtNR());
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gefunden");
+                alert.setContentText("Bitte erneut suchen");
 
+                alert.showAndWait();
+                analyseberichtsuchenfeld.clear();
+            }   
+            else
+            {
+                aba = p.Analyseberichtsuchen(eingabe);
+
+                for(Analysebericht e : aba)
+                {
+                    listanalyseberichte.getItems().add("Analysebericht Nr. "+e.getBerichtNR());
+
+                }
+
+                anzeigebutton.setDisable(false);
             }
-
-            anzeigebutton.setDisable(false);
-
         }
     }
 
@@ -878,7 +893,7 @@ public class MainWindowController extends Verwalter
             String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
 
             verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtlöschen(berichtnr);
-
+            patientenakteladen();
         }
     }
 }

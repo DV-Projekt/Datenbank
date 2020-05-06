@@ -428,7 +428,7 @@ public class Patientenakte
             }
             if(gefunden == false)
             {
-                throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
+                return null;//throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
             }
             
         }
