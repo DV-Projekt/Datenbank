@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -34,24 +33,14 @@
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <HBox layoutX="87.0" layoutY="62.0" spacing="20.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox>
-                     <children>
-                        <TextField fx:id="analyseberichtsuchenfeld" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
-                        <ListView fx:id="listanalyseberichte" prefHeight="200.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-                  <VBox spacing="20.0">
-                     <children>
-                        <Button fx:id="listedurchsuchen" mnemonicParsing="false" onAction="#Notfalllistedurchsuchen" text="Suchen" />
-                        <Button fx:id="anzeigebutton" alignment="TOP_CENTER" disable="true" mnemonicParsing="false" onAction="#analyseberichtanzeigen" text="Anzeigen" />
-                     </children>
-                  </VBox>
+                  <TextField fx:id="Notfallkontaktsuchenfeld" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
+                  <Button fx:id="Notfalllistedurchsuchen" mnemonicParsing="false" onAction="#Notfalllistedurchsuchen" text="Suchen" />
                </children>
             </HBox>
-      </children>
+         </children>
     </AnchorPane>
   </children>
 </VBox>
