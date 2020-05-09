@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.32
+ * @version 0.0.33
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -723,7 +723,6 @@ public class MainWindowController extends Verwalter
     @FXML
     public void notfallbearbeiten()
     {
-        //notfallnameanzeige.setEditable(true);
         notfalladresseanzeige.setEditable(true); 
         notfallbeziehunganzeige.setEditable(true);
         notfalltelefonnummeranzeige.setEditable(true);
@@ -1075,11 +1074,11 @@ public class MainWindowController extends Verwalter
         {
 
         }
-        else //noch bearbeiten
+        else
         {
             String change = new String(file.getPath());
-            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
-            p.Analyseberichtsuchen2(berichtnr).Berichtexportieren2(change.replaceAll(file.getName(), berichtnr + file.getName()));
+            String name = notfallnameanzeige.getText();//methode notfallkontakt exportieren fehlt noch
+            p.Notfallkontaktaufrufenname).Berichtexportieren2(change.replaceAll(file.getName(), berichtnr + file.getName()));
             p.Analyseberichtsuchen2(berichtnr).Berichtexportieren(change.replaceAll(file.getName(), berichtnr + file.getName()));
         }
     }
@@ -1115,9 +1114,9 @@ public class MainWindowController extends Verwalter
 
         if (result.isPresent() && result.get() == ButtonType.OK) 
         {
-            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");//noch bearbeiten
+            String name = notfallnameanzeige.getText();
 
-            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtlöschen(berichtnr);
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontaktlöschen(name);
             patientenakteladen();
         }
     }
