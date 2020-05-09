@@ -146,7 +146,6 @@
             </HBox>
             <HBox alignment="TOP_CENTER" layoutX="322.0" layoutY="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Button fx:id="Notfallkontakterstellen" mnemonicParsing="false" onAction="#Notfallkontakterstellen" text="Notfallkontakt erstellen" />
                   <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="316.0" text="Patientenakte" underline="true">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -165,9 +164,14 @@
                             <MenuItem mnemonicParsing="false" onAction="#analysebanlegen" text="Analysebericht" />
                           </items>
                         </MenuButton>
+                        <MenuButton mnemonicParsing="false" text="Suchen">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#NotfallkontaktsubWindow" text="Notfallkontakt" />
+                            <MenuItem mnemonicParsing="false" onAction="#AnalyseberichtsubWindow" text="Analysebericht" />
+                          </items>
+                        </MenuButton>
                         <Button mnemonicParsing="false" onAction="#patientbearbeiten" text="Bearbeiten" />
                         <Button fx:id="speichernbutton" disable="true" mnemonicParsing="false" onAction="#speichernpatientenaktebearbeiten" text="Speichern" />
-                        <Button mnemonicParsing="false" onAction="#subWindow" text="Analysebericht Suche" />
                      </children>
                   </HBox>
                </children>

@@ -39,13 +39,13 @@
                <children>
                   <VBox>
                      <children>
-                        <TextField fx:id="analyseberichtsuchenfeld" onAction="#listedurchsuchen" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
+                        <TextField fx:id="analyseberichtsuchenfeld" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
                         <ListView fx:id="listanalyseberichte" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                   <VBox spacing="20.0">
                      <children>
-                        <Button fx:id="listedurchsuchen" mnemonicParsing="false" onAction="#listedurchsuchen" text="Suchen" />
+                        <Button fx:id="listedurchsuchen" mnemonicParsing="false" onAction="#Notfalllistedurchsuchen" text="Suchen" />
                         <Button fx:id="anzeigebutton" alignment="TOP_CENTER" disable="true" mnemonicParsing="false" onAction="#analyseberichtanzeigen" text="Anzeigen" />
                      </children>
                   </VBox>

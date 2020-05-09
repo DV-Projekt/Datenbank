@@ -721,7 +721,7 @@ public class MainWindowController extends Verwalter
         }
     }
 
-    public void subWindow()
+    public void AnalyseberichtsubWindow()
     {   
         try{
 
@@ -733,6 +733,34 @@ public class MainWindowController extends Verwalter
             main.substage.setMinWidth(600.00);
             
             main.substage.setTitle("Analysebericht suchen");
+            
+            MainWindowController mainWindowController = loader.getController();
+            mainWindowController.setMain(main);
+            Scene scene = new Scene(pane);
+
+            main.substage.initModality(Modality.APPLICATION_MODAL);
+
+            main.substage.setScene(scene);
+            main.substage.show();
+
+        } 
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void NotfallkontaktsubWindow()
+    {   
+        try{
+
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("NotfallkontaktSubWindow.fxml"));
+            VBox pane = loader.load();
+
+            main.substage = new Stage();
+            main.substage.setMinHeight(500.00);
+            main.substage.setMinWidth(600.00);
+            
+            main.substage.setTitle("Notfallkontakt suchen");
             
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
@@ -765,6 +793,67 @@ public class MainWindowController extends Verwalter
             alert.setTitle("Achtung");
             alert.setHeaderText("Kein Analysebericht vorhanden!");
             alert.setContentText("Bitte Analysebericht anlegen");
+
+            alert.showAndWait();
+            analyseberichtsuchenfeld.clear();
+        }
+
+        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht() == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gefunden");
+            alert.setContentText("Bitte erneut suchen");
+
+            alert.showAndWait();
+            analyseberichtsuchenfeld.clear();
+        }
+        else
+        {
+            listanalyseberichte.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+            ArrayList <Analysebericht> aba = new ArrayList<Analysebericht>();
+            if(p.Analyseberichtsuchen(eingabe)==null)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gefunden");
+                alert.setContentText("Bitte erneut suchen");
+
+                alert.showAndWait();
+                analyseberichtsuchenfeld.clear();
+            }   
+            else
+            {
+                aba = p.Analyseberichtsuchen(eingabe);
+
+                for(Analysebericht e : aba)
+                {
+                    listanalyseberichte.getItems().add("Analysebericht Nr. "+e.getBerichtNR());
+
+                }
+
+                anzeigebutton.setDisable(false);
+            }
+        }
+    }
+    
+    @FXML
+    public void Notfalllistedurchsuchen()
+    {
+        String eingabe = analyseberichtsuchenfeld.getText();
+
+        if(analyseberichtsuchenfeld.getText() == null || analyseberichtsuchenfeld.getText().trim().isEmpty())
+        {
+            warningDaten();
+        }
+
+        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht().size()==0)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Kein Notfallkontakt vorhanden!");
+            alert.setContentText("Bitte Notfallkontakt anlegen");
 
             alert.showAndWait();
             analyseberichtsuchenfeld.clear();
@@ -897,3 +986,5 @@ public class MainWindowController extends Verwalter
         }
     }
 }
+
+
