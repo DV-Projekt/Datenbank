@@ -179,19 +179,19 @@ public class MainWindowController extends Verwalter
     private TextArea analyseergebnisanzeige;
     
     @FXML
-    private TextArea notfallnameanzeige;
+    private TextField notfallnameanzeige;
 
     @FXML
-    private TextArea notfalladresseanzeige;
+    private TextField notfalladresseanzeige;
     
     @FXML
-    private TextArea notfallbeziehunganzeige;
+    private TextField notfallbeziehunganzeige;
     
     @FXML
-    private TextArea notfalltelefonnummeranzeige;
+    private TextField notfalltelefonnummeranzeige;
     
     @FXML
-    private TextArea notfallblutgruppeanzeige;
+    private TextField notfallblutgruppeanzeige;
     
     @FXML
     private Button speichernbuttonanalysebericht;
@@ -641,7 +641,8 @@ public class MainWindowController extends Verwalter
         {
             verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.getText(), notfallbeziehung.getText(), 
                 notfalltelefonnummer.getText(), notfallblutgruppe.getText());
-
+            String nr = p.getKrankenkassenNr();
+            p = verwalter.Aktesuchen(nr);
             patientenakteladen();
         }
     }
@@ -868,7 +869,7 @@ public class MainWindowController extends Verwalter
     public void Notfalllistedurchsuchen()
     {
         String eingabe = Notfallkontaktsuchenfeld.getText();
-        Notfallkontakt gef = p.Notfallkontaktaufrufen(eingabe);
+        
 
         if(Notfallkontaktsuchenfeld.getText() == null || Notfallkontaktsuchenfeld.getText().trim().isEmpty())
         {
@@ -912,6 +913,8 @@ public class MainWindowController extends Verwalter
             {
                 try
                 {
+                    Notfallkontakt gef = p.Notfallkontaktaufrufen(eingabe);
+                    
                     FXMLLoader loader = new FXMLLoader(Main.class.getResource("Notfallkontaktanzeigen.fxml"));
                     VBox pane = loader.load();
 
@@ -920,7 +923,7 @@ public class MainWindowController extends Verwalter
                     Scene scene = new Scene(pane);
 
                     main.primaryStage.setScene(scene);
-                    main.primaryStage.show();
+                    
 
                     mainWindowController.notfallnameanzeige.setText(gef.getName());
                     mainWindowController.notfalladresseanzeige.setText(gef.getadresse());
