@@ -113,10 +113,10 @@
             <HBox alignment="TOP_CENTER" layoutY="370.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <VBox alignment="TOP_CENTER" />
-                  <Button fx:id="Bearbeiten" mnemonicParsing="false" text="Bearbeiten" />
+                  <Button fx:id="Bearbeiten" mnemonicParsing="false" onAction="#notfallbearbeiten" text="Bearbeiten" />
                   <Button fx:id="Exportieren" mnemonicParsing="false" text="Exportieren" />
                   <Button fx:id="Löschen" mnemonicParsing="false" text="Löschen" />
-                  <Button fx:id="Notfallkontaktspeichernbutton" disable="true" mnemonicParsing="false" onAction="#notfallspeichern" text="Speichern" />
+                  <Button fx:id="Notfallkontaktspeicherbutton" disable="true" mnemonicParsing="false" onAction="#notfallbearbeitenspeichern" text="Speichern" />
                </children>
             </HBox>
       </children>

@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.30
+ * @version 0.0.31
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -719,6 +719,18 @@ public class MainWindowController extends Verwalter
 
         speichernbuttonanalysebericht.setDisable(false);
     }
+    
+    @FXML
+    public void notfallbearbeiten()
+    {
+        //notfallnameanzeige.setEditable(true);
+        notfalladresseanzeige.setEditable(true); 
+        notfallbeziehunganzeige.setEditable(true);
+        notfalltelefonnummeranzeige.setEditable(true);
+        notfallblutgruppeanzeige.setEditable(true);
+        
+        Notfallkontaktspeicherbutton.setDisable(false);
+    }
 
     @FXML
     public void analysebearbeitenspeichern()
@@ -744,6 +756,32 @@ public class MainWindowController extends Verwalter
             analysemethodeanzeige.setEditable(false);
             analyseergebnisanzeige.setEditable(false);
 
+            speichernbuttonanalysebericht.setDisable(true);
+        }
+    }
+    
+     @FXML
+    public void notfallbearbeitenspeichern()
+    {
+        if(notfallnameanzeige.getText() == null || notfallnameanzeige.getText().trim().isEmpty() || notfalladresseanzeige.getText() == null || notfalladresseanzeige.getText().trim().isEmpty() || 
+        notfallbeziehunganzeige.getText() == null || notfallbeziehunganzeige.getText().trim().isEmpty() || notfalltelefonnummeranzeige.getText() == null || notfalltelefonnummeranzeige.getText().trim().isEmpty() ||
+        notfallblutgruppeanzeige.getText() == null || notfallblutgruppeanzeige.getText().trim().isEmpty())
+        {
+            warningDaten(); 
+        }
+        else
+        {
+            String name = notfallnameanzeige.getText();
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontaktaufrufen(name).kontaktdatenbearbeiten(notfalladresseanzeige.getText(),
+                notfallbeziehunganzeige.getText(), notfalltelefonnummeranzeige.getText(), notfallblutgruppeanzeige.getText());
+
+            p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
+
+            notfalladresseanzeige.setEditable(false);
+            notfallbeziehunganzeige.setEditable(false);
+            notfalltelefonnummeranzeige.setEditable(false);
+            notfallblutgruppeanzeige.setEditable(false);
+            
             speichernbuttonanalysebericht.setDisable(true);
         }
     }

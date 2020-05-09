@@ -83,12 +83,12 @@ public void setname(String n)
      * @param:bez-Beziehung
      * @param:tel-Telefonnummer
      */
-    public void kontaktdatenbearbeiten(String n, String ad, String bez, String tel)
+    public void kontaktdatenbearbeiten(String ad, String bez, String tel, String b)
     {
-        Name = n;
         Adresse = ad;
         Beziehung = bez;
         telefonnummer = tel;
+        Blutgrupp = b;
     }
    
   /**
