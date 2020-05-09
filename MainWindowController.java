@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
-
+import java.text.*;
 public class MainWindowController extends Verwalter
 {
     //Views
@@ -476,6 +476,8 @@ public class MainWindowController extends Verwalter
     @FXML
     public void analysespeichern()
     {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+         "dd.MM.yyyy");
         if(laborantenkuerzel.getText() == null || laborantenkuerzel.getText().trim().isEmpty() || 
         analysedatum.getText() == null || analysedatum.getText().trim().isEmpty() || 
         laborname.getText() == null || laborname.getText().trim().isEmpty() || analyseobjekt.getText() == null || 
