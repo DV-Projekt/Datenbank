@@ -114,8 +114,8 @@
                <children>
                   <VBox alignment="TOP_CENTER" />
                   <Button fx:id="Bearbeiten" mnemonicParsing="false" onAction="#notfallbearbeiten" text="Bearbeiten" />
-                  <Button fx:id="Exportieren" mnemonicParsing="false" text="Exportieren" />
-                  <Button fx:id="Löschen" mnemonicParsing="false" text="Löschen" />
+                  <Button fx:id="Exportieren" mnemonicParsing="false" onAction="#notfallkontaktexportieren" text="Exportieren" />
+                  <Button fx:id="Löschen" mnemonicParsing="false" onAction="#notfallkontaktlöschen" text="Löschen" />
                   <Button fx:id="Notfallkontaktspeicherbutton" disable="true" mnemonicParsing="false" onAction="#notfallbearbeitenspeichern" text="Speichern" />
                </children>
             </HBox>

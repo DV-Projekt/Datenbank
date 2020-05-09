@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.31
+ * @version 0.0.32
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -1047,6 +1047,42 @@ public class MainWindowController extends Verwalter
             p.Analyseberichtsuchen2(berichtnr).Berichtexportieren(change.replaceAll(file.getName(), berichtnr + file.getName()));
         }
     }
+    
+    @FXML
+    public void notfallkontaktexportieren()
+    {
+        Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
+        if (!Files.exists(f)) 
+        {
+            try 
+            {
+                Files.createDirectories(f);
+            } 
+            catch (IOException e) 
+            {
+                e.printStackTrace();    
+            }
+        }
+
+        FileChooser filechooser = new FileChooser();
+        filechooser.setTitle("Speicherort auswählen");
+
+        filechooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel (*.xlsx)", "*.xlsx"));
+        File file = filechooser.showSaveDialog(Main.primaryStage);
+
+        if (file == null)
+        {
+
+        }
+        else //noch bearbeiten
+        {
+            String change = new String(file.getPath());
+            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
+            p.Analyseberichtsuchen2(berichtnr).Berichtexportieren2(change.replaceAll(file.getName(), berichtnr + file.getName()));
+            p.Analyseberichtsuchen2(berichtnr).Berichtexportieren(change.replaceAll(file.getName(), berichtnr + file.getName()));
+        }
+    }
 
     @FXML
     public void analyseberichtlöschen()
@@ -1061,6 +1097,25 @@ public class MainWindowController extends Verwalter
         if (result.isPresent() && result.get() == ButtonType.OK) 
         {
             String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
+
+            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtlöschen(berichtnr);
+            patientenakteladen();
+        }
+    }
+    
+     @FXML
+    public void notfallkontaktlöschen()
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Achtung");
+        alert.setHeaderText("Notfallkontakt wird unwiderruflich gelöscht");
+        alert.setContentText("Bitte bestätigen");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) 
+        {
+            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");//noch bearbeiten
 
             verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtlöschen(berichtnr);
             patientenakteladen();
