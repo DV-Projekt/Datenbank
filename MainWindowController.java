@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.28
+ * @version 0.0.30
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -177,15 +177,39 @@ public class MainWindowController extends Verwalter
 
     @FXML
     private TextArea analyseergebnisanzeige;
+    
+    @FXML
+    private TextArea notfallnameanzeige;
 
     @FXML
+    private TextArea notfalladresseanzeige;
+    
+    @FXML
+    private TextArea notfallbeziehunganzeige;
+    
+    @FXML
+    private TextArea notfalltelefonnummeranzeige;
+    
+    @FXML
+    private TextArea notfallblutgruppeanzeige;
+    
+    @FXML
     private Button speichernbuttonanalysebericht;
+    
+    @FXML
+    private Button Notfallkontaktspeicherbutton;
 
     @FXML
     private TextField analyseberichtsuchenfeld;
+    
+     @FXML
+    private TextField Notfallkontaktsuchenfeld;
 
     @FXML 
     private ListView listanalyseberichte;
+    
+    @FXML 
+    private ListView listNotfallkontakte;
 
     @FXML
     private Button anzeigebutton;
@@ -753,7 +777,7 @@ public class MainWindowController extends Verwalter
     {   
         try{
 
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("NotfallkontaktSubWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("NotfallkontaktsubWindow.fxml"));
             VBox pane = loader.load();
 
             main.substage = new Stage();
@@ -841,63 +865,77 @@ public class MainWindowController extends Verwalter
     @FXML
     public void Notfalllistedurchsuchen()
     {
-        String eingabe = analyseberichtsuchenfeld.getText();
+        String eingabe = Notfallkontaktsuchenfeld.getText();
+        Notfallkontakt gef = p.Notfallkontaktaufrufen(eingabe);
 
-        if(analyseberichtsuchenfeld.getText() == null || analyseberichtsuchenfeld.getText().trim().isEmpty())
+        if(Notfallkontaktsuchenfeld.getText() == null || Notfallkontaktsuchenfeld.getText().trim().isEmpty())
         {
             warningDaten();
         }
 
-        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht().size()==0)
+        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getNotfallkontakte().size()==0)
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Achtung");
-            alert.setHeaderText("Kein Notfallkontakt vorhanden!");
+            alert.setHeaderText("Kein Notallkontakt vorhanden!");
             alert.setContentText("Bitte Notfallkontakt anlegen");
 
             alert.showAndWait();
-            analyseberichtsuchenfeld.clear();
+            Notfallkontaktsuchenfeld.clear();
         }
 
-        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht() == null)
+        else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getNotfallkontakte() == null)
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Achtung");
-            alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gefunden");
+            alert.setHeaderText("Keinen Kontakt mit passendem Suchbegriff gefunden");
             alert.setContentText("Bitte erneut suchen");
 
             alert.showAndWait();
-            analyseberichtsuchenfeld.clear();
+            Notfallkontaktsuchenfeld.clear();
         }
         else
         {
-            listanalyseberichte.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-            ArrayList <Analysebericht> aba = new ArrayList<Analysebericht>();
-            if(p.Analyseberichtsuchen(eingabe)==null)
+            if(p.Notfallkontaktaufrufen(eingabe)==null)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
-                alert.setHeaderText("Keinen Bericht mit passendem Suchbegriff gefunden");
+                alert.setHeaderText("Keinen Notfallkontakt mit passendem Suchbegriff gefunden");
                 alert.setContentText("Bitte erneut suchen");
 
                 alert.showAndWait();
-                analyseberichtsuchenfeld.clear();
+                Notfallkontaktsuchenfeld.clear();
             }   
             else
             {
-                aba = p.Analyseberichtsuchen(eingabe);
-
-                for(Analysebericht e : aba)
+                try
                 {
-                    listanalyseberichte.getItems().add("Analysebericht Nr. "+e.getBerichtNR());
+                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("Notfallkontaktanzeigen.fxml"));
+                    VBox pane = loader.load();
 
+                    MainWindowController mainWindowController = loader.getController();
+                    mainWindowController.setMain(main);
+                    Scene scene = new Scene(pane);
+
+                    main.primaryStage.setScene(scene);
+                    main.primaryStage.show();
+
+                    mainWindowController.notfallnameanzeige.setText(gef.getName());
+                    mainWindowController.notfalladresseanzeige.setText(gef.getadresse());
+                    mainWindowController.notfallbeziehunganzeige.setText(gef.getbeziehung());
+                    mainWindowController.notfalltelefonnummeranzeige.setText(gef.gettelefonnummer());
+                    mainWindowController.notfallblutgruppeanzeige.setText(gef.getblutgruppe());
+                    
+                    main.substage.close();
+                } 
+                catch(IOException e)
+                {
+                    e.printStackTrace();
                 }
-
-                anzeigebutton.setDisable(false);
             }
         }
     }
+    
 
     @FXML
     public void analyseberichtanzeigen()
