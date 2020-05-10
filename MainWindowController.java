@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.35
+ * @version 0.0.36
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -344,24 +344,95 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            Patientenakte patient = new Patientenakte(name.getText(), alter.getText(), adresse.getText(), geschlecht.getText(), krankenkassennummer1.getText(), 
-                    blutgruppe.getText(), arzt.getText(), telefonnummer.getText(), vorerkrankungen.getText(), allergien.getText());
-            verwalter.Akten.add(patient);
-
-            try{
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
-                AnchorPane pane = loader.load();
-
-                MainWindowController mainWindowController = loader.getController();
-                mainWindowController.setMain(main);
-
-                Scene scene = new Scene(pane);
-                Main.primaryStage.setScene(scene);
-                Main.primaryStage.show();
-            }
-            catch(IOException e)
+            if(name.getText().matches("[a-zA-Z]+")&&alter.getText().matches("[0-9]+")&&geschlecht.getText().matches
+            ("[a-zA-Z]+")&&blutgruppe.getText().matches("[a-zA-Z]+")&&arzt.getText().matches("[a-zA-Z]+")&&telefonnummer.
+            getText().matches("[0-9]+"))
             {
-                e.printStackTrace();
+                Patientenakte patient = new Patientenakte(name.getText(), alter.getText(), adresse.getText(), geschlecht.
+                getText(), krankenkassennummer1.getText(), blutgruppe.getText(), arzt.getText(), telefonnummer.getText(),
+                vorerkrankungen.getText(), allergien.getText());
+                
+                verwalter.Akten.add(patient);
+
+                try 
+                {
+                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
+                    AnchorPane pane = loader.load();
+
+                    MainWindowController mainWindowController = loader.getController();
+                    mainWindowController.setMain(main);
+
+                    Scene scene = new Scene(pane);
+                    Main.primaryStage.setScene(scene);
+                    Main.primaryStage.show();
+                }
+                catch(IOException e)
+                {
+                    e.printStackTrace();
+                }   
+            }
+            else
+            {
+                if(name.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Namensfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   name.clear(); 
+                }
+                else if(alter.getText().matches("[0-9]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Alterfeld!");
+                   alert.setContentText("Bitte nur Zahlen eingeben");
+
+                   alert.showAndWait();
+                   alter.clear(); 
+                }
+                else if(geschlecht.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Geschlechtfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   geschlecht.clear(); 
+                }
+                else if(blutgruppe.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   blutgruppe.clear(); 
+                }
+                else if(arzt.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Arztfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   arzt.clear(); 
+                }
+                else if(telefonnummer.getText().matches("[0-9]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                   alert.setContentText("Bitte nur Zahlen eingeben");
+
+                   alert.showAndWait();
+                   telefonnummer.clear(); 
+                }
             }
         }
     }
@@ -525,10 +596,8 @@ public class MainWindowController extends Verwalter
     @FXML
     public void patientbearbeiten()
     {
-        //ausgabename.setEditable(true);
         ausgabegeschlecht.setEditable(true);
         ausgabeadresse.setEditable(true);
-        //ausgabealter.setEditable(true); 
         ausgabeblutgruppe.setEditable(true);
         ausgabearzt.setEditable(true);
         ausgabevorerkrankungen.setEditable(true);
@@ -541,34 +610,83 @@ public class MainWindowController extends Verwalter
     @FXML
     public void speichernpatientenaktebearbeiten()
     {
-        if(ausgabename.getText() == null || ausgabename.getText().trim().isEmpty() || ausgabealter.getText() == null || ausgabealter.getText().trim().isEmpty() || 
-        ausgabegeschlecht.getText() == null || ausgabegeschlecht.getText().trim().isEmpty() || ausgabeadresse.getText() == null || ausgabeadresse.getText().trim().isEmpty() ||
-        auskrankenkassennummer1.getText() == null || auskrankenkassennummer1.getText().trim().isEmpty() || ausgabeblutgruppe.getText() == null || 
-        ausgabeblutgruppe.getText().trim().isEmpty() || ausgabearzt.getText() == null || ausgabearzt.getText().trim().isEmpty() || ausgabetelefonnummer.getText() == null || 
-        ausgabetelefonnummer.getText().trim().isEmpty() || ausgabevorerkrankungen.getText() == null || ausgabevorerkrankungen.getText().trim().isEmpty() ||
+        if(ausgabename.getText() == null || ausgabename.getText().trim().isEmpty() || ausgabealter.getText() == null || 
+        ausgabealter.getText().trim().isEmpty() || ausgabegeschlecht.getText() == null || ausgabegeschlecht.getText().
+        trim().isEmpty() || ausgabeadresse.getText() == null || ausgabeadresse.getText().trim().isEmpty() ||
+        auskrankenkassennummer1.getText() == null || auskrankenkassennummer1.getText().trim().isEmpty() || ausgabeblutgruppe
+        .getText() == null || ausgabeblutgruppe.getText().trim().isEmpty() || ausgabearzt.getText() == null || ausgabearzt.
+        getText().trim().isEmpty() || ausgabetelefonnummer.getText() == null || ausgabetelefonnummer.getText().trim().
+        isEmpty() || ausgabevorerkrankungen.getText() == null || ausgabevorerkrankungen.getText().trim().isEmpty() ||
         ausgabeallergien.getText() == null || ausgabeallergien.getText().trim().isEmpty())
         {
             warningDaten(); 
         }
         else
         {
-            verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabeadresse.getText(),
-                ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), ausgabearzt.getText(), ausgabetelefonnummer.getText(),
-                ausgabevorerkrankungen.getText(), ausgabeallergien.getText());
+            if(ausgabegeschlecht.getText().matches("[a-zA-Z]+")&&ausgabeblutgruppe.getText().matches("[a-zA-Z]+")&&
+            ausgabearzt.getText().matches("[a-zA-Z]+")&&ausgabetelefonnummer.getText().matches("[0-9]+"))
+            {
+                verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabeadresse.getText(),
+                ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), 
+                ausgabearzt.getText(), ausgabetelefonnummer.getText(),ausgabevorerkrankungen.getText(), ausgabeallergien.
+                getText());
 
-            p = verwalter.Aktesuchen(auskrankenkassennummer1.getText());    
-            speichernbutton.setDisable(true);
+                p = verwalter.Aktesuchen(auskrankenkassennummer1.getText());    
+                speichernbutton.setDisable(true);
 
-            //ausgabename.setEditable(false);
-            ausgabegeschlecht.setEditable(false);
-            ausgabeadresse.setEditable(false);
-            //ausgabealter.setEditable(false);
-            auskrankenkassennummer1.setEditable(false);
-            ausgabeblutgruppe.setEditable(false);
-            ausgabearzt.setEditable(false);
-            ausgabevorerkrankungen.setEditable(false);
-            ausgabetelefonnummer.setEditable(false);
-            ausgabeallergien.setEditable(false);
+                ausgabegeschlecht.setEditable(false);
+                ausgabeadresse.setEditable(false);
+                auskrankenkassennummer1.setEditable(false);
+                ausgabeblutgruppe.setEditable(false);
+                ausgabearzt.setEditable(false);
+                ausgabevorerkrankungen.setEditable(false);
+                ausgabetelefonnummer.setEditable(false);
+                ausgabeallergien.setEditable(false);
+            }
+            else
+            {
+                if(ausgabegeschlecht.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Geschlechtfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   ausgabegeschlecht.clear(); 
+                }
+                else if(ausgabeblutgruppe.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   ausgabeblutgruppe.clear(); 
+                }
+                else if(ausgabearzt.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Arztfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   ausgabearzt.clear(); 
+                }
+                else if(ausgabetelefonnummer.getText().matches("[0-9]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                   alert.setContentText("Bitte nur Zahlen eingeben");
+
+                   alert.showAndWait();
+                   ausgabetelefonnummer.clear(); 
+                
+                }
+            }
         }
     }
 
@@ -657,7 +775,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
+                   alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
                    alert.showAndWait();
@@ -667,7 +785,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Namenfeld!");
+                   alert.setHeaderText("Falsche Eingabe im Namenfeld!");
                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
                    alert.showAndWait();
@@ -677,7 +795,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
+                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
                    alert.setContentText("Bitte nur Zahlen eingeben");
 
                    alert.showAndWait();
@@ -687,7 +805,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
+                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
                    alert.showAndWait();
@@ -783,7 +901,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
+                   alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
                    alert.showAndWait();
@@ -793,7 +911,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
+                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
                    alert.setContentText("Bitte nur Zahlen eingeben");
 
                    alert.showAndWait();
@@ -803,7 +921,7 @@ public class MainWindowController extends Verwalter
                 {
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
+                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
                    alert.showAndWait();
