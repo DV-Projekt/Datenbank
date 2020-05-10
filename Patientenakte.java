@@ -387,10 +387,10 @@ public class Patientenakte
      */
     public ArrayList Analyseberichtsuchen(String gesucht)
     {
-       boolean gefunden=false;
-       ArrayList<Analysebericht> gefber = new ArrayList<Analysebericht>();
-       for(int i = 0; i< Analyseberichte.size(); i++)
-       {
+        boolean gefunden=false;
+        ArrayList<Analysebericht> gefber = new ArrayList<Analysebericht>();
+        for(int i = 0; i< Analyseberichte.size(); i++)
+        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
@@ -426,20 +426,19 @@ public class Patientenakte
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            if(gefunden == false)
-            {
-                return null;//throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
-            }
-            
+        }
+        if(gefunden == false)
+        {
+            return null;//throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
         }
         return gefber;
     }
-    
+
     public Analysebericht Analyseberichtsuchen2(String gesucht)
     {
-       boolean gefunden=false;
-       for(int i = 0; i< Analyseberichte.size(); i++)
-       {
+        boolean gefunden=false;
+        for(int i = 0; i< Analyseberichte.size(); i++)
+        {
             if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
             {    
                 gefunden=true;
@@ -475,14 +474,15 @@ public class Patientenakte
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            if(gefunden == false)
-            {
-                throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
-            }
-            
+
+        }
+        if(gefunden == false)
+        {
+            throw new IllegalArgumentException("Es existiert keine Akte mit dem gesuchten Wort");
         }
         return null;
     }
+
     /** Die Methode Exportieren wird verwendet um die Werte der Attribute in eine Exeldatei zu exportieren.
      * 
      * @param Dateiname (String) Der Name den die Datei haben soll

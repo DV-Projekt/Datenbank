@@ -28,6 +28,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.text.*;
+import java.time.format.*;
+import java.time.*;
 public class MainWindowController extends Verwalter
 {
     //Views
@@ -122,7 +124,7 @@ public class MainWindowController extends Verwalter
     private TextField laborantenkuerzel;
 
     @FXML 
-    private TextField analysedatum;
+    private DatePicker analysedatum;
 
     @FXML 
     private TextField laborname;
@@ -164,7 +166,7 @@ public class MainWindowController extends Verwalter
     private TextField laborantenkuerzelanzeige;
 
     @FXML
-    private TextField analysedatumanzeige;
+    private DatePicker analysedatumanzeige;
 
     @FXML
     private TextField labornameanzeige;
@@ -274,12 +276,17 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-
-            p = new Patientenakte(verwalter.Aktesuchen(eingabe).getName(), verwalter.Aktesuchen(eingabe).getAlter(), verwalter.Aktesuchen(eingabe).getAdresse(), 
-                verwalter.Aktesuchen(eingabe).getGeschlecht(), verwalter.Aktesuchen(eingabe).getKrankenkassenNr(), verwalter.Aktesuchen(eingabe).getBlutgruppe(), 
-                verwalter.Aktesuchen(eingabe).getZuständigerArzt(), verwalter.Aktesuchen(eingabe).getTelefonnummer(), verwalter.Aktesuchen(eingabe).getVorerkrankungen(), 
-                verwalter.Aktesuchen(eingabe).getAllergien());
-
+            if(p==null)
+            {
+                p = new Patientenakte(verwalter.Aktesuchen(eingabe).getName(), verwalter.Aktesuchen(eingabe).getAlter(), verwalter.Aktesuchen(eingabe).getAdresse(), 
+                    verwalter.Aktesuchen(eingabe).getGeschlecht(), verwalter.Aktesuchen(eingabe).getKrankenkassenNr(), verwalter.Aktesuchen(eingabe).getBlutgruppe(), 
+                    verwalter.Aktesuchen(eingabe).getZuständigerArzt(), verwalter.Aktesuchen(eingabe).getTelefonnummer(), verwalter.Aktesuchen(eingabe).getVorerkrankungen(), 
+                    verwalter.Aktesuchen(eingabe).getAllergien());
+            }
+            else
+            {
+                p = verwalter.Aktesuchen(eingabe);
+            }
             try{
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("patientenakte.fxml"));
                 VBox pane = loader.load();
@@ -382,7 +389,12 @@ public class MainWindowController extends Verwalter
         String eingabe = eingabefeldsuche.getText();
         if(eingabefeldsuche.getText() == null || eingabefeldsuche.getText().trim().isEmpty())
         {
-            warningDaten();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Achtung");
+            alert.setHeaderText("Keine Krankenkassennummer eingegeben!");
+            alert.setContentText("Bitte Krankenkassennummer eingeben");
+
+            alert.showAndWait();
             eingabefeldsuche.clear();
         }
 
@@ -502,10 +514,8 @@ public class MainWindowController extends Verwalter
     @FXML
     public void analysespeichern()
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd.MM.yyyy");
         if(laborantenkuerzel.getText() == null || laborantenkuerzel.getText().trim().isEmpty() || 
-        analysedatum.getText() == null || analysedatum.getText().trim().isEmpty() || 
+        analysedatum.getValue() == null || analysedatum.getValue().equals("")|| 
         laborname.getText() == null || laborname.getText().trim().isEmpty() || analyseobjekt.getText() == null || 
         analyseobjekt.getText().trim().isEmpty() || analysemethode.getText() == null || 
         analysemethode.getText().trim().isEmpty() || analyseergebnis.getText() == null || 
@@ -548,7 +558,7 @@ public class MainWindowController extends Verwalter
             else    
             {
                 String nr = p.getKrankenkassenNr();
-                verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
+                verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
                 p = verwalter.Aktesuchen(nr);
                 patientenakteladen();
             }
@@ -730,7 +740,8 @@ public class MainWindowController extends Verwalter
     public void analysebearbeiten()
     {
         laborantenkuerzelanzeige.setEditable(true);
-        analysedatumanzeige.setEditable(true); 
+        analysedatumanzeige.setDisable(false);
+        analysedatumanzeige.setEditable(true);
         labornameanzeige.setEditable(true);
         analyseobjektanzeige.setEditable(true);
         analysemethodeanzeige.setEditable(true);
@@ -753,7 +764,7 @@ public class MainWindowController extends Verwalter
     @FXML
     public void analysebearbeitenspeichern()
     {
-        if(laborantenkuerzelanzeige.getText() == null || laborantenkuerzelanzeige.getText().trim().isEmpty() || analysedatumanzeige.getText() == null || analysedatumanzeige.getText().trim().isEmpty() || 
+        if(laborantenkuerzelanzeige.getText() == null || laborantenkuerzelanzeige.getText().trim().isEmpty() || analysedatumanzeige.getValue() == null || analysedatumanzeige.getValue().equals("") || 
         labornameanzeige.getText() == null || labornameanzeige.getText().trim().isEmpty() || analyseobjektanzeige.getText() == null || analyseobjektanzeige.getText().trim().isEmpty() ||
         analysemethodeanzeige.getText() == null || analysemethodeanzeige.getText().trim().isEmpty() || analyseergebnisanzeige.getText() == null || analyseergebnisanzeige.getText().trim().isEmpty())
         {
@@ -761,7 +772,7 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(laborantenkuerzel.getText().matches("[a-zA-Z]+")==false)
+            if(laborantenkuerzelanzeige.getText().matches("[a-zA-Z]+")==false)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
@@ -771,7 +782,7 @@ public class MainWindowController extends Verwalter
                 alert.showAndWait();
                 laborantenkuerzel.clear(); 
             }
-            else if(laborname.getText().matches("[a-zA-Z]+")==false)
+            else if(labornameanzeige.getText().matches("[a-zA-Z]+")==false)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
@@ -781,7 +792,7 @@ public class MainWindowController extends Verwalter
                 alert.showAndWait();
                 laborname.clear(); 
             }
-            else if(analyseobjekt.getText().matches("[a-zA-Z]+")==false)
+            else if(analyseobjektanzeige.getText().matches("[a-zA-Z]+")==false)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
@@ -795,18 +806,20 @@ public class MainWindowController extends Verwalter
             {
                 String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
                 verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen2(berichtnr).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
-                    analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnisanzeige.getText());
+                    analysedatumanzeige.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnisanzeige.getText());
 
                 p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
 
                 laborantenkuerzelanzeige.setEditable(false);
                 analysedatumanzeige.setEditable(false);
+                analysedatumanzeige.setDisable(true);
                 labornameanzeige.setEditable(false);
                 analyseobjektanzeige.setEditable(false);
                 analysemethodeanzeige.setEditable(false);
                 analyseergebnisanzeige.setEditable(false);
 
                 speichernbuttonanalysebericht.setDisable(true);
+
             }
         }
     }
@@ -1084,13 +1097,15 @@ public class MainWindowController extends Verwalter
             main.primaryStage.setScene(scene);
             main.primaryStage.show();
 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
             mainWindowController.BerichtNR.setText("Analysebericht Nr. "+berichtnummer2);
             mainWindowController.laborantenkuerzelanzeige.setText(gef.getLaborantenkuerzel());
             mainWindowController.labornameanzeige.setText(gef.getLaborname());
             mainWindowController.analyseobjektanzeige.setText(gef.getAnalyseObjekt());
             mainWindowController.analysemethodeanzeige.setText(gef.getAnalysemethode());
             mainWindowController.analyseergebnisanzeige.setText(gef.getAnalyseergebnis());
-            mainWindowController.analysedatumanzeige.setText(gef.getAnalysedatum());
+            mainWindowController.analysedatumanzeige.setValue(LocalDate.parse(gef.getAnalysedatum(), formatter));
             main.substage.close();
         } 
         catch(IOException e){
