@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.35
+ * @version 0.0.36
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -177,37 +177,37 @@ public class MainWindowController extends Verwalter
 
     @FXML
     private TextArea analyseergebnisanzeige;
-    
+
     @FXML
     private TextField notfallnameanzeige;
 
     @FXML
     private TextField notfalladresseanzeige;
-    
+
     @FXML
     private TextField notfallbeziehunganzeige;
-    
+
     @FXML
     private TextField notfalltelefonnummeranzeige;
-    
+
     @FXML
     private TextField notfallblutgruppeanzeige;
-    
+
     @FXML
     private Button speichernbuttonanalysebericht;
-    
+
     @FXML
     private Button Notfallkontaktspeicherbutton;
 
     @FXML
     private TextField analyseberichtsuchenfeld;
-    
-     @FXML
+
+    @FXML
     private TextField Notfallkontaktsuchenfeld;
 
     @FXML 
     private ListView listanalyseberichte;
-    
+
     @FXML 
     private ListView listNotfallkontakte;
 
@@ -503,7 +503,7 @@ public class MainWindowController extends Verwalter
     public void analysespeichern()
     {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-         "dd.MM.yyyy");
+                "dd.MM.yyyy");
         if(laborantenkuerzel.getText() == null || laborantenkuerzel.getText().trim().isEmpty() || 
         analysedatum.getText() == null || analysedatum.getText().trim().isEmpty() || 
         laborname.getText() == null || laborname.getText().trim().isEmpty() || analyseobjekt.getText() == null || 
@@ -515,20 +515,51 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            String nr = p.getKrankenkassenNr();
-            verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
-            p = verwalter.Aktesuchen(nr);
-            patientenakteladen();
+            if(laborantenkuerzel.getText().matches("[a-zA-Z]+")==false)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Laborantenkürzel");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                alert.showAndWait();
+                laborantenkuerzel.clear(); 
+            }
+            else if(laborname.getText().matches("[a-zA-Z]+")==false)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Laborname!");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                alert.showAndWait();
+                laborname.clear(); 
+            }
+            else if(analyseobjekt.getText().matches("[a-zA-Z]+")==false)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Analyseobjekt!");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                alert.showAndWait();
+                analyseobjekt.clear(); 
+            }
+            else    
+            {
+                String nr = p.getKrankenkassenNr();
+                verwalter.Aktesuchen(nr).Analyseberichtanlegen(laborantenkuerzel.getText(),analysedatum.getText(),laborname.getText(), analyseobjekt.getText(), analysemethode.getText(),analyseergebnis.getText());
+                p = verwalter.Aktesuchen(nr);
+                patientenakteladen();
+            }
         }
     }
 
     @FXML
     public void patientbearbeiten()
     {
-        //ausgabename.setEditable(true);
         ausgabegeschlecht.setEditable(true);
-        ausgabeadresse.setEditable(true);
-        //ausgabealter.setEditable(true); 
+        ausgabeadresse.setEditable(true); 
         ausgabeblutgruppe.setEditable(true);
         ausgabearzt.setEditable(true);
         ausgabevorerkrankungen.setEditable(true);
@@ -559,10 +590,8 @@ public class MainWindowController extends Verwalter
             p = verwalter.Aktesuchen(auskrankenkassennummer1.getText());    
             speichernbutton.setDisable(true);
 
-            //ausgabename.setEditable(false);
             ausgabegeschlecht.setEditable(false);
             ausgabeadresse.setEditable(false);
-            //ausgabealter.setEditable(false);
             auskrankenkassennummer1.setEditable(false);
             ausgabeblutgruppe.setEditable(false);
             ausgabearzt.setEditable(false);
@@ -646,7 +675,7 @@ public class MainWindowController extends Verwalter
             notfalltelefonnummer.getText().matches("[0-9]+")&&notfallblutgruppe.getText().matches("[a-zA-Z]+"))
             {
                 verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.
-                getText(), notfallbeziehung.getText(), notfalltelefonnummer.getText(), notfallblutgruppe.getText());
+                    getText(), notfallbeziehung.getText(), notfalltelefonnummer.getText(), notfallblutgruppe.getText());
                 String nr = p.getKrankenkassenNr();
                 p = verwalter.Aktesuchen(nr);
                 patientenakteladen();
@@ -655,43 +684,43 @@ public class MainWindowController extends Verwalter
             {
                 if(notfallbeziehung.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallbeziehung.clear(); 
+                    alert.showAndWait();
+                    notfallbeziehung.clear(); 
                 }
                 else if(notfallname.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Namenfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Namenfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallname.clear(); 
+                    alert.showAndWait();
+                    notfallname.clear(); 
                 }
                 else if(notfalltelefonnummer.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   notfalltelefonnummer.clear(); 
+                    alert.showAndWait();
+                    notfalltelefonnummer.clear(); 
                 }
                 else if(notfallblutgruppe.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallblutgruppe.clear(); 
+                    alert.showAndWait();
+                    notfallblutgruppe.clear(); 
                 }
             }
         }
@@ -709,7 +738,7 @@ public class MainWindowController extends Verwalter
 
         speichernbuttonanalysebericht.setDisable(false);
     }
-    
+
     @FXML
     public void notfallbearbeiten()
     {
@@ -717,7 +746,7 @@ public class MainWindowController extends Verwalter
         notfallbeziehunganzeige.setEditable(true);
         notfalltelefonnummeranzeige.setEditable(true);
         notfallblutgruppeanzeige.setEditable(true);
-        
+
         Notfallkontaktspeicherbutton.setDisable(false);
     }
 
@@ -732,24 +761,57 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
-            verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen2(berichtnr).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
-                analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnisanzeige.getText());
+            if(laborantenkuerzel.getText().matches("[a-zA-Z]+")==false)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Laborantenkürzel");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
 
-            p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
+                alert.showAndWait();
+                laborantenkuerzel.clear(); 
+            }
+            else if(laborname.getText().matches("[a-zA-Z]+")==false)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Laborname!");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
 
-            laborantenkuerzelanzeige.setEditable(false);
-            analysedatumanzeige.setEditable(false);
-            labornameanzeige.setEditable(false);
-            analyseobjektanzeige.setEditable(false);
-            analysemethodeanzeige.setEditable(false);
-            analyseergebnisanzeige.setEditable(false);
+                alert.showAndWait();
+                laborname.clear(); 
+            }
+            else if(analyseobjekt.getText().matches("[a-zA-Z]+")==false)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Analyseobjekt!");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
 
-            speichernbuttonanalysebericht.setDisable(true);
+                alert.showAndWait();
+                analyseobjekt.clear(); 
+            }
+            else
+            {
+                String berichtnr = BerichtNR.getText().replace("Analysebericht Nr. ", "");
+                verwalter.Aktesuchen(p.getKrankenkassenNr()).Analyseberichtsuchen2(berichtnr).Analyseberichtbearbeiten(laborantenkuerzelanzeige.getText(),
+                    analysedatumanzeige.getText(), labornameanzeige.getText(), analyseobjektanzeige.getText(), analysemethodeanzeige.getText(), analyseergebnisanzeige.getText());
+
+                p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
+
+                laborantenkuerzelanzeige.setEditable(false);
+                analysedatumanzeige.setEditable(false);
+                labornameanzeige.setEditable(false);
+                analyseobjektanzeige.setEditable(false);
+                analysemethodeanzeige.setEditable(false);
+                analyseergebnisanzeige.setEditable(false);
+
+                speichernbuttonanalysebericht.setDisable(true);
+            }
         }
     }
-    
-     @FXML
+
+    @FXML
     public void notfallbearbeitenspeichern()
     {
         if(notfallnameanzeige.getText() == null || notfallnameanzeige.getText().trim().isEmpty() || notfalladresseanzeige.getText() == null || notfalladresseanzeige.getText().trim().isEmpty() || 
@@ -766,7 +828,7 @@ public class MainWindowController extends Verwalter
                 String name = notfallnameanzeige.getText();
                 verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontaktaufrufen(name).kontaktdatenbearbeiten
                 (notfalladresseanzeige.getText(),notfallbeziehunganzeige.getText(), notfalltelefonnummeranzeige.getText(),
-                notfallblutgruppeanzeige.getText());
+                    notfallblutgruppeanzeige.getText());
 
                 p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
 
@@ -774,40 +836,40 @@ public class MainWindowController extends Verwalter
                 notfallbeziehunganzeige.setEditable(false);
                 notfalltelefonnummeranzeige.setEditable(false);
                 notfallblutgruppeanzeige.setEditable(false);
-            
+
                 speichernbuttonanalysebericht.setDisable(true);
             }
             else
             {
                 if(notfallbeziehunganzeige.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallbeziehunganzeige.clear(); 
+                    alert.showAndWait();
+                    notfallbeziehunganzeige.clear(); 
                 }
                 else if(notfalltelefonnummeranzeige.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   notfalltelefonnummeranzeige.clear(); 
+                    alert.showAndWait();
+                    notfalltelefonnummeranzeige.clear(); 
                 }
                 else if(notfallblutgruppeanzeige.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallblutgruppeanzeige.clear(); 
+                    alert.showAndWait();
+                    notfallblutgruppeanzeige.clear(); 
                 }
             }
         }
@@ -823,9 +885,9 @@ public class MainWindowController extends Verwalter
             main.substage = new Stage();
             main.substage.setMinHeight(500.00);
             main.substage.setMinWidth(600.00);
-            
+
             main.substage.setTitle("Analysebericht suchen");
-            
+
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
             Scene scene = new Scene(pane);
@@ -840,7 +902,7 @@ public class MainWindowController extends Verwalter
             e.printStackTrace();
         }
     }
-    
+
     public void NotfallkontaktsubWindow()
     {   
         try{
@@ -851,9 +913,9 @@ public class MainWindowController extends Verwalter
             main.substage = new Stage();
             main.substage.setMinHeight(500.00);
             main.substage.setMinWidth(600.00);
-            
+
             main.substage.setTitle("Notfallkontakt suchen");
-            
+
             MainWindowController mainWindowController = loader.getController();
             mainWindowController.setMain(main);
             Scene scene = new Scene(pane);
@@ -929,12 +991,11 @@ public class MainWindowController extends Verwalter
             }
         }
     }
-    
+
     @FXML
     public void Notfalllistedurchsuchen()
     {
         String eingabe = Notfallkontaktsuchenfeld.getText();
-        
 
         if(Notfallkontaktsuchenfeld.getText() == null || Notfallkontaktsuchenfeld.getText().trim().isEmpty())
         {
@@ -979,7 +1040,7 @@ public class MainWindowController extends Verwalter
                 try
                 {
                     Notfallkontakt gef = p.Notfallkontaktaufrufen(eingabe);
-                    
+
                     FXMLLoader loader = new FXMLLoader(Main.class.getResource("Notfallkontaktanzeigen.fxml"));
                     VBox pane = loader.load();
 
@@ -988,14 +1049,13 @@ public class MainWindowController extends Verwalter
                     Scene scene = new Scene(pane);
 
                     main.primaryStage.setScene(scene);
-                    
 
                     mainWindowController.notfallnameanzeige.setText(gef.getName());
                     mainWindowController.notfalladresseanzeige.setText(gef.getadresse());
                     mainWindowController.notfallbeziehunganzeige.setText(gef.getbeziehung());
                     mainWindowController.notfalltelefonnummeranzeige.setText(gef.gettelefonnummer());
                     mainWindowController.notfallblutgruppeanzeige.setText(gef.getblutgruppe());
-                    
+
                     main.substage.close();
                 } 
                 catch(IOException e)
@@ -1005,7 +1065,6 @@ public class MainWindowController extends Verwalter
             }
         }
     }
-    
 
     @FXML
     public void analyseberichtanzeigen()
@@ -1093,8 +1152,8 @@ public class MainWindowController extends Verwalter
             patientenakteladen();
         }
     }
-    
-     @FXML
+
+    @FXML
     public void notfallkontaktlöschen()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
