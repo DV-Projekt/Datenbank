@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.34
+ * @version 0.0.35
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -223,7 +223,8 @@ public class MainWindowController extends Verwalter
     @FXML
     public void Notfallkontakterstellen()
     {
-        try{
+        try
+        {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("notfallkontakt.fxml"));
             VBox pane = loader.load();
 
@@ -480,7 +481,8 @@ public class MainWindowController extends Verwalter
     @FXML
     public void notfallkontakt()
     {
-        try{
+        try
+        {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("notfallkontakt.fxml"));
             VBox pane = loader.load();
 
@@ -631,81 +633,69 @@ public class MainWindowController extends Verwalter
     @FXML
     public void notfallspeichern()
     {
-        if(notfallname.getText() == null || notfallname.getText().trim().isEmpty() || notfalladresse.getText() == null || notfalladresse.getText().trim().isEmpty() || 
-        notfallbeziehung.getText() == null || notfallbeziehung.getText().trim().isEmpty() || notfalltelefonnummer.getText() == null || notfalltelefonnummer.getText().trim().isEmpty() ||
+        if(notfallname.getText() == null || notfallname.getText().trim().isEmpty() || notfalladresse.getText() == null || 
+        notfalladresse.getText().trim().isEmpty() || notfallbeziehung.getText() == null || notfallbeziehung.getText().trim()
+        .isEmpty() || notfalltelefonnummer.getText() == null || notfalltelefonnummer.getText().trim().isEmpty() ||
         notfallblutgruppe.getText() == null || notfallblutgruppe.getText().trim().isEmpty())
         {
             warningDaten(); 
         }
         else
         {
-            verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.getText(), notfallbeziehung.getText(), 
-                notfalltelefonnummer.getText(), notfallblutgruppe.getText());
-            String nr = p.getKrankenkassenNr();
-            p = verwalter.Aktesuchen(nr);
-            patientenakteladen();
+            if(notfallname.getText().matches("[a-zA-Z]+")&&notfallbeziehung.getText().matches("[a-zA-Z]+")&&
+            notfalltelefonnummer.getText().matches("[0-9]+")&&notfallblutgruppe.getText().matches("[a-zA-Z]+"))
+            {
+                verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.
+                getText(), notfallbeziehung.getText(), notfalltelefonnummer.getText(), notfallblutgruppe.getText());
+                String nr = p.getKrankenkassenNr();
+                p = verwalter.Aktesuchen(nr);
+                patientenakteladen();
+            }
+            else
+            {
+                if(notfallbeziehung.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   notfallbeziehung.clear(); 
+                }
+                else if(notfallname.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Namenfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   notfallname.clear(); 
+                }
+                else if(notfalltelefonnummer.getText().matches("[0-9]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
+                   alert.setContentText("Bitte nur Zahlen eingeben");
+
+                   alert.showAndWait();
+                   notfalltelefonnummer.clear(); 
+                }
+                else if(notfallblutgruppe.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   notfallblutgruppe.clear(); 
+                }
+            }
         }
     }
-
-    // @FXML
-    // public void analyseberichtsuche()
-    // {   
-    // String eingabe = analyseberichtnummer.getText();
-
-    // if(analyseberichtnummer.getText() == null || analyseberichtnummer.getText().trim().isEmpty())
-    // {
-    // warningDaten();
-    // }
-
-    // else if(verwalter.Aktesuchen(p.getKrankenkassenNr()).getAnalysebericht().size()==0)
-    // {
-    // Alert alert = new Alert(Alert.AlertType.WARNING);
-    // alert.setTitle("Achtung");
-    // alert.setHeaderText("Kein Analysebericht vorhanden!");
-    // alert.setContentText("Bitte Analysebericht anlegen");
-
-    // alert.showAndWait();
-    // eingabefeldsuche.clear();
-    // }
-
-    // else if(verwalter.Aktesuchen(eingabe) == null)
-    // {
-    // Alert alert = new Alert(Alert.AlertType.WARNING);
-    // alert.setTitle("Achtung");
-    // alert.setHeaderText("Eingegebene Nummer existiert im System nicht!");
-    // alert.setContentText("Bitte Analysebericht anlegen");
-
-    // alert.showAndWait();
-    // eingabefeldsuche.clear();
-    // }
-    // else
-    // {
-    // try{
-    // FXMLLoader loader = new FXMLLoader(Main.class.getResource("analyseberichtanzeigen.fxml"));
-    // VBox pane = loader.load();
-
-    // MainWindowController mainWindowController = loader.getController();
-    // setMain(main);
-
-    // Scene scene = new Scene(pane);
-    // main.primaryStage.setScene(scene);
-    // main.primaryStage.show();
-
-    // mainWindowController.BerichtNR.setText(p.Analyseberichtsuchen(eingabe).getBerichtNR());
-    // mainWindowController.laborantenkuerzelanzeige.setText(p.Analyseberichtsuchen(eingabe).getLaborantenkuerzel());
-    // mainWindowController.labornameanzeige.setText(p.Analyseberichtsuchen(eingabe).getLaborname());
-    // mainWindowController.analyseobjektanzeige.setText(p.Analyseberichtsuchen(eingabe).getAnalyseObjekt());
-    // mainWindowController.analysemethodeanzeige.setText(p.Analyseberichtsuchen(eingabe).getAnalysemethode());
-    // mainWindowController.analyseergebnisanzeige.setText(p.Analyseberichtsuchen(eingabe).getAnalyseergebnis());
-    // mainWindowController.analysedatum.setText(p.Analyseberichtsuchen(eingabe).getAnalysedatum());
-    // }
-    // catch(IOException e)
-    // {
-    // e.printStackTrace();
-    // }
-    // }
-
-    // }
 
     @FXML
     public void analysebearbeiten()
@@ -770,18 +760,56 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            String name = notfallnameanzeige.getText();
-            verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontaktaufrufen(name).kontaktdatenbearbeiten(notfalladresseanzeige.getText(),
-                notfallbeziehunganzeige.getText(), notfalltelefonnummeranzeige.getText(), notfallblutgruppeanzeige.getText());
+            if(notfallbeziehunganzeige.getText().matches("[a-zA-Z]+")&&notfalltelefonnummeranzeige.getText().matches
+            ("[0-9]+")&&notfallblutgruppeanzeige.getText().matches("[a-zA-Z]+"))
+            {
+                String name = notfallnameanzeige.getText();
+                verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontaktaufrufen(name).kontaktdatenbearbeiten
+                (notfalladresseanzeige.getText(),notfallbeziehunganzeige.getText(), notfalltelefonnummeranzeige.getText(),
+                notfallblutgruppeanzeige.getText());
 
-            p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
+                p = verwalter.Aktesuchen(p.getKrankenkassenNr());    
 
-            notfalladresseanzeige.setEditable(false);
-            notfallbeziehunganzeige.setEditable(false);
-            notfalltelefonnummeranzeige.setEditable(false);
-            notfallblutgruppeanzeige.setEditable(false);
+                notfalladresseanzeige.setEditable(false);
+                notfallbeziehunganzeige.setEditable(false);
+                notfalltelefonnummeranzeige.setEditable(false);
+                notfallblutgruppeanzeige.setEditable(false);
             
-            speichernbuttonanalysebericht.setDisable(true);
+                speichernbuttonanalysebericht.setDisable(true);
+            }
+            else
+            {
+                if(notfallbeziehunganzeige.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Beziehungsfeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   notfallbeziehunganzeige.clear(); 
+                }
+                else if(notfalltelefonnummeranzeige.getText().matches("[0-9]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Telefonnummerfeld!");
+                   alert.setContentText("Bitte nur Zahlen eingeben");
+
+                   alert.showAndWait();
+                   notfalltelefonnummeranzeige.clear(); 
+                }
+                else if(notfallblutgruppeanzeige.getText().matches("[a-zA-Z]+")==false)
+                {
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Achtung");
+                   alert.setHeaderText("Falsche eingabe im Blutgruppefeld!");
+                   alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                   alert.showAndWait();
+                   notfallblutgruppeanzeige.clear(); 
+                }
+            }
         }
     }
 
