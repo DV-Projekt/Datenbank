@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.33
+ * @version 0.0.34
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -1046,42 +1046,6 @@ public class MainWindowController extends Verwalter
             p.Analyseberichtsuchen2(berichtnr).Berichtexportieren(change.replaceAll(file.getName(), berichtnr + file.getName()));
         }
     }
-    
-    @FXML
-    public void notfallkontaktexportieren()
-    {
-        Path f = Paths.get("C:\\ChemischeAnalysedatenbank\\Analyseberichte");
-        if (!Files.exists(f)) 
-        {
-            try 
-            {
-                Files.createDirectories(f);
-            } 
-            catch (IOException e) 
-            {
-                e.printStackTrace();    
-            }
-        }
-
-        FileChooser filechooser = new FileChooser();
-        filechooser.setTitle("Speicherort auswählen");
-
-        filechooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel (*.xlsx)", "*.xlsx"));
-        File file = filechooser.showSaveDialog(Main.primaryStage);
-
-        if (file == null)
-        {
-
-        }
-        else
-        {
-            String change = new String(file.getPath());
-            String name = notfallnameanzeige.getText();//methode notfallkontakt exportieren fehlt noch
-            p.Notfallkontaktaufrufenname).Berichtexportieren2(change.replaceAll(file.getName(), berichtnr + file.getName()));
-            p.Analyseberichtsuchen2(berichtnr).Berichtexportieren(change.replaceAll(file.getName(), berichtnr + file.getName()));
-        }
-    }
 
     @FXML
     public void analyseberichtlöschen()
@@ -1121,5 +1085,3 @@ public class MainWindowController extends Verwalter
         }
     }
 }
-
-
