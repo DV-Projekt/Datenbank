@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.37
+ * @version 0.0.38
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -30,6 +30,7 @@ import java.nio.file.*;
 import java.text.*;
 import java.time.format.*;
 import java.time.*;
+
 public class MainWindowController extends Verwalter
 {
     //Views
