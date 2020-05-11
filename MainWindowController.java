@@ -357,9 +357,9 @@ public class MainWindowController extends Verwalter
             getText().matches("[0-9]+"))
             {
                 Patientenakte patient = new Patientenakte(name.getText(), alter.getText(), adresse.getText(), geschlecht.
-                getText(), krankenkassennummer1.getText(), blutgruppe.getText(), arzt.getText(), telefonnummer.getText(),
-                vorerkrankungen.getText(), allergien.getText());
-                
+                        getText(), krankenkassennummer1.getText(), blutgruppe.getText(), arzt.getText(), telefonnummer.getText(),
+                        vorerkrankungen.getText(), allergien.getText());
+
                 verwalter.Akten.add(patient);
 
                 try 
@@ -383,63 +383,63 @@ public class MainWindowController extends Verwalter
             {
                 if(name.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Namensfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Namensfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   name.clear(); 
+                    alert.showAndWait();
+                    name.clear(); 
                 }
                 else if(alter.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Alterfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Alterfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   alter.clear(); 
+                    alert.showAndWait();
+                    alter.clear(); 
                 }
                 else if(geschlecht.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Geschlechtfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Geschlechtfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   geschlecht.clear(); 
+                    alert.showAndWait();
+                    geschlecht.clear(); 
                 }
                 else if(blutgruppe.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   blutgruppe.clear(); 
+                    alert.showAndWait();
+                    blutgruppe.clear(); 
                 }
                 else if(arzt.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Arztfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Arztfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   arzt.clear(); 
+                    alert.showAndWait();
+                    arzt.clear(); 
                 }
                 else if(telefonnummer.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   telefonnummer.clear(); 
+                    alert.showAndWait();
+                    telefonnummer.clear(); 
                 }
             }
         }
@@ -597,35 +597,29 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(laborantenkuerzel.getText().matches("[a-zA-Z]+")==false)
+            if(laborantenkuerzel.getText().matches("[a-zA-Z]+")==false || laborantenkuerzel.getText().contains("")==false)
             {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Achtung");
-                alert.setHeaderText("Falsche Eingabe bei Laborantenkürzel");
-                alert.setContentText("Bitte nur Buchstaben eingeben");
+                
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe bei Laborantenkürzel");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                alert.showAndWait();
-                laborantenkuerzel.clear(); 
+                    alert.showAndWait();
+                    laborantenkuerzel.clear();
+               
             }
-            else if(laborname.getText().matches("[a-zA-Z]+")==false)
+            else if(laborname.getText().matches("[a-zA-Z]+")==false || laborname.getText().contains("")==false)
             {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Achtung");
-                alert.setHeaderText("Falsche Eingabe bei Laborname!");
-                alert.setContentText("Bitte nur Buchstaben eingeben");
+                
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe bei Laborname!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                alert.showAndWait();
-                laborname.clear(); 
-            }
-            else if(analyseobjekt.getText().matches("[a-zA-Z]+")==false)
-            {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Achtung");
-                alert.setHeaderText("Falsche Eingabe bei Analyseobjekt!");
-                alert.setContentText("Bitte nur Buchstaben eingeben");
-
-                alert.showAndWait();
-                analyseobjekt.clear(); 
+                    alert.showAndWait();
+                    laborname.clear();
+              
             }
             else    
             {
@@ -671,9 +665,9 @@ public class MainWindowController extends Verwalter
             ausgabearzt.getText().matches("[a-zA-Z]+")&&ausgabetelefonnummer.getText().matches("[0-9]+"))
             {
                 verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabeadresse.getText(),
-                ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), 
-                ausgabearzt.getText(), ausgabetelefonnummer.getText(),ausgabevorerkrankungen.getText(), ausgabeallergien.
-                getText());
+                    ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), 
+                    ausgabearzt.getText(), ausgabetelefonnummer.getText(),ausgabevorerkrankungen.getText(), ausgabeallergien.
+                    getText());
 
                 p = verwalter.Aktesuchen(auskrankenkassennummer1.getText());    
                 speichernbutton.setDisable(true);
@@ -691,44 +685,44 @@ public class MainWindowController extends Verwalter
             {
                 if(ausgabegeschlecht.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Geschlechtfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Geschlechtfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   ausgabegeschlecht.clear(); 
+                    alert.showAndWait();
+                    ausgabegeschlecht.clear(); 
                 }
                 else if(ausgabeblutgruppe.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   ausgabeblutgruppe.clear(); 
+                    alert.showAndWait();
+                    ausgabeblutgruppe.clear(); 
                 }
                 else if(ausgabearzt.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Arztfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Arztfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   ausgabearzt.clear(); 
+                    alert.showAndWait();
+                    ausgabearzt.clear(); 
                 }
                 else if(ausgabetelefonnummer.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   ausgabetelefonnummer.clear(); 
-                
+                    alert.showAndWait();
+                    ausgabetelefonnummer.clear(); 
+
                 }
             }
         }
@@ -817,43 +811,43 @@ public class MainWindowController extends Verwalter
             {
                 if(notfallbeziehung.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallbeziehung.clear(); 
+                    alert.showAndWait();
+                    notfallbeziehung.clear(); 
                 }
                 else if(notfallname.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Namenfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Namenfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallname.clear(); 
+                    alert.showAndWait();
+                    notfallname.clear(); 
                 }
                 else if(notfalltelefonnummer.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   notfalltelefonnummer.clear(); 
+                    alert.showAndWait();
+                    notfalltelefonnummer.clear(); 
                 }
                 else if(notfallblutgruppe.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallblutgruppe.clear(); 
+                    alert.showAndWait();
+                    notfallblutgruppe.clear(); 
                 }
             }
         }
@@ -979,33 +973,33 @@ public class MainWindowController extends Verwalter
             {
                 if(notfallbeziehunganzeige.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Beziehungsfeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallbeziehunganzeige.clear(); 
+                    alert.showAndWait();
+                    notfallbeziehunganzeige.clear(); 
                 }
                 else if(notfalltelefonnummeranzeige.getText().matches("[0-9]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
-                   alert.setContentText("Bitte nur Zahlen eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Telefonnummerfeld!");
+                    alert.setContentText("Bitte nur Zahlen eingeben");
 
-                   alert.showAndWait();
-                   notfalltelefonnummeranzeige.clear(); 
+                    alert.showAndWait();
+                    notfalltelefonnummeranzeige.clear(); 
                 }
                 else if(notfallblutgruppeanzeige.getText().matches("[a-zA-Z]+")==false)
                 {
-                   Alert alert = new Alert(Alert.AlertType.WARNING);
-                   alert.setTitle("Achtung");
-                   alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
-                   alert.setContentText("Bitte nur Buchstaben eingeben");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Achtung");
+                    alert.setHeaderText("Falsche Eingabe im Blutgruppefeld!");
+                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                   alert.showAndWait();
-                   notfallblutgruppeanzeige.clear(); 
+                    alert.showAndWait();
+                    notfallblutgruppeanzeige.clear(); 
                 }
             }
         }

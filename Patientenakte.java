@@ -391,37 +391,37 @@ public class Patientenakte
         ArrayList<Analysebericht> gefber = new ArrayList<Analysebericht>();
         for(int i = 0; i< Analyseberichte.size(); i++)
         {
-            if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
+            if(Analyseberichte.get(i).getLaborantenkuerzel().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            else if(Analyseberichte.get(i).getLaborname().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getLaborname().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            else if(Analyseberichte.get(i).getBerichtNR().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getBerichtNR().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseObjekt().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            else if(Analyseberichte.get(i).getAnalysemethode().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalysemethode().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            else if(Analyseberichte.get(i).getAnalyseergebnis().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseergebnis().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
             }
-            else if(Analyseberichte.get(i).getAnalysedatum().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalysedatum().contains(gesucht))
             {    
                 gefunden=true;
                 gefber.add(Analyseberichte.get(i));
@@ -439,37 +439,37 @@ public class Patientenakte
         boolean gefunden=false;
         for(int i = 0; i< Analyseberichte.size(); i++)
         {
-            if(Analyseberichte.get(i).getLaborantenkuerzel().equalsIgnoreCase(gesucht))
+            if(Analyseberichte.get(i).getLaborantenkuerzel().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getLaborname().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getLaborname().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalyseObjekt().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseObjekt().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getBerichtNR().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getBerichtNR().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalysemethode().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalysemethode().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalyseergebnis().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalyseergebnis().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
             }
-            else if(Analyseberichte.get(i).getAnalysedatum().equalsIgnoreCase(gesucht))
+            else if(Analyseberichte.get(i).getAnalysedatum().contains(gesucht))
             {    
                 gefunden=true;
                 return Analyseberichte.get(i);
@@ -656,7 +656,7 @@ public class Patientenakte
         int i=0;
         while(it2.hasNext()&&!gefunden)
         {
-            if(Notfallkontakte.get(i).getName().equals(gesucht))
+            if(Notfallkontakte.get(i).getName().contains(gesucht))
             {
                 gefunden=true;
                 return Notfallkontakte.get(i); 
