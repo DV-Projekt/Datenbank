@@ -223,6 +223,18 @@ public class MainWindowController extends Verwalter
         this.main = main;
     }
 
+    public static boolean isLetter(String s)
+    {
+        for(int i=0;i<s.length();i++)
+        {
+            char c = s.charAt(i);
+            if(Character.isLetter(c)||c==' ')
+                continue;
+        return false;   
+        }
+        return true;
+    }
+    
     @FXML
     public void Notfallkontakterstellen()
     {
