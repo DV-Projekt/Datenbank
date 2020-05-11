@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.38
+ * @version 0.0.39
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -352,9 +352,9 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(name.getText().matches("[a-zA-Z]+")&&alter.getText().matches("[0-9]+")&&geschlecht.getText().matches
-            ("[a-zA-Z]+")&&blutgruppe.getText().matches("[a-zA-Z]+")&&arzt.getText().matches("[a-zA-Z]+")&&telefonnummer.
-            getText().matches("[0-9]+"))
+            if(name.getText().replaceAll(" ","").matches("[a-zA-Z]+") && alter.getText().replaceAll(" ","").matches("[0-9]+") && geschlecht.getText().replaceAll(" ","").matches
+            ("[a-zA-Z]+") && blutgruppe.getText().replaceAll(" ","").matches("[a-zA-Z]+") && arzt.getText().replaceAll(" ","").matches("[a-zA-Z]+") && telefonnummer.
+            getText().replaceAll(" ","").matches("[0-9]+"))
             {
                 Patientenakte patient = new Patientenakte(name.getText(), alter.getText(), adresse.getText(), geschlecht.
                         getText(), krankenkassennummer1.getText(), blutgruppe.getText(), arzt.getText(), telefonnummer.getText(),
@@ -381,7 +381,7 @@ public class MainWindowController extends Verwalter
             }
             else
             {
-                if(name.getText().matches("[a-zA-Z]+")==false)
+                if(name.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -391,7 +391,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     name.clear(); 
                 }
-                else if(alter.getText().matches("[0-9]+")==false)
+                else if(alter.getText().replaceAll(" ","").matches("[0-9]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -401,7 +401,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     alter.clear(); 
                 }
-                else if(geschlecht.getText().matches("[a-zA-Z]+")==false)
+                else if(geschlecht.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -411,7 +411,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     geschlecht.clear(); 
                 }
-                else if(blutgruppe.getText().matches("[a-zA-Z]+")==false)
+                else if(blutgruppe.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -421,7 +421,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     blutgruppe.clear(); 
                 }
-                else if(arzt.getText().matches("[a-zA-Z]+")==false)
+                else if(arzt.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -431,7 +431,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     arzt.clear(); 
                 }
-                else if(telefonnummer.getText().matches("[0-9]+")==false)
+                else if(telefonnummer.getText().replaceAll(" ","").matches("[0-9]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -597,7 +597,7 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(laborantenkuerzel.getText().matches("[a-zA-Z]+")==false || laborantenkuerzel.getText().contains("")==false)
+            if(laborantenkuerzel.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
                 
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -609,7 +609,7 @@ public class MainWindowController extends Verwalter
                     laborantenkuerzel.clear();
                
             }
-            else if(laborname.getText().matches("[a-zA-Z]+")==false || laborname.getText().contains("")==false)
+            else if(laborname.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
                 
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -661,8 +661,8 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(ausgabegeschlecht.getText().matches("[a-zA-Z]+")&&ausgabeblutgruppe.getText().matches("[a-zA-Z]+")&&
-            ausgabearzt.getText().matches("[a-zA-Z]+")&&ausgabetelefonnummer.getText().matches("[0-9]+"))
+            if(ausgabegeschlecht.getText().replaceAll(" ","").matches("[a-zA-Z]+") && ausgabeblutgruppe.getText().replaceAll(" ","").matches("[a-zA-Z]+") &&
+            ausgabearzt.getText().replaceAll(" ","").matches("[a-zA-Z]+") && ausgabetelefonnummer.getText().replaceAll(" ","").matches("[0-9]+"))
             {
                 verwalter.Aktesuchen(auskrankenkassennummer1.getText()).Aktebearbeiten(ausgabeadresse.getText(),
                     ausgabegeschlecht.getText(), auskrankenkassennummer1.getText(), ausgabeblutgruppe.getText(), 
@@ -683,7 +683,7 @@ public class MainWindowController extends Verwalter
             }
             else
             {
-                if(ausgabegeschlecht.getText().matches("[a-zA-Z]+")==false)
+                if(ausgabegeschlecht.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -693,7 +693,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     ausgabegeschlecht.clear(); 
                 }
-                else if(ausgabeblutgruppe.getText().matches("[a-zA-Z]+")==false)
+                else if(ausgabeblutgruppe.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -703,7 +703,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     ausgabeblutgruppe.clear(); 
                 }
-                else if(ausgabearzt.getText().matches("[a-zA-Z]+")==false)
+                else if(ausgabearzt.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -713,7 +713,7 @@ public class MainWindowController extends Verwalter
                     alert.showAndWait();
                     ausgabearzt.clear(); 
                 }
-                else if(ausgabetelefonnummer.getText().matches("[0-9]+")==false)
+                else if(ausgabetelefonnummer.getText().replaceAll(" ","").matches("[0-9]+")==false)
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Achtung");
@@ -798,8 +798,8 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(notfallname.getText().matches("[a-zA-Z]+")&&notfallbeziehung.getText().matches("[a-zA-Z]+")&&
-            notfalltelefonnummer.getText().matches("[0-9]+")&&notfallblutgruppe.getText().matches("[a-zA-Z]+"))
+            if(notfallname.getText().replaceAll(" ","").matches("[a-zA-Z]+") && notfallbeziehung.getText().replaceAll(" ","").matches("[a-zA-Z]+") &&
+            notfalltelefonnummer.getText().replaceAll(" ","").matches("[0-9]+") && notfallblutgruppe.getText().replaceAll(" ","").matches("[a-zA-Z]+"))
             {
                 verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontakterstellen(notfallname.getText(), notfalladresse.
                     getText(), notfallbeziehung.getText(), notfalltelefonnummer.getText(), notfallblutgruppe.getText());
@@ -889,7 +889,7 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(laborantenkuerzelanzeige.getText().matches("[a-zA-Z]+")==false)
+            if(laborantenkuerzelanzeige.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
@@ -899,7 +899,7 @@ public class MainWindowController extends Verwalter
                 alert.showAndWait();
                 laborantenkuerzel.clear(); 
             }
-            else if(labornameanzeige.getText().matches("[a-zA-Z]+")==false)
+            else if(labornameanzeige.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
@@ -909,7 +909,7 @@ public class MainWindowController extends Verwalter
                 alert.showAndWait();
                 laborname.clear(); 
             }
-            else if(analyseobjektanzeige.getText().matches("[a-zA-Z]+")==false)
+            else if(analyseobjektanzeige.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Achtung");
@@ -952,8 +952,8 @@ public class MainWindowController extends Verwalter
         }
         else
         {
-            if(notfallbeziehunganzeige.getText().matches("[a-zA-Z]+")&&notfalltelefonnummeranzeige.getText().matches
-            ("[0-9]+")&&notfallblutgruppeanzeige.getText().matches("[a-zA-Z]+"))
+            if(notfallbeziehunganzeige.getText().replaceAll(" ","").matches("[a-zA-Z]+") && notfalltelefonnummeranzeige.getText().replaceAll(" ","").matches
+            ("[0-9]+") && notfallblutgruppeanzeige.getText().replaceAll(" ","").matches("[a-zA-Z]+"))
             {
                 String name = notfallnameanzeige.getText();
                 verwalter.Aktesuchen(p.getKrankenkassenNr()).Notfallkontaktaufrufen(name).kontaktdatenbearbeiten

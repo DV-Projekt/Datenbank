@@ -656,7 +656,7 @@ public class Patientenakte
         int i=0;
         while(it2.hasNext()&&!gefunden)
         {
-            if(Notfallkontakte.get(i).getName().contains(gesucht))
+            if(Notfallkontakte.get(i).getName().equalsIgnoreCase(gesucht))
             {
                 gefunden=true;
                 return Notfallkontakte.get(i); 
