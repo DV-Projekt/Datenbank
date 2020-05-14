@@ -29,6 +29,10 @@ public class Verwalter
         Akten = new ArrayList <Patientenakte> ();
     }
     
+    /**
+     * Erstellt einen Verwalter für die GUI
+     */
+    
     public static void erstelleVerwalter()
     {
         verwalter = new Verwalter();
