@@ -3,7 +3,7 @@
  * Außerdem können die Analyseberichte bearbeitet und als xlsx-File exportiert werden
  * 
  * @author Nicolas Pfaff 
- * @version 0.0.18
+ * @version 1.0
  * 
  */
 

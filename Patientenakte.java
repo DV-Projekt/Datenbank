@@ -3,7 +3,7 @@
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
  * Außerdem erstellt sie für jeden neuen Patienten eine Exeldatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version (0.0.29)
+ * @version 1.0
  */
 import java.util.*;
 import java.io.File;

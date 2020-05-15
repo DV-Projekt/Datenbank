@@ -1,8 +1,8 @@
 /**
- * Beschreiben Sie hier die Klasse GUI.
+ * Erzeugt beim Start das Hauptfenster der Oberfläche.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.11
+ * @version 1.0
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -18,6 +18,7 @@ public class Main extends Application {
     public static Stage primaryStage;
     
     public static Stage substage;
+    
     @Override
     public void start(Stage primaryStage) 
     {

@@ -3,7 +3,7 @@
  * Somit kann er auf diese Patientenakten zugreifen, sie aufrufen und löschen.
  *
  * @author (Angelika Jouperina)
- * @version (0.0.13)
+ * @version (1.0)
  */
 import java.util.ArrayList;
 import java.io.File;
@@ -28,6 +28,10 @@ public class Verwalter
     {
         Akten = new ArrayList <Patientenakte> ();
     }
+    
+    /**
+     * Erstellt einen Verwalter für die GUI
+     */
     
     public static void erstelleVerwalter()
     {

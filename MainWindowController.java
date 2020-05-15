@@ -1,9 +1,9 @@
 
 /**
- * Beschreiben Sie hier die Klasse MainWindowController.
+ * Controller der Oberfläche.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.40
+ * @version 1.1
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -230,11 +230,11 @@ public class MainWindowController extends Verwalter
             char c = s.charAt(i);
             if(Character.isLetter(c)||c==' ')
                 continue;
-        return false;   
+            return false;   
         }
         return true;
     }
-    
+
     @FXML
     public void Notfallkontakterstellen()
     {
@@ -611,27 +611,27 @@ public class MainWindowController extends Verwalter
         {
             if(laborantenkuerzel.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
-                
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Achtung");
-                    alert.setHeaderText("Falsche Eingabe bei Laborantenkürzel");
-                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                    alert.showAndWait();
-                    laborantenkuerzel.clear();
-               
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Laborantenkürzel");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                alert.showAndWait();
+                laborantenkuerzel.clear();
+
             }
             else if(laborname.getText().replaceAll(" ","").matches("[a-zA-Z]+")==false)
             {
-                
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Achtung");
-                    alert.setHeaderText("Falsche Eingabe bei Laborname!");
-                    alert.setContentText("Bitte nur Buchstaben eingeben");
 
-                    alert.showAndWait();
-                    laborname.clear();
-              
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Achtung");
+                alert.setHeaderText("Falsche Eingabe bei Laborname!");
+                alert.setContentText("Bitte nur Buchstaben eingeben");
+
+                alert.showAndWait();
+                laborname.clear();
+
             }
             else    
             {
