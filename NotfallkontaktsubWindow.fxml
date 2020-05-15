@@ -24,7 +24,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField fx:id="Notfallkontaktsuchenfeld" prefHeight="26.0" prefWidth="200.0" text="Suchbegriff eingeben" />
+                  <TextField fx:id="Notfallkontaktsuchenfeld" prefHeight="26.0" prefWidth="200.0" text="Name eingeben" />
                   <Button fx:id="Notfalllistedurchsuchen" mnemonicParsing="false" onAction="#Notfalllistedurchsuchen" text="Suchen" />
                </children>
             </HBox>

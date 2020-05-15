@@ -3,7 +3,7 @@
  * Beschreiben Sie hier die Klasse MainWindowController.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.39
+ * @version 0.0.40
  */
 import javafx.application.*;
 import javafx.stage.*;
@@ -979,7 +979,7 @@ public class MainWindowController extends Verwalter
                 notfalltelefonnummeranzeige.setEditable(false);
                 notfallblutgruppeanzeige.setEditable(false);
 
-                speichernbuttonanalysebericht.setDisable(true);
+                Notfallkontaktspeicherbutton.setDisable(true);
             }
             else
             {
