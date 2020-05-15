@@ -11,6 +11,7 @@
  * @version 2, 9th April, 2020
  * @version 3, 13th April, 2020
  * @version 4, 16th April.2020
+ * @version 1.0
  */
 public class Notfallkontakt
 {

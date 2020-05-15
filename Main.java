@@ -2,7 +2,7 @@
  * Erzeugt beim Start das Hauptfenster der Oberfläche.
  * 
  * @author Nicolas Pfaff, Lennart Burkart 
- * @version 0.0.11
+ * @version 1.0
  */
 import javafx.application.*;
 import javafx.stage.*;

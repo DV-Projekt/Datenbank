@@ -3,7 +3,7 @@
  * Controller der Oberfläche.
  * 
  * @author Nicolas Pfaff, Lennart Burkart
- * @version 0.0.39
+ * @version 1.0
  */
 import javafx.application.*;
 import javafx.stage.*;
