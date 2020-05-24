@@ -20,7 +20,7 @@ import java.nio.file.*;
 
 public class Analysebericht
 {
-    String Laborantenkuerzel;
+    String Laborantenkürzel;
     String Analysedatum;
     String Laborname;
     String AnalyseObjekt;
@@ -43,7 +43,7 @@ public class Analysebericht
 
     public Analysebericht(String Laborantenkuerzel, String Analysedatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
-        this.Laborantenkuerzel = Laborantenkuerzel;
+        this.Laborantenkürzel = Laborantenkuerzel;
         this.Analysedatum = Analysedatum;
         this.Laborname = Laborname;
         this.AnalyseObjekt = AnalyseObjekt;
@@ -64,9 +64,9 @@ public class Analysebericht
      * @param Analysemethode
      * @param Analyseergebnis
      */
-    public Analysebericht(String Laborantenkuerzel, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
+    public Analysebericht(String Laborantenkürzel, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
-        this.Laborantenkuerzel = Laborantenkuerzel;
+        this.Laborantenkürzel = Laborantenkürzel;
         Calendar date = Calendar.getInstance();
         Analysedatum = date.get(Calendar.MONTH) + "-" + (date.get(Calendar.DAY_OF_MONTH) + 1 ) + "-" + date.get(Calendar.YEAR);
         this.Laborname = Laborname;
@@ -84,7 +84,7 @@ public class Analysebericht
      */
     public Analysebericht()
     {
-        Laborantenkuerzel = "Frau Tschan";
+        Laborantenkürzel = "Frau Tschan";
         Calendar date = Calendar.getInstance();
         Analysedatum = date.get(Calendar.MONTH) + "-" + (date.get(Calendar.DAY_OF_MONTH) + 1 ) + "-" + date.get(Calendar.YEAR);
         Laborname = "HFU";
@@ -105,9 +105,9 @@ public class Analysebericht
      * @param Analysemethode
      * @param Analyseergebnis
      */
-    public void Analyseberichtbearbeiten(String Laborantenkuerzel, String Erstellungsdatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
+    public void Analyseberichtbearbeiten(String Laborantenkürzel, String Erstellungsdatum, String Laborname, String AnalyseObjekt, String Analysemethode, String Analyseergebnis)
     {
-        this.Laborantenkuerzel = Laborantenkuerzel;
+        this.Laborantenkürzel = Laborantenkürzel;
         this.Analysedatum = Erstellungsdatum;
         this.Laborname = Laborname;
         this.AnalyseObjekt = AnalyseObjekt;
@@ -142,8 +142,8 @@ public class Analysebericht
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
 
-        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
-                {BerichtNR, Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
+        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkürzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                {BerichtNR, Laborantenkürzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
         int rowNum =0;
 
@@ -174,13 +174,21 @@ public class Analysebericht
         }
     }
     
+    /**
+     * Wichtig!!: Diese Methode ist nur für die Oberfläche relevant.
+     * Die Methode Berichtexportieren erzeugt beim Aufruf eine xlsx-Datei (Excel-Datei), in denen alle Attribute und ihre zugehörigen Werte abgespeichert werden.
+     * Dazu wird ein frei wählbarer Filename (wählbar durch einen FileChooser in der Oberfläche) und die Berichtnummer als Dateiname gewählt. Die Berichtnummer gewährleistet, 
+     * dass jeder exportierte Bericht eindeutig identifiziert werden kann. Über den FileChooser wird der Methode der Speicherort des Berichts als Parameter übergeben. 
+     * 
+     * @param Dateipfad
+     */
     public void Berichtexportieren2(String Dateipfad)
     {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Analysebericht "+Analysedatum);
 
-        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkuerzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
-                {BerichtNR, Laborantenkuerzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
+        String[][] werte = new String [][]{{"Bericht NR", "Laborantenkürzel", "Analysedatum","Laborname", "Analyseobjekt", "Analysemethode", "Analyseergebnis"},
+                {BerichtNR, Laborantenkürzel, Analysedatum, Laborname, AnalyseObjekt,Analysemethode, Analyseergebnis}};
 
         int rowNum =0;
 
@@ -217,7 +225,7 @@ public class Analysebericht
      */
     public String getLaborantenkuerzel()
     {
-        return Laborantenkuerzel;
+        return Laborantenkürzel;
     }
 
     /**
@@ -285,9 +293,9 @@ public class Analysebericht
      * 
      * @param Laborantenkuerzel
      */
-    public void setLaborantenkuerzel(String Laborantenkuerzel)
+    public void setLaborantenkuerzel(String Laborantenkürzel)
     {
-        this.Laborantenkuerzel = Laborantenkuerzel; 
+        this.Laborantenkürzel = Laborantenkürzel; 
     }
 
     /**
