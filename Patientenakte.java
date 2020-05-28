@@ -380,7 +380,8 @@ public class Patientenakte
     }
 
     /** Die Methode Analyseberichtsuchen vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte Liste 
-     * mit dem eingegebenen String und gibt bei Übereinstimmung den Analysebericht aus der den gesuchten String enthält.
+     * mit dem eingegebenen String und speichert bei Übereinstimmung alle Analyseberichte die den eingegebenen String
+     * enthalten in einer Arraylist und gibt diese am ende aus.
      * 
      * @param gesucht (String) eingegebener String des gesuchten Attributes
      * @return Analysebericht (Analysebericht) Analysebericht(e) die den gesuchten String enthalten
@@ -434,6 +435,13 @@ public class Patientenakte
         return gefber;
     }
 
+    /** Die Methode Analyseberichtsuchen2 vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte Liste 
+     * mit dem eingegebenen String und gibt bei Übereinstimmung den Analysebericht aus der den gesuchten String enthält.
+     * 
+     * @param gesucht (String) eingegebener String des gesuchten Attributes
+     * @return Analysebericht (Analysebericht) Analysebericht(e) die den gesuchten String enthalten
+     */
+    
     public Analysebericht Analyseberichtsuchen2(String gesucht)
     {
         boolean gefunden=false;
@@ -542,6 +550,13 @@ public class Patientenakte
         }
     }
 
+    /** Die Methode Exportieren2 wird verwendet um die Werte der Attribute mit hilfe der Oberfläche in eine Exeldatei zu exportieren.
+     * Hierfür wird ein Dateipfad übergeben, welcher in der Oberfläche vom Filechooser verwändet wird um den Speicherort zu bestimmen.
+     * 
+     * @param Dateiname (String) Der Name den die Datei haben soll
+     * Rückgabe: keine
+     */
+    
     public void Exportieren2(String Dateiname)
     {
 
