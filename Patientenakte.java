@@ -3,7 +3,7 @@
  * Die Klasse führt die Klassen Notfallkontakt und Analysebericht zusammen.
  * Außerdem erstellt sie für jeden neuen Patienten eine Exeldatei die alle Attributwerte enthält.
  * @author (Lennart Burkart, Ricarda Henkel)
- * @version 1.0
+ * @version 1.0.1
  */
 import java.util.*;
 import java.io.File;
@@ -436,7 +436,7 @@ public class Patientenakte
     }
 
     /** Die Methode Analyseberichtsuchen2 vergleicht alle Attribute jedes Analyseberichtes aus der Analyseberichte Liste 
-     * mit dem eingegebenen String und gibt bei Übereinstimmung den Analysebericht aus der den gesuchten String enthält.
+     * mit dem eingegebenen String und gibt bei Übereinstimmung den ersten gefundenen Analysebericht aus der den gesuchten String enthält.
      * 
      * @param gesucht (String) eingegebener String des gesuchten Attributes
      * @return Analysebericht (Analysebericht) Analysebericht(e) die den gesuchten String enthalten
